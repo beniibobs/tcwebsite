@@ -1,0 +1,12 @@
+Resource,Chance >=1 (%),Expected number of objects / room,Interpretation
+Standard vault,99.91338794,6.90740741,vault blocks
+Ominous vault,100.0,1.0,vault blocks
+Breeze spawner,100.0,1.0,trial spawners
+Melee spawner,92.34995529,1.96296296,trial spawners
+Ranged spawner,57.8125,0.75,trial spawners
+Small melee spawner,0.0,0.0,trial spawners
+Dispenser,67.66959011,3.92592593,dispenser blocks
+Any lingering potion,36.43263671,0.54150702,chamber dispenser loot
+Any weakness potion,21.96956182,0.27075351,chamber dispenser loot
+Any poison potion,21.96956182,0.27075351,chamber dispenser loot
+Any healing potion,12.15916318,0.13537676,chamber dispenser loot
