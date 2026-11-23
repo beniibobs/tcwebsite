@@ -1,0 +1,17 @@
+Corner,Quadrant,Probability_per_corner_pct,Notes
+NW,Q1,11.574,rotations vary
+NW,Q2,31.944,rotations vary
+NW,Q3,31.944,rotations vary
+NW,Q4,24.537,rotation 270
+NE,Q1,11.574,rotations vary
+NE,Q2,31.944,rotations vary
+NE,Q3,31.944,rotations vary
+NE,Q4,24.537,rotation 0
+SW,Q1,11.574,rotations vary
+SW,Q2,31.944,rotations vary
+SW,Q3,31.944,rotations vary
+SW,Q4,24.537,rotation 180
+SE,Q1,11.574,rotations vary
+SE,Q2,31.944,rotations vary
+SE,Q3,31.944,rotations vary
+SE,Q4,24.537,rotation 90
