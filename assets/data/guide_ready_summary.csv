@@ -1,0 +1,29 @@
+index,category,feature,chance_at_least_one_pct,expected_number_per_TC,notes
+0,Generated feature,barrel_loot,99.841,6.4481,Excludes disposal/intersection barrels
+1,Generated feature,barrel_disposal,100.0,10.1348,
+2,Generated feature,barrel_intersection,66.782,0.6678,
+3,Generated feature,pot_loot,100.0,43.0386,Excludes fixed intersection_2 string pot
+4,Generated feature,pot_fixed,33.422,0.3342,
+5,Generated feature,pot_corridor,100.0,42.6864,Within corridor straight-piece trees
+6,Generated feature,pot_other,11.855,0.3522,
+7,Generated feature,disp_chamber,98.044,22.1103,"Only dispensers/chamber, wall_dispenser, floor_dispenser"
+8,Generated feature,disp_excluded,54.611,0.7486,
+9,Generated feature,loot_entrance,100.0,2.3319,
+10,Generated feature,loot_reward,95.101,2.7993,Includes entrance_1 reward chest
+11,Generated feature,loot_supply,14.02,0.1544,
+12,Generated feature,trapped_staircase,47.822,0.6893,
+13,Generated feature,encounter_4,1.112,0.0112,
+14,Generated feature,dripstone,48.434,0.4843,trapped_staircase OR encounter_4
+15,Generated feature,straight_count,100.0,8.0,
+16,Generated feature,chamber_count,100.0,4.0099,
+17,Item availability,bolt_trim,16.142,,Given actual simulated container counts; loot table rolls integrated analytically
+18,Item availability,creator,45.779,,Given actual simulated container counts; loot table rolls integrated analytically
+19,Item availability,either_disc,51.766,,Given actual simulated container counts; loot table rolls integrated analytically
+20,Item availability,glow_berries,5.55,,Given actual simulated container counts; loot table rolls integrated analytically
+21,Item availability,healing,50.689,,Given actual simulated container counts; loot table rolls integrated analytically
+22,Item availability,honey_bottle,49.732,,Given actual simulated container counts; loot table rolls integrated analytically
+23,Item availability,honeycomb,91.429,,Given actual simulated container counts; loot table rolls integrated analytically
+24,Item availability,lingering,89.313,,Given actual simulated container counts; loot table rolls integrated analytically
+25,Item availability,poison,72.99,,Given actual simulated container counts; loot table rolls integrated analytically
+26,Item availability,precipice,11.053,,Given actual simulated container counts; loot table rolls integrated analytically
+27,Item availability,weakness,72.99,,Given actual simulated container counts; loot table rolls integrated analytically
