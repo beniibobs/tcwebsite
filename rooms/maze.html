@@ -5,12 +5,12 @@
 <section class="wrap page-intro"><div class="breadcrumbs"><a href="../chambers.html">Chambers</a><span>Maze</span></div><div class="eyebrow">Game file: minecraft:trial_chambers/chamber/slanted</div><h1>Maze.</h1><p>Explore one assembled example of the Slanted chamber. Orbit the room, cut away the upper floors, and hover individual arms and quadrants to see how its pieces fit together.</p><div class="tagrow"><span class="tag teal">2 possible entry connectors</span><span class="tag">45.73% chance of at least one per TC</span><span class="tag">Minecraft Java 26.3</span></div></section>
 <section class="wrap maze-main-grid" aria-label="Maze 3D viewer and room-specific resource statistics">
 <div class="panel viewer-wrap"><div class="viewer-overlay"><span><span style="color:var(--teal)">●</span> INTERACTIVE BLOCK-DERIVED MODEL</span><span>One possible interior · not a typical layout</span></div>
-<canvas class="viewer-canvas" id="c" role="img" aria-label="3D Maze room. Drag to orbit, scroll to zoom, hover interior parts to outline their 3D bounds."></canvas>
+<div class="maze-canvas-shell"><canvas class="viewer-canvas" id="c" role="img" aria-label="3D Maze room. Drag to orbit, scroll to zoom, hover interior arms and quadrants."></canvas><div class="floor-selector floor-selector-overlay" role="group" aria-label="Visible floor"><button id="lo" type="button" aria-pressed="false">Floor 1</button><button id="hi" type="button" aria-pressed="true">Floor 2</button></div></div>
 <div class="viewer-controls"><div class="interactive compact-viewer-controls">
-<div class="floor-selector" role="group" aria-label="Visible floor"><button id="lo" type="button" aria-pressed="false">Floor 1</button><button id="hi" type="button" aria-pressed="true">Floor 2</button></div>
+
 <button id="reset-view" type="button">Reset camera</button>
 <label><input id="arr" type="checkbox" checked> Exit arrows</label>
-<label><input id="slt" type="checkbox" checked> Spawners &amp; dispensers</label></div>
+<label><input id="slt" type="checkbox" checked> Show spawners &amp; dispensers</label></div>
 <p id="info" aria-live="polite">Drag to orbit. Hover an arm or quadrant to see its blocks glow. Spawners and dispensers are visible through walls.</p>
 <div class="notice" id="viewer-fallback" style="display:none">The 3D model requires a WebGL-capable browser and the Three.js CDN. Room statistics remain available.</div>
 </div></div>
