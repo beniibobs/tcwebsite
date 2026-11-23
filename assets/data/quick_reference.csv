@@ -1,0 +1,67 @@
+index,scope,topic,feature,chance_at_least_one_pct,expected_count,95ci_low_pct,95ci_high_pct,source_study,notes
+0,Full Trial Chamber,Corrected resources,barrel_loot,99.841,6.4481,99.814316741412,99.86385402197998,resources_100k_v5,See v5 README for feature definitions
+1,Full Trial Chamber,Corrected resources,barrel_disposal,100.0,10.13477,99.99615854757326,100.00000000000004,resources_100k_v5,See v5 README for feature definitions
+2,Full Trial Chamber,Corrected resources,barrel_intersection,66.782,0.66782,66.48943439363697,67.07327626127051,resources_100k_v5,See v5 README for feature definitions
+3,Full Trial Chamber,Corrected resources,pot_loot,100.0,43.0386,99.99615854757326,100.00000000000004,resources_100k_v5,See v5 README for feature definitions
+4,Full Trial Chamber,Corrected resources,pot_fixed,33.422,0.33422,33.130268490744186,33.71500518122244,resources_100k_v5,See v5 README for feature definitions
+5,Full Trial Chamber,Corrected resources,pot_corridor,100.0,42.68637,99.99615854757326,100.00000000000004,resources_100k_v5,See v5 README for feature definitions
+6,Full Trial Chamber,Corrected resources,pot_other,11.855,0.35223,11.656106271639974,12.056824372416406,resources_100k_v5,See v5 README for feature definitions
+7,Full Trial Chamber,Corrected resources,disp_chamber,98.044,22.11026,97.9563038702082,98.12800495498398,resources_100k_v5,See v5 README for feature definitions
+8,Full Trial Chamber,Corrected resources,disp_excluded,54.611,0.74856,54.30224614028041,54.9193996009768,resources_100k_v5,See v5 README for feature definitions
+9,Full Trial Chamber,Corrected resources,loot_entrance,100.0,2.33187,99.99615854757326,100.00000000000004,resources_100k_v5,See v5 README for feature definitions
+10,Full Trial Chamber,Corrected resources,loot_reward,95.101,2.79934,94.96547538603114,95.23305954705089,resources_100k_v5,See v5 README for feature definitions
+11,Full Trial Chamber,Corrected resources,loot_supply,14.02,0.15441,13.8061885228961,14.236575786270194,resources_100k_v5,See v5 README for feature definitions
+12,Full Trial Chamber,Corrected resources,trapped_staircase,47.822,0.68925,47.51248054781679,48.13168678585092,resources_100k_v5,See v5 README for feature definitions
+13,Full Trial Chamber,Corrected resources,encounter_4,1.112,0.01118,1.0488570836472164,1.178898934877576,resources_100k_v5,See v5 README for feature definitions
+14,Full Trial Chamber,Corrected resources,dripstone,48.434,0.48434,48.124314926029335,48.74380538826067,resources_100k_v5,See v5 README for feature definitions
+15,Full Trial Chamber,Corrected resources,straight_count,100.0,8.0,99.99615854757326,100.00000000000004,resources_100k_v5,See v5 README for feature definitions
+16,Full Trial Chamber,Corrected resources,chamber_count,100.0,4.00986,99.99615854757326,100.00000000000004,resources_100k_v5,See v5 README for feature definitions
+17,Full Trial Chamber,Loot items,bolt_trim,16.142299932125404,,15.915561640724226,16.371639478408387,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+18,Full Trial Chamber,Loot items,creator,45.77901731082514,,45.47038840051018,46.087970515224,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+19,Full Trial Chamber,Loot items,either_disc,51.76561278736728,,51.455840970818656,52.07524895356536,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+20,Full Trial Chamber,Loot items,glow_berries,5.550286901566564,,5.4100765068803245,5.693912325417823,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+21,Full Trial Chamber,Loot items,healing,50.68852011221008,,50.37862578703003,50.998361539045,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+22,Full Trial Chamber,Loot items,honey_bottle,49.73178528792536,,49.42190279162752,50.041688390904326,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+23,Full Trial Chamber,Loot items,honeycomb,91.428980062045,,91.25387871558766,91.60089845938236,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+24,Full Trial Chamber,Loot items,lingering,89.31312939405136,,89.12013005167734,89.5031083460991,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+25,Full Trial Chamber,Loot items,poison,72.99020642613402,,72.71412677571392,73.26451976086878,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+26,Full Trial Chamber,Loot items,precipice,11.052554731597278,,10.85971245506846,11.248389303288947,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+27,Full Trial Chamber,Loot items,weakness,72.99020642613402,,72.71412677571392,73.26451976086878,resources_100k_v5,Analytical loot rolls conditional on emulator container counts
+28,Full Trial Chamber,Chambers / encounters / spawners,breeze,100.0,2.57818,99.9961586887417,100.0,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+29,Full Trial Chamber,Chambers / encounters / spawners,chamber_assembly,49.119,0.62064,48.809190384956565,49.42887729894782,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+30,Full Trial Chamber,Chambers / encounters / spawners,chamber_chamber_1,43.967,0.52837,43.65960419603598,44.27485929658045,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+31,Full Trial Chamber,Chambers / encounters / spawners,chamber_chamber_2,25.053,0.27622,24.78539323227388,25.32252335156534,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+32,Full Trial Chamber,Chambers / encounters / spawners,chamber_chamber_4,34.457,0.40247,34.1630582427459,34.75213586727187,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+33,Full Trial Chamber,Chambers / encounters / spawners,chamber_chamber_8,55.602,0.77639,55.29384434155754,55.90972527792907,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+34,Full Trial Chamber,Chambers / encounters / spawners,chamber_eruption,46.131,0.56193,45.82218617685631,46.44011106380888,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+35,Full Trial Chamber,Chambers / encounters / spawners,chamber_pedestal,25.457,0.28018,25.187951676879045,25.727933869165216,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+36,Full Trial Chamber,Chambers / encounters / spawners,chamber_slanted,45.735,0.55851,45.42640168214372,46.04392598170662,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+37,Full Trial Chamber,Chambers / encounters / spawners,door_lower,93.299,2.28595,93.14235767546243,93.45231582581413,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+38,Full Trial Chamber,Chambers / encounters / spawners,door_middle,93.231,2.28935,93.07363281389198,93.38504591156789,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+39,Full Trial Chamber,Chambers / encounters / spawners,door_upper,85.447,1.71445,85.22707727825191,85.66419946254463,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+40,Full Trial Chamber,Chambers / encounters / spawners,encounter_encounter_1,1.798,0.01852,1.7174748690849488,1.882228308620507,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+41,Full Trial Chamber,Chambers / encounters / spawners,encounter_encounter_2,2.138,0.02161,2.0501696060795416,2.2295074507093577,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+42,Full Trial Chamber,Chambers / encounters / spawners,encounter_encounter_3,2.952,0.03016,2.8488878935433126,3.0587266266983018,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+43,Full Trial Chamber,Chambers / encounters / spawners,encounter_encounter_4,1.135,0.01139,1.071196565820626,1.202557547672115,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+44,Full Trial Chamber,Chambers / encounters / spawners,encounter_encounter_5,0.692,0.00694,0.6424802599559097,0.7453078875545796,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+45,Full Trial Chamber,Chambers / encounters / spawners,flow,97.323,3.56751,97.22112612338836,97.42123822915808,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+46,Full Trial Chamber,Chambers / encounters / spawners,guster,95.926,3.22107,95.80169991153848,96.04677176724454,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+47,Full Trial Chamber,Chambers / encounters / spawners,melee,94.761,3.50364,94.6211746288063,94.89738655252904,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+48,Full Trial Chamber,Chambers / encounters / spawners,ranged,99.926,8.48065,99.90711973753557,99.94104463634682,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+49,Full Trial Chamber,Chambers / encounters / spawners,scrape,95.971,3.22169,95.84734806781256,96.09112015379036,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+50,Full Trial Chamber,Chambers / encounters / spawners,small_melee,88.654,2.46228,88.45594270861304,88.8490876504794,chamber_100k_v4,v4 study; spawner slow ranged grouped with ranged
+51,Slanted chamber only,Slanted resources,Standard vault,99.91338794,6.90740741,,,slanted_resource_audit,vault blocks; full interior model
+52,Slanted chamber only,Slanted resources,Ominous vault,100.0,1.0,,,slanted_resource_audit,vault blocks; full interior model
+53,Slanted chamber only,Slanted resources,Breeze spawner,100.0,1.0,,,slanted_resource_audit,trial spawners; full interior model
+54,Slanted chamber only,Slanted resources,Melee spawner,92.34995529,1.96296296,,,slanted_resource_audit,trial spawners; full interior model
+55,Slanted chamber only,Slanted resources,Ranged spawner,57.8125,0.75,,,slanted_resource_audit,trial spawners; full interior model
+56,Slanted chamber only,Slanted resources,Small melee spawner,0.0,0.0,,,slanted_resource_audit,trial spawners; full interior model
+57,Slanted chamber only,Slanted resources,Dispenser,67.66959011,3.92592593,,,slanted_resource_audit,dispenser blocks; full interior model
+58,Slanted chamber only,Slanted resources,Any lingering potion,36.43263671,0.54150702,,,slanted_resource_audit,dispensers containing qualifying loot; one item stack per dispenser; full interior model
+59,Slanted chamber only,Slanted resources,Any weakness potion,21.96956182,0.27075351,,,slanted_resource_audit,dispensers containing qualifying loot; one item stack per dispenser; full interior model
+60,Slanted chamber only,Slanted resources,Any poison potion,21.96956182,0.27075351,,,slanted_resource_audit,dispensers containing qualifying loot; one item stack per dispenser; full interior model
+61,Slanted chamber only,Slanted resources,Any healing potion,12.15916318,0.13537676,,,slanted_resource_audit,dispensers containing qualifying loot; one item stack per dispenser; full interior model
+62,Slanted chamber only,Slanted quadrant per corner,quadrant_1,11.57407408,,,,slanted_geometry,Any one fixed corner; rotations detailed in source tables
+63,Slanted chamber only,Slanted quadrant per corner,quadrant_2,31.94444444,,,,slanted_geometry,Any one fixed corner; rotations detailed in source tables
+64,Slanted chamber only,Slanted quadrant per corner,quadrant_3,31.94444444,,,,slanted_geometry,Any one fixed corner; rotations detailed in source tables
+65,Slanted chamber only,Slanted quadrant per corner,quadrant_4,24.53703704,,,,slanted_geometry,Any one fixed corner; rotations detailed in source tables
