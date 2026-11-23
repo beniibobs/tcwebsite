@@ -33,7 +33,7 @@ const q=[[0,0],[1,0],[1,1],[0,1]].map(([i,j])=>{const p=o.slice();p[u]+=i;p[v]+=
 const e=q[1].p.map((s,i)=>s-q[0].p[i]),f=q[2].p.map((s,i)=>s-q[0].p[i]),cr=[e[1]*f[2]-e[2]*f[1],e[2]*f[0]-e[0]*f[2],e[0]*f[1]-e[1]*f[0]];
 if(cr[0]*d[0]+cr[1]*d[1]+cr[2]*d[2]<0)q.reverse();
 const b0=P.length/3,tc=t%AC,tr=(t/AC)|0,rg=t>0?[1,1,1]:[cl>>16&255,cl>>8&255,cl&255].map(s=>s/255);
-q.forEach(({p,i,j})=>{P.push(...p);const[tu,tv]=ax===0?[j,i]:[i,j];U.push((tc+.02+tu*.96)/AC,1-(tr+.98-tv*.96)/AR);C.push(rg[0]*sh[k],rg[1]*sh[k],rg[2]*sh[k]);vp.push(pc[id(x,y,z)])});
+q.forEach(({p,i,j})=>{P.push(...p);const[tu,tv]=ax===0?[j,i]:[i,j];U.push((tc+.02+tu*.96)/AC,1-(tr+.98-tv*.96)/AR);C.push(rg[0]*sh[k]*(y<3?.63:1),rg[1]*sh[k]*(y<3?.63:1),rg[2]*sh[k]*(y<3?.63:1));vp.push(pc[id(x,y,z)])});
 I.push(b0,b0+1,b0+2,b0,b0+2,b0+3);fy.push(y)})}
 const cnt=[];for(let h=0;h<=Y;h++)cnt.push(fy.filter(v=>v<h).length);const cv=$('c'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}),S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2);
 R.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -46,18 +46,22 @@ for(let idx=0;idx<n;idx++){const part=pc[idx];if(part===0||originalPalette[idx]=
  else{v[0]=Math.min(v[0],xx);v[1]=Math.min(v[1],yy);v[2]=Math.min(v[2],zz);v[3]=Math.max(v[3],xx+1);v[4]=Math.max(v[4],yy+1);v[5]=Math.max(v[5],zz+1)}
 }
 const ca=new THREE.Float32BufferAttribute(C.slice(),3);g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(U,2));g.setAttribute('color',ca);g.setIndex(I);
-const mesh=new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:tex,vertexColors:true,alphaTest:.5}));S.add(mesh);
+const mesh=new THREE.Mesh(g,new THREE.MeshLambertMaterial({map:tex,vertexColors:true,alphaTest:.5,emissive:0x172423,emissiveIntensity:.22}));S.add(mesh);
+// Gentle directional lighting distinguishes steps, stairs and the darker lower floor.
+S.add(new THREE.AmbientLight(0xffffff,.78));
+const keyLight=new THREE.DirectionalLight(0xffebcd,.74);keyLight.position.set(10,28,12);S.add(keyLight);
+const fillLight=new THREE.DirectionalLight(0xa4cfee,.25);fillLight.position.set(-18,16,-13);S.add(fillLight);
 // Dispenser face and oak-button textures copied from the Minecraft 26.3 client JAR.
 const frontTexture=new THREE.TextureLoader().load('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAKlBMVEVQTk5oaGh3d3ddW1uRkZGdnZ2oqKiwsLDFxcUhISEQEBB/f3+FhYU8OzvEJDKrAAAAjUlEQVR42k2PQRIEMQgC0YA6k/H/392Y01JFF3ADox53H09bZm6fHx6vGZxr2fo4kwOw76ta7pcG4KTMcr9cjXarRJodlJ0BxqSxihMW0F6hSjJLUd5oOyH5vpGhMgCRt79P5YkApEg97zOD1GgFlXu6GASaCimqJEoEsClSQR5yA7ivfO895wz/9xsAfoleBPNaM0/rAAAAAElFTkSuQmCC');
 const oakTexture=new THREE.TextureLoader().load('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAFVBMVEW4lF+vj1WfhE1nUCx+YjeWdEHCnWJT722OAAAAaUlEQVR42gXBgRHAMAyEMKCX339jVwLZtrFt4wH6ElAoBMQqhec75A45Dw/WtrUNDQSzlwJIifoArb6sT6++SmBDt23bCASwMusxtEq1yA/lDvQ4YLFB2xobCmWBqFhiD6zq+9KKL0P9AbiHDNWkCjANAAAAAElFTkSuQmCC');
 [frontTexture,oakTexture].forEach(t=>{t.magFilter=t.minFilter=THREE.NearestFilter;t.generateMipmaps=false});
 const materials={};
 const tileMaterial=(tile)=>{
- if(tile===29)return materials[29]??(materials[29]=new THREE.MeshBasicMaterial({map:frontTexture,side:THREE.DoubleSide}));
- if(tile===30)return materials[30]??(materials[30]=new THREE.MeshBasicMaterial({map:oakTexture,side:THREE.DoubleSide}));
+ if(tile===29)return materials[29]??(materials[29]=new THREE.MeshLambertMaterial({map:frontTexture,side:THREE.DoubleSide}));
+ if(tile===30)return materials[30]??(materials[30]=new THREE.MeshLambertMaterial({map:oakTexture,side:THREE.DoubleSide}));
  if(materials[tile])return materials[tile];
  const t=tex.clone();t.offset.set((tile%AC)/AC,1-(Math.floor(tile/AC)+1)/AR);t.repeat.set(1/AC,1/AR);t.magFilter=t.minFilter=THREE.NearestFilter;t.generateMipmaps=false;t.needsUpdate=true;
- return materials[tile]=new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide,alphaTest:.25});
+ return materials[tile]=new THREE.MeshLambertMaterial({map:t,side:THREE.DoubleSide,alphaTest:.25});
 };
 tex.image?.addEventListener('load',()=>{Object.values(materials).forEach(m=>{if(m.map)m.map.needsUpdate=true})});
 // Block geometry is constructed from the exact 26.3 assets/minecraft/models/block JSON.
@@ -128,19 +132,46 @@ for(const [idx,kind,dir] of shapeModels){
  }});
  S.add(root);specialMeshes.push(root);
 }
+// Only meaningful architectural assemblies (centre, arms, quadrants) can be
+// highlighted. Reward caps, spawner assemblies and dispensers are not hover targets.
+const architecturalPart=p=>p>=1&&p<=13;
 let boundsHelper=null;const clearBounds=()=>{if(boundsHelper){S.remove(boundsHelper);boundsHelper.geometry.dispose();boundsHelper.material.dispose();boundsHelper=null}};
-let hp=-1;const hl=p=>{if(p===hp)return;hp=p;
- for(let i=0;i<vp.length;i++){const m=p>0&&vp[i]===p;for(let c=0;c<3;c++)ca.array[3*i+c]=m?Math.min(1,C[3*i+c]*1.4+.15):C[3*i+c]}ca.needsUpdate=true;
- clearBounds();const b=pieceBounds.get(p);if(b){const bb=new THREE.Box3(new THREE.Vector3(b[0]-.02,b[1]-.02,b[2]-.02),new THREE.Vector3(b[3]+.02,b[4]+.02,b[5]+.02));boundsHelper=new THREE.Box3Helper(bb,0xffd77a);boundsHelper.material.depthTest=false;boundsHelper.material.transparent=true;boundsHelper.material.opacity=.95;boundsHelper.renderOrder=999;S.add(boundsHelper)}
+let hp=-1;
+const hl=p=>{if(!architecturalPart(p))p=-1;if(p===hp)return;hp=p;
+ const glowStrength=.30;
+ for(let i=0;i<vp.length;i++){
+   const on=vp[i]===p;
+   for(let c=0;c<3;c++){const base=C[3*i+c];ca.array[3*i+c]=on?Math.min(1,base*.95+glowStrength):base;}
+ }
+ ca.needsUpdate=true;
+ for(const group of specialMeshes)for(const o of group.children){
+   if(!o.isMesh)continue;
+   const orig=o.userData.originalMaterials;
+   if(!orig)continue;
+   if(o.userData.part===p){
+     if(!o.userData.hoverMaterials)o.userData.hoverMaterials=orig.map(m=>{const t=m.clone();t.emissive?.setHex(0x45d5ac);t.emissiveIntensity=.78;return t});
+     o.material=o.userData.hoverMaterials;
+   }else o.material=orig;
+ }
+ clearBounds();
+ const b=pieceBounds.get(p);
+ if(b){
+   const bb=new THREE.Box3(new THREE.Vector3(b[0]-.02,b[1]-.02,b[2]-.02),new THREE.Vector3(b[3]+.02,b[4]+.02,b[5]+.02));
+   boundsHelper=new THREE.Box3Helper(bb,0xe8bd76);
+   boundsHelper.material.depthTest=false;boundsHelper.material.transparent=true;boundsHelper.material.opacity=.43;boundsHelper.renderOrder=999;S.add(boundsHelper);
+ }
 };
 const ex=[],up=new THREE.Vector3(0,1,0);
 D.j.forEach(([k,x,y,z])=>{const d=x===X-1?[1,0,0]:x===0?[-1,0,0]:z===Z-1?[0,0,1]:[0,0,-1],m=new THREE.MeshBasicMaterial({color:y<6?0xff9a3c:0x3cc8ff}),gr=new THREE.Group(),
 s=new THREE.Mesh(new THREE.CylinderGeometry(.25,.25,5,10),m),c=new THREE.Mesh(new THREE.ConeGeometry(.7,1.6,12),m);s.position.y=2.5;c.position.y=5.8;gr.add(s,c);
 gr.position.set(x+.5,y+.5,z+.5);gr.quaternion.setFromUnitVectors(up,new THREE.Vector3(...d));gr.userData.c=m.color.getHex();S.add(gr);ex.push(gr)});
-const kc={melee:0xff4040,ranged:0xffd23c,breeze:0x7fe9ff,small_melee:0xff8a4c,vault:0xb06cff,ominous:0x6a1fd0,dispenser:0x4cd964},
-mk=D.m.map(([k,x,y,z,l])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(1.04,1.04,1.04),new THREE.MeshBasicMaterial({color:kc[k]||0xffffff,transparent:true,opacity:.3,depthWrite:false})),e=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:kc[k]||0xffffff}));e.raycast=()=>{};m.add(e);m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;m.material.depthTest=false;m.material.depthWrite=false;e.material.depthTest=false;e.material.depthWrite=false;m.renderOrder=1000;e.renderOrder=1001;S.add(m);return m}),
-vis=()=>{mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
-const txt=['Drag to orbit (reduced sensitivity), scroll to zoom. Hover an interior piece for its name and outlined 3D bounds; click an exit arrow for details.','Both exits are highlighted because they belong together: orange is the lower exit, blue the upper. The lower exit is the one that connects about 60% of the time, the upper about 40%. Exit positions are not consistent with the rotation of the room’s interior.'];
+const kc={melee:0x6ce5d7,ranged:0x6ce5d7,breeze:0x6ce5d7,small_melee:0x6ce5d7,dispenser:0xe9b96b};
+const mk=D.m.filter(([k])=>k!=='vault'&&k!=='ominous').map(([k,x,y,z,l])=>{
+ const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:kc[k]||0x6ce5d7,transparent:true,opacity:.58,depthTest:false,depthWrite:false}));
+ m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;m.renderOrder=1000;S.add(m);return m;
+});
+const vis=()=>{mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
+const txt=['Drag to orbit, scroll to zoom. Hover an interior arm or quadrant for glowing block faces and a subtle outline.','Both exits are highlighted because they belong together: orange is the lower exit, blue the upper. The lower exit is the one that connects about 60% of the time, the upper about 40%. Exit positions are not consistent with the rotation of the room’s interior.'];
 let hv='',so=false;const inf=()=>$('info').textContent=hv||txt[+so],sel=on=>{so=on;ex.forEach(gr=>gr.children.forEach(m=>m.material.color.setHex(on?0xffffff:gr.userData.c)));inf()};sel(false);
 let th=.8,ph=1.05,rad=48,dn=null;
 const rs=()=>{R.setSize(cv.clientWidth,cv.clientHeight,false);cam.aspect=cv.clientWidth/cv.clientHeight;cam.updateProjectionMatrix()};addEventListener('resize',rs);rs();
@@ -150,13 +181,13 @@ cv.onpointermove=e=>{if(dn){const dx=e.clientX-dn[0],dy=e.clientY-dn[1];dn=[e.cl
 const hits=cast(e).intersectObjects([mesh,...specialMeshes.filter(m=>m.visible),...ex.filter(x=>x.visible),...mk.filter(m=>m.visible)],true);
  let p=-1;hv='';for(const h of hits){const o=h.object;
  if(o.userData.l){hv=o.userData.l;break}
- if(o.userData.part>0){p=o.userData.part;hv=D.pn[p]||'Placed structure';break}
- if(o===mesh&&h.face){const part=vp[h.face.a];if(part>0){p=part;hv=D.pn[p]||'Placed structure';break}}
+ if(architecturalPart(o.userData.part)){p=o.userData.part;hv=D.pn[p]||'Placed structure';break}
+ if(o===mesh&&h.face){const part=vp[h.face.a];if(architecturalPart(part)){p=part;hv=D.pn[p]||'Placed structure';break}}
  }
  hl(p);inf()};
 cv.onpointerleave=()=>{hv='';hl(-1);inf()};
 cv.onpointerup=e=>{if(dn&&dn[2]<5)sel(cast(e).intersectObjects(ex,true).length>0);dn=null};
 cv.onwheel=e=>{e.preventDefault();rad=Math.min(120,Math.max(8,rad*(1+e.deltaY*.0007)))};
-const setCut=h=>{cutH=h;$('cut').value=h;g.setDrawRange(0,cnt[h]*6);vis();if(hp>0&&pieceBounds.get(hp)?.[1]>=cutH)hl(-1)};$('cut').oninput=e=>setCut(+e.target.value);$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);if($('reset-view'))$('reset-view').onclick=()=>{th=.8;ph=1.05;rad=48;setCut(14)};$('arr').onchange=e=>ex.forEach(gr=>gr.visible=e.target.checked);$('slt').onchange=vis;vis();
+const setCut=h=>{cutH=h;g.setDrawRange(0,cnt[h]*6);vis();$('lo').setAttribute('aria-pressed',String(h===5));$('hi').setAttribute('aria-pressed',String(h===14));if(hp>0&&pieceBounds.get(hp)?.[1]>=cutH)hl(-1)};$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);if($('reset-view'))$('reset-view').onclick=()=>{th=.8;ph=1.05;rad=48;setCut(14)};$('arr').onchange=e=>ex.forEach(gr=>gr.visible=e.target.checked);$('slt').onchange=vis;vis();
 (function loop(){cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam);requestAnimationFrame(loop)})();
 })();
