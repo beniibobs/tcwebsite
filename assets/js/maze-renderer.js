@@ -11,7 +11,7 @@ for(const [idx,kind] of shapeModels)a[idx]=255;
 for(let idx=0;idx<n;idx++)if(pc[idx]===29&&a[idx]===25)a[idx]=255;
 D.m.forEach(m=>{if(m[0]==='melee'&&String(m[4]).includes('spider'))m[4]='Trial spawner · melee · zombie (matching melee category)'});
 D.pn[29]='Spawner: melee/zombie';
-const id=(x,y,z)=>(y*Z+z)*X+x,inb=(x,y,z)=>x>=0&&y>=0&&z>=0&&x<X&&y<Y&&z<Z,sl=(x,y,z)=>a[id(x,y,z)]!==255;
+const id=(x,y,z)=>(y*Z+z)*X+x,inb=(x,y,z)=>x>=0&&y>=0&&z>=0&&x<X&&y<Y&&z<Z,sl=(x,y,z)=>originalPalette[id(x,y,z)]!==255;
 const N=[[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1]],ins=new Uint8Array(n),st=[];
 D.j.forEach(([k,x,y,z])=>st.push([x===X-1?x-1:x===0?1:x,y,z===Z-1?z-1:z===0?1:z]));
 while(st.length){const[x,y,z]=st.pop();if(!inb(x,y,z)||ins[id(x,y,z)]||sl(x,y,z))continue;ins[id(x,y,z)]=1;for(const d of N)st.push([x+d[0],y+d[1],z+d[2]])}
