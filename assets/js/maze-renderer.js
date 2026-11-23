@@ -5,10 +5,20 @@ const raw=Uint8Array.from(atob(D.c),c=>c.charCodeAt(0)),w=new Uint8Array(await n
 // 26.3 JAR blockstate reconstruction for this example (stairs, slabs, buttons, dispensers).
 const shapePacked=Uint8Array.from(atob('eNpF0skRBCEIBdCEPLCjsXRN/mkMLsDtFfVtQPv70EWGD/qND5doEINEggNPNUhNTurUYQM2fVqQg4yYx4LUzGO8JjapmQGZik1qZkDRd2B3U6fMBqmZWQPIhQxcquratCTCDMLlKiIUmZrclKJCdiOpbhSXyo+xBZzRjc44l3EPr8rAWY1Lq+ppfClQVavJ2KJXcmVAz26HBlrkajwl383mwvzYXNSsNVcEbtbvGz/u0fGQ/DV2FKiAYAXUKmCrAg4ViD/qBQRz9Pg7tfju7PcHFjuaIQ=='),ch=>ch.charCodeAt(0));
 const shapeModels=JSON.parse(new TextDecoder().decode(await new Response(new Blob([shapePacked]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer()));
+// Reconstruct a genuinely matching zombie addon from the second ramp's 3×2×3
+// placed block template rather than merely relabelling the original spider addon.
+// These positions share orientation; zombie trial spawner centre (24,9,14)
+// maps to (3,7,19). The source ramp remains unchanged.
+const zombieBlocks=[];
+for(let idx=0;idx<n;idx++)if(pc[idx]===21&&a[idx]!==255){
+ const x=idx%X,y=Math.floor(idx/(X*Z)),z=Math.floor(idx/X)%Z;
+ const xx=x-21,yy=y-2,zz=z+5;
+ if(xx>=0&&xx<X&&yy>=0&&yy<Y&&zz>=0&&zz<Z)zombieBlocks.push([(yy*Z+zz)*X+xx,a[idx]]);
+}
+for(let idx=0;idx<n;idx++)if(pc[idx]===29)a[idx]=255;
+for(const [idx,state] of zombieBlocks){a[idx]=state;pc[idx]=29;}
 const originalPalette=a.slice();
 for(const [idx,kind] of shapeModels)a[idx]=255;
-// A matching zombie melee addon is used consistently instead of the mismatched spider/cobweb addon.
-for(let idx=0;idx<n;idx++)if(pc[idx]===29&&a[idx]===25)a[idx]=255;
 D.m.forEach(m=>{if(m[0]==='melee'&&String(m[4]).includes('spider'))m[4]='Trial spawner · melee · zombie (matching melee category)'});
 D.pn[29]='Spawner: melee/zombie';
 const id=(x,y,z)=>(y*Z+z)*X+x,inb=(x,y,z)=>x>=0&&y>=0&&z>=0&&x<X&&y<Y&&z<Z,sl=(x,y,z)=>originalPalette[id(x,y,z)]!==255;
