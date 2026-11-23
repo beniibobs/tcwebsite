@@ -60,31 +60,73 @@ const tileMaterial=(tile)=>{
  return materials[tile]=new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide,alphaTest:.25});
 };
 tex.image?.addEventListener('load',()=>{Object.values(materials).forEach(m=>{if(m.map)m.map.needsUpdate=true})});
+// Block geometry is constructed from the exact 26.3 assets/minecraft/models/block JSON.
+// The geometry, face selection, and per-face UV crops are retained, not approximated as boxes.
+const minecraftBlockModelsPacked='eNrtld1qhDAQhd8lvZ0LU6oM+yqlFN3NsoJNFpPsFsR37xhdibv+00JbxAujnC9jzpnBgmkTp7lmu9eCHXP1QYsA6HoDZhQ98AgQeESPx3gvSFewg7rK6m4vjZg0TmHEp7G5YDv2lChjaDNge5tlFUkvHVcCs+cp2qhzJZQqNydPi31anR5Et06NEa+VXcPXGPFXoc1y3FFEi3gN7aiyLKGNAwn147ht0+bh+YnDfnaq2F5/q4/Ele42lXGtuYP0o5PzCt2MJF0qpcjft0bfGv0/Nzp4fd0cT7nvHfPRSdfZiKNHuW/JWZb3ezbX8bof3cTTPtvE/42Jx9kTjz8w8d883rhsvHHRb0xncbI18y9rZtIlljyUfjIh2RW1yXB4Bh4MJhMC1eO1wve2WU5FM4E/xBMCf3FANAh085gBdAKInD4Y03csn9STyeUXwyDaKw==';
+const modelBytes=Uint8Array.from(atob(minecraftBlockModelsPacked),ch=>ch.charCodeAt(0));
+const minecraftBlockModels=JSON.parse(new TextDecoder().decode(await new Response(new Blob([modelBytes]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer()));
 const specialMeshes=[];
-const dirVectors=[[0,-1],[1,0],[0,1],[-1,0]];
-function makeVoxelBox(idx,kind,dir,x0,y0,z0,w,h,d){
- const x=idx%X,y=Math.floor(idx/(X*Z)),z=Math.floor(idx/X)%Z,pal=D.p[originalPalette[idx]],top=pal[1],side=pal[2],bot=pal[3];
- const fm=[tileMaterial(side),tileMaterial(side),tileMaterial(top),tileMaterial(bot),tileMaterial(side),tileMaterial(side)];
- if(kind===7)fm[dir===0?5:dir===1?0:dir===2?4:1]=tileMaterial(29);
- if(kind===6)fm.fill(tileMaterial(30));
- const obj=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),fm);
- obj.position.set(x+x0+w/2,y+y0+h/2,z+z0+d/2);
- obj.userData.part=pc[idx];obj.userData.kind=kind;obj.userData.voxelY=y;
- S.add(obj);specialMeshes.push(obj);
+const invisibleMat=new THREE.MeshLambertMaterial({transparent:true,opacity:0,depthWrite:false});
+const modelFaces=['east','west','up','down','south','north'];
+const rotY={0:270,1:0,2:90,3:180};
+// The button's official model deliberately uses oak_planks, but with a tiny
+// face UV crop and 6×2×4 pixel dimensions, unlike the old stretched texture.
+function minecraftElement(idx,kind,dir,el){
+ const x=idx%X,y=Math.floor(idx/(X*Z)),z=Math.floor(idx/X)%Z;
+ const a0=el.from,b0=el.to;
+ const w=(b0[0]-a0[0])/16,h=(b0[1]-a0[1])/16,d=(b0[2]-a0[2])/16;
+ const geo=new THREE.BoxGeometry(w,h,d);
+ const uv=geo.getAttribute('uv'),mats=[];
+ const pal=D.p[originalPalette[idx]],tileByKind={top:pal[1],bottom:pal[3],side:pal[2]};
+ for(let face=0;face<6;face++){
+   const faceSpec=el.faces?.[modelFaces[face]];
+   if(!faceSpec){mats.push(invisibleMat);continue}
+   let tile=faceSpec.texture==='#top'?tileByKind.top:faceSpec.texture==='#bottom'?tileByKind.bottom:tileByKind.side;
+   if(kind===6)tile=30;
+   // These faces use the actual vanilla model's u/v crop in sixteenths.
+   const uvRect=faceSpec.uv||[0,0,16,16];
+   for(let q=0;q<4;q++){
+      const n=face*4+q,localU=uv.getX(n),localV=uv.getY(n);
+      const su=(uvRect[0]+localU*(uvRect[2]-uvRect[0]))/16;
+      const sv=(16-uvRect[3]+localV*(uvRect[3]-uvRect[1]))/16;
+      uv.setXY(n,su,sv);
+   }
+   mats.push(tileMaterial(tile));
+ }
+ uv.needsUpdate=true;
+ const obj=new THREE.Mesh(geo,mats);
+ obj.position.set((a0[0]+b0[0]-16)/32,(a0[1]+b0[1]-16)/32,(a0[2]+b0[2]-16)/32);
+ return obj;
 }
 for(const [idx,kind,dir] of shapeModels){
- if(kind===0){makeVoxelBox(idx,kind,dir,0,0,0,1,.5,1);continue}
- if(kind===6){makeVoxelBox(idx,kind,dir,.3125,0,.375,.375,.125,.25);continue}
- if(kind===7){makeVoxelBox(idx,kind,dir,0,0,0,1,1,1);continue}
- makeVoxelBox(idx,kind,dir,0,0,0,1,.5,1);
- const [dx,dz]=dirVectors[dir];
- if(kind===2||kind===3){
-  const [rightX,rightZ]=dirVectors[(dir+1)%4],side=kind===3?1:-1;
-  const leftX=dx*.25+rightX*.25*side,leftZ=dz*.25+rightZ*.25*side;
-  makeVoxelBox(idx,kind,dir,.25+leftX,.5,.25+leftZ,.5,.5,.5);
+ const x=idx%X,y=Math.floor(idx/(X*Z)),z=Math.floor(idx/X)%Z;
+ const root=new THREE.Group();
+ const model=kind===0?'slab':kind===6?'button':kind===7?null:kind===2||kind===3?'outer_stairs':'stairs';
+ if(model){
+   for(const el of minecraftBlockModels[model])root.add(minecraftElement(idx,kind,dir,el));
+   if(kind!==0&&kind!==6){
+      // Minecraft's blockstate JSON determines the Y rotation per facing and corner.
+      let degrees=rotY[dir];
+      if(kind===2)degrees=(degrees+270)%360;
+      root.rotation.y=-degrees*Math.PI/180;
+   }
  }else{
-  makeVoxelBox(idx,kind,dir,dx===1?.5:0,.5,dz===1?.5:0,dx!==0?.5:1,.5,dz!==0?.5:1);
+   // Dispenser is a complete cube; its NBT state determines which side is the front.
+   const pal=D.p[originalPalette[idx]],side=tileMaterial(pal[2]);
+   const faces=[side,side,tileMaterial(pal[1]),tileMaterial(pal[3]),side,side];
+   const slot=dir===0?5:dir===1?0:dir===2?4:1;
+   faces[slot]=tileMaterial(29);
+   root.add(new THREE.Mesh(new THREE.BoxGeometry(1,1,1),faces));
  }
+ root.position.set(x+.5,y+.5,z+.5);
+ root.userData.part=pc[idx];root.userData.voxelY=y;
+ // On hover, the entire surface brightens; outlines are not used on individual cubes.
+ root.traverse(o=>{if(o.isMesh){
+   o.userData.part=pc[idx];o.userData.voxelY=y;
+   o.userData.originalMaterials=o.material;
+   o.userData.hoverMaterials=null;
+ }});
+ S.add(root);specialMeshes.push(root);
 }
 let boundsHelper=null;const clearBounds=()=>{if(boundsHelper){S.remove(boundsHelper);boundsHelper.geometry.dispose();boundsHelper.material.dispose();boundsHelper=null}};
 let hp=-1;const hl=p=>{if(p===hp)return;hp=p;
