@@ -76,25 +76,35 @@ for(const [idx,kind,dir] of shapeModels){
   makeVoxelBox(idx,kind,dir,dx===1?.5:0,.5,dz===1?.5:0,dx!==0?.5:1,.5,dz!==0?.5:1);
  }
 }
-let hp=-1;const hl=p=>{if(p===hp)return;hp=p;for(let i=0;i<vp.length;i++){const m=vp[i]===p;for(let c=0;c<3;c++)ca.array[3*i+c]=m?Math.min(1,C[3*i+c]*1.3+.15):C[3*i+c]}ca.needsUpdate=true};
+let boundsHelper=null;const clearBounds=()=>{if(boundsHelper){S.remove(boundsHelper);boundsHelper.geometry.dispose();boundsHelper.material.dispose();boundsHelper=null}};
+let hp=-1;const hl=p=>{if(p===hp)return;hp=p;
+ for(let i=0;i<vp.length;i++){const m=p>0&&vp[i]===p;for(let c=0;c<3;c++)ca.array[3*i+c]=m?Math.min(1,C[3*i+c]*1.4+.15):C[3*i+c]}ca.needsUpdate=true;
+ clearBounds();const b=pieceBounds.get(p);if(b){const bb=new THREE.Box3(new THREE.Vector3(b[0]-.02,b[1]-.02,b[2]-.02),new THREE.Vector3(b[3]+.02,b[4]+.02,b[5]+.02));boundsHelper=new THREE.Box3Helper(bb,0xffd77a);boundsHelper.material.depthTest=false;boundsHelper.material.transparent=true;boundsHelper.material.opacity=.95;boundsHelper.renderOrder=999;S.add(boundsHelper)}
+};
 const ex=[],up=new THREE.Vector3(0,1,0);
 D.j.forEach(([k,x,y,z])=>{const d=x===X-1?[1,0,0]:x===0?[-1,0,0]:z===Z-1?[0,0,1]:[0,0,-1],m=new THREE.MeshBasicMaterial({color:y<6?0xff9a3c:0x3cc8ff}),gr=new THREE.Group(),
 s=new THREE.Mesh(new THREE.CylinderGeometry(.25,.25,5,10),m),c=new THREE.Mesh(new THREE.ConeGeometry(.7,1.6,12),m);s.position.y=2.5;c.position.y=5.8;gr.add(s,c);
 gr.position.set(x+.5,y+.5,z+.5);gr.quaternion.setFromUnitVectors(up,new THREE.Vector3(...d));gr.userData.c=m.color.getHex();S.add(gr);ex.push(gr)});
 const kc={melee:0xff4040,ranged:0xffd23c,breeze:0x7fe9ff,small_melee:0xff8a4c,vault:0xb06cff,ominous:0x6a1fd0,dispenser:0x4cd964},
-mk=D.m.map(([k,x,y,z,l])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(1.04,1.04,1.04),new THREE.MeshBasicMaterial({color:kc[k]||0xffffff,transparent:true,opacity:.3,depthWrite:false})),e=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:kc[k]||0xffffff}));e.raycast=()=>{};m.add(e);m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;S.add(m);return m}),
-vis=()=>mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);
-const txt=['Drag to orbit, scroll to zoom. Hover a piece or a slot to name it; click an exit arrow for details.','Both exits are highlighted because they belong together: orange is the lower exit, blue the upper. The lower exit is the one that connects about 60% of the time, the upper about 40%. Exit positions are not consistent with the rotation of the room’s interior.'];
+mk=D.m.map(([k,x,y,z,l])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(1.04,1.04,1.04),new THREE.MeshBasicMaterial({color:kc[k]||0xffffff,transparent:true,opacity:.3,depthWrite:false})),e=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:kc[k]||0xffffff}));e.raycast=()=>{};m.add(e);m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;m.material.depthTest=false;m.material.depthWrite=false;e.material.depthTest=false;e.material.depthWrite=false;m.renderOrder=1000;e.renderOrder=1001;S.add(m);return m}),
+vis=()=>{mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
+const txt=['Drag to orbit (reduced sensitivity), scroll to zoom. Hover an interior piece for its name and outlined 3D bounds; click an exit arrow for details.','Both exits are highlighted because they belong together: orange is the lower exit, blue the upper. The lower exit is the one that connects about 60% of the time, the upper about 40%. Exit positions are not consistent with the rotation of the room’s interior.'];
 let hv='',so=false;const inf=()=>$('info').textContent=hv||txt[+so],sel=on=>{so=on;ex.forEach(gr=>gr.children.forEach(m=>m.material.color.setHex(on?0xffffff:gr.userData.c)));inf()};sel(false);
 let th=.8,ph=1.05,rad=48,dn=null;
 const rs=()=>{R.setSize(cv.clientWidth,cv.clientHeight,false);cam.aspect=cv.clientWidth/cv.clientHeight;cam.updateProjectionMatrix()};addEventListener('resize',rs);rs();
 const rc=new THREE.Raycaster(),mv=new THREE.Vector2(),cast=e=>{const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);rc.setFromCamera(mv,cam);return rc};
 cv.onpointerdown=e=>{dn=[e.clientX,e.clientY,0];cv.setPointerCapture(e.pointerId)};
-cv.onpointermove=e=>{if(dn){const dx=e.clientX-dn[0],dy=e.clientY-dn[1];dn=[e.clientX,e.clientY,dn[2]+Math.abs(dx)+Math.abs(dy)];th+=dx*.005;ph=Math.min(3,Math.max(.1,ph-dy*.005));return}
-const h=cast(e).intersectObjects([mesh,...ex,...mk.filter(m=>m.visible)],true)[0];let p=-1;hv='';if(h){const o=h.object;if(o===mesh){p=vp[h.face.a];hv=D.pn[p]}else if(o.userData.l)hv=o.userData.l}hl(p);inf()};
+cv.onpointermove=e=>{if(dn){const dx=e.clientX-dn[0],dy=e.clientY-dn[1];dn=[e.clientX,e.clientY,dn[2]+Math.abs(dx)+Math.abs(dy)];th+=dx*.002;ph=Math.min(3,Math.max(.1,ph-dy*.002));return}
+const hits=cast(e).intersectObjects([mesh,...specialMeshes.filter(m=>m.visible),...ex.filter(x=>x.visible),...mk.filter(m=>m.visible)],true);
+ let p=-1;hv='';for(const h of hits){const o=h.object;
+ if(o.userData.l){hv=o.userData.l;break}
+ if(o.userData.part>0){p=o.userData.part;hv=D.pn[p]||'Placed structure';break}
+ if(o===mesh&&h.face){const part=vp[h.face.a];if(part>0){p=part;hv=D.pn[p]||'Placed structure';break}}
+ }
+ hl(p);inf()};
 cv.onpointerleave=()=>{hv='';hl(-1);inf()};
 cv.onpointerup=e=>{if(dn&&dn[2]<5)sel(cast(e).intersectObjects(ex,true).length>0);dn=null};
-cv.onwheel=e=>{e.preventDefault();rad=Math.min(120,Math.max(8,rad*(1+e.deltaY*.001)))};
-const setCut=h=>{cutH=h;$('cut').value=h;g.setDrawRange(0,cnt[h]*6);vis()};$('cut').oninput=e=>setCut(+e.target.value);$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);$('arr').onchange=e=>ex.forEach(gr=>gr.visible=e.target.checked);$('slt').onchange=vis;
+cv.onwheel=e=>{e.preventDefault();rad=Math.min(120,Math.max(8,rad*(1+e.deltaY*.0007)))};
+const setCut=h=>{cutH=h;$('cut').value=h;g.setDrawRange(0,cnt[h]*6);vis();if(hp>0&&pieceBounds.get(hp)?.[1]>=cutH)hl(-1)};$('cut').oninput=e=>setCut(+e.target.value);$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);if($('reset-view'))$('reset-view').onclick=()=>{th=.8;ph=1.05;rad=48;setCut(14)};$('arr').onchange=e=>ex.forEach(gr=>gr.visible=e.target.checked);$('slt').onchange=vis;vis();
 (function loop(){cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam);requestAnimationFrame(loop)})();
 })();
