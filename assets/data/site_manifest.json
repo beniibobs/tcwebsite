@@ -1,0 +1,78 @@
+{
+  "version": "Minecraft Java 26.3",
+  "source": "NBT-based 100k emulator cohorts",
+  "chambers": [
+    {
+      "id": "chamber_1",
+      "name": "Chamber 1",
+      "game_file": "chamber_1",
+      "url": "rooms/chamber_1.html",
+      "chance_at_least_one_pct": 43.967,
+      "expected_per_tc": 0.52837,
+      "connectors": 4
+    },
+    {
+      "id": "chamber_2",
+      "name": "Chamber 2",
+      "game_file": "chamber_2",
+      "url": "rooms/chamber_2.html",
+      "chance_at_least_one_pct": 25.053,
+      "expected_per_tc": 0.27622,
+      "connectors": 4
+    },
+    {
+      "id": "chamber_4",
+      "name": "Chamber 4",
+      "game_file": "chamber_4",
+      "url": "rooms/chamber_4.html",
+      "chance_at_least_one_pct": 34.457,
+      "expected_per_tc": 0.40247,
+      "connectors": 3
+    },
+    {
+      "id": "chamber_8",
+      "name": "Chamber 8",
+      "game_file": "chamber_8",
+      "url": "rooms/chamber_8.html",
+      "chance_at_least_one_pct": 55.602,
+      "expected_per_tc": 0.77639,
+      "connectors": 2
+    },
+    {
+      "id": "assembly",
+      "name": "Assembly",
+      "game_file": "assembly",
+      "url": "rooms/assembly.html",
+      "chance_at_least_one_pct": 49.119,
+      "expected_per_tc": 0.62064,
+      "connectors": 3
+    },
+    {
+      "id": "eruption",
+      "name": "Eruption",
+      "game_file": "eruption",
+      "url": "rooms/eruption.html",
+      "chance_at_least_one_pct": 46.131,
+      "expected_per_tc": 0.56193,
+      "connectors": 3
+    },
+    {
+      "id": "pedestal",
+      "name": "Pedestal",
+      "game_file": "pedestal",
+      "url": "rooms/pedestal.html",
+      "chance_at_least_one_pct": 25.457,
+      "expected_per_tc": 0.28018,
+      "connectors": 2
+    },
+    {
+      "id": "slanted",
+      "name": "Maze",
+      "game_file": "slanted",
+      "url": "rooms/maze.html",
+      "chance_at_least_one_pct": 45.735,
+      "expected_per_tc": 0.55851,
+      "connectors": 2
+    }
+  ]
+}
