@@ -1,3 +1,11 @@
+## Maze viewer revision (2026-11-23)
+
+Maze (`rooms/maze.html`) is now the page layout reference: a wider WebGL viewport with the room-specific resource table alongside it, followed by whole-TC probability, branch origin, door connectors, and quadrant statistics. The original authored example is retained under `original/`.
+
+The 26.3 client JAR was used to extract per-block placements for the displayed assembly: 3D stair/slab models, oak-button geometry and texture, directional dispenser face texture, and a consistent zombie melee spawner addon. Hover outlines ignore the room's outer shell and display piece-sized 3D boxes. Marker overlays render through walls; drag sensitivity has been reduced. The 3D model is still a reconstruction and has not undergone a full browser/WebGL visual validation.
+
+The custom-domain CNAME has been removed to use the free GitHub Pages address, `https://beniibobs.github.io/tcwebsite/` (requires GitHub Pages to be enabled in repository settings).
+
 # Trial Chambers Field Atlas — Minecraft Java 26.3
 
 Static HTML/CSS/JavaScript Trial Chambers research atlas, extending the original **Maze (Slanted)** prototype.
