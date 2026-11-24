@@ -18,8 +18,11 @@
  const tb=document.getElementById('tb'),card=document.getElementById('maze-hover-card');
  tb.innerHTML=rows.map(([k,name,mean,p])=>'<tr><td><span class="mc-stat-label">'+icon(k)+'<span>'+name+'</span></span></td><td class="num">'+mean+'</td><td class="num">'+p+'</td></tr>').join('');
  const q=[['Q1',25/216*100],['Q2',23/72*100],['Q3',23/72*100],['Q4',53/216*100]];
- const halls=[['Hallway 1',100/3],['Hallway 2',100/3],['Hallway 3',100/3]];
- const ramps=[['Ramp 1',25],['Ramp 2',25],['Ramp 3',25],['Ramp 4',25]];
+ const halls=[['Grate',100/3],['Open',100/3],['Vault',100/3]];
+ const hallName={1:'Open',2:'Vault',3:'Grate'};
+ const ramps=[['Melee',50],['Ranged',25],['Nothing',25]];
+ const rampName={1:'Melee',2:'Melee',3:'Ranged',4:'Nothing'};
+ const rotationNote='The centre can rotate, so the exits are not fixed relative to the ominous upper arm.';
  const esc=x=>String(x).replace(/[&<>"']/g,v=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[v]));
  const bars=(data,selected)=>'<div class="maze-hover-bars">'+data.map(([label,p])=>'<div class="maze-hover-row'+(selected===label?' selected':'')+'"><span>'+esc(label)+'</span><strong>'+p.toFixed(2)+'%</strong><div class="maze-hover-track"><i style="width:'+p+'%"></i></div></div>').join('')+'</div>';
  let key='';
@@ -29,42 +32,39 @@
    if(!state){card.hidden=true;return}
    let title='',sub='',content='',foot='',img='';
    if(state.kind==='exit'){
-      title='Maze exits';sub='Chance of being the connected entrance';
-      content=bars([['Lower exit · Y +3',57.67],['Upper exit · Y +8',42.33]]);
-      foot='Both arrows are possible exits. Only one connects to the parent branch. · 100k structure emulator';
+      title='Maze exits';
+      content=bars([['Lower exit',57.67],['Upper exit',42.33]],state.selected);
+      foot=rotationNote;
    }else if(state.kind==='marker'){
       const k=state.type;
       if(k==='dispenser'){
-        title='Wall dispenser';img=icon('dispenser');sub='50% placement chance at each eligible Q4 slot';
+        title='Wall dispenser';img=icon('dispenser');sub='Placement: 50%';
         content=bars([['Water bucket',4/29*100],['Arrows',4/29*100],['Snowballs',6/29*100],['Eggs',2/29*100],['Fire charges',6/29*100],['Splash potion',3/29*100],['Lingering potion',4/29*100]]);
-        foot='Loot odds per generated dispenser · one stack from the chamber dispenser loot table.';
+        foot='Loot per generated dispenser.';
       }else{
         const opts={breeze:['Breeze'],melee:['Zombie','Husk','Spider'],ranged:['Skeleton','Stray','Bogged'],small_melee:['Slime','Cave spider','Silverfish','Baby zombie']}[k]||[];
         const names={breeze:'Breeze spawner',melee:'Melee spawner',ranged:'Ranged spawner',small_melee:'Small melee spawner'};
         title=names[k]||'Trial spawner';img=icon(k==='small_melee'?'small':k);
-        sub=k==='breeze'?'Fixed centre spawner':'Example mob: '+(state.label.split(' · ')[2]||'').replace(/ \(matching melee category\)/,'');
+        sub=k==='breeze'?'':'Example: '+(state.label.split(' · ')[2]||'').replace(/ \(matching melee category\)/,'');
         content=bars(opts.map(m=>[m,100/opts.length]),opts.find(m=>sub.toLowerCase().includes(m.toLowerCase())));
-        foot=k==='breeze'?'Breeze is fixed in this centre piece.':'Mob choice is shared by the category across the Trial Chamber, not rolled independently for every spawner.';
+        foot=k==='breeze'?'':'One mob type per category throughout the Trial Chamber.';
       }
    }else{
       const label=state.label;const quad=label.match(/quadrant_(\d)/),hall=label.match(/hallway_(\d)/),ramp=label.match(/ramp_(\d)/);
       if(quad){
-        title='Quadrant: Q'+quad[1];sub='Chance at one corner';content=bars(q,'Q'+quad[1]);
-        foot='Q1: one vault + melee spawner. Q2/Q3: two vaults. Q4: eight possible dispenser slots. Corners are correlated.';
+        title='Quadrant: Q'+quad[1];content=bars(q,'Q'+quad[1]);
       }else if(hall){
-        title='Lower arm: Hallway '+hall[1];sub='Chance at each lower arm';content=bars(halls,'Hallway '+hall[1]);
-        foot='Hallway 2 has a regular vault connector.';
+        title='Lower arm: '+hallName[hall[1]];content=bars(halls,hallName[hall[1]]);
       }else if(ramp){
-        title='Upper arm: Ramp '+ramp[1];sub='Chance at each non-ominous upper arm';content=bars(ramps,'Ramp '+ramp[1]);
-        foot='Ramps 1 and 2: melee. Ramp 3: ranged. Ramp 4: no spawner.';
+        title='Upper arm: '+rampName[ramp[1]];content=bars(ramps,rampName[ramp[1]]);
       }else if(label==='Ominous upper arm'){
-        title='Ominous upper arm';sub='Fixed upper arm';content=bars([['Ominous arm',100]],'Ominous arm');foot='Contains one ominous vault connector.';
+        title='Ominous upper arm';content=bars([['Ominous arm',100]],'Ominous arm');foot=rotationNote;
       }else{
-        title='Centre';sub='Fixed central assembly';content=bars([['Centre',100]],'Centre');foot='Contains the Breeze spawner connector.';
+        title='Centre';content=bars([['Centre',100]],'Centre');foot=rotationNote;
       }
    }
-   card.innerHTML='<div class="maze-hover-title">'+img+'<h3>'+esc(title)+'</h3></div><p class="maze-hover-sub">'+esc(sub)+'</p>'+content+'<p class="maze-hover-note">'+esc(foot)+'</p>';
+   card.innerHTML='<div class="maze-hover-title">'+img+'<h3>'+esc(title)+'</h3></div>'+(sub?'<p class="maze-hover-sub">'+esc(sub)+'</p>':'')+content+(foot?'<p class="maze-hover-note">'+esc(foot)+'</p>':'');
    card.hidden=false;
  }
- window.MazeUI={show};
+ window.MazeUI={show,displayName(label){const h=label.match(/hallway_(\d)/),r=label.match(/ramp_(\d)/),q=label.match(/quadrant_(\d)/);return h?'Lower arm: '+hallName[h[1]]:r?'Upper arm: '+rampName[r[1]]:q?'Quadrant: Q'+q[1]:label==='Center'?'Centre':label;}};
 })();
