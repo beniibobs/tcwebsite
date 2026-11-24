@@ -20,3 +20,20 @@
 @media(max-width:970px){.maze-main-grid{grid-template-columns:minmax(0,1fr) 300px}}
 @media(max-width:760px){.maze-main-grid,.maze-below-grid{grid-template-columns:1fr}.maze-main-grid .viewer-canvas{height:61vh;min-height:360px}.maze-stats-panel{align-self:auto}}
 @media(max-width:430px){.maze-main-grid .viewer-canvas{height:430px;min-height:350px}.maze-main-grid .interactive{font-size:12px}}
+
+/* Maze v3: use screen width, avoid sticky site navigation, put floor toggles on the model */
+:root{--wide:1640px}
+.topbar{position:static}
+.wrap{width:min(calc(100% - 24px),var(--wide))}
+.maze-main-grid{grid-template-columns:minmax(0,1fr) 320px;gap:14px}
+.maze-canvas-shell{position:relative;isolation:isolate}
+.floor-selector-overlay{position:absolute;left:15px;top:16px;z-index:4;display:flex;gap:3px;padding:4px;border:1px solid var(--line);border-radius:10px;background:var(--panel);box-shadow:0 4px 18px #0008}
+.floor-selector button{border:0;border-radius:7px;padding:9px 13px;font-weight:700;font-size:12px;color:var(--muted);background:transparent}
+.floor-selector button[aria-pressed=true]{background:var(--teal);color:var(--bg)}
+.floor-selector button:hover{color:var(--ink)}
+.floor-selector button[aria-pressed=true]:hover{color:var(--bg)}
+.compact-viewer-controls{justify-content:space-between}
+.maze-main-grid .viewer-canvas{height:min(75vh,810px);min-height:480px}
+@media(max-width:970px){.maze-main-grid{grid-template-columns:minmax(0,1fr) 270px}}
+@media(max-width:760px){.maze-main-grid{grid-template-columns:1fr}.maze-main-grid .viewer-canvas{height:62vh;min-height:350px}}
+@media(max-width:430px){.floor-selector-overlay{left:9px;top:9px}.maze-main-grid .viewer-canvas{height:450px}}
