@@ -51,7 +51,7 @@
       const k=state.type;
       if(k==='dispenser'){
         title='Dispensers';img=icon('dispenser');
-        content='<div class="maze-hover-explanation"><p>The only dispensers in Maze generate with Q4 quadrants. Each Q4 has 8 possible dispenser locations, each with a 50% chance to place a dispenser.</p><p>If you have no Q4s (the Parkour piece), you have no dispensers.</p></div>';
+        content='<div class="maze-hover-explanation"><p>The only dispensers in Maze generate with Q4 quadrants. Each Q4 has 8 possible dispenser locations, each with a 50% chance to place a dispenser.</p><p>If you have no Q4s (the Parkour piece), you have no dispensers. All eight eligible locations in the illustrated Q4 are shown.</p></div>';
       }else{
         const opts={breeze:['Breeze'],melee:['Zombie','Husk','Spider'],ranged:['Skeleton','Stray','Bogged'],small_melee:['Slime','Cave spider','Silverfish','Baby zombie']}[k]||[];
         const names={breeze:'Breeze spawner',melee:'Melee spawner',ranged:'Ranged spawner',small_melee:'Small melee spawner'};
