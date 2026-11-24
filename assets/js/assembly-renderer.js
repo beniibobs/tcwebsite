@@ -1,6 +1,6 @@
 (async()=>{const $=id=>document.getElementById(id),cv=$('c');
 try{
-const res=await fetch('../assets/data/rooms/assembly-geometry.json');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
+const res=await fetch('../assets/data/rooms/assembly-geometry.json?v=2');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
 const unzip=async s=>new Uint8Array(await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
 const unpack=async s=>JSON.parse(new TextDecoder().decode(await unzip(s)));
 const get=async name=>{const r=await fetch('../assets/data/rooms/'+name+'-geometry.json');if(!r.ok)throw Error('Shared geometry unavailable');return r.json()};
@@ -48,7 +48,9 @@ if(!I.length)throw Error('No room geometry');
 const R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio||1,2));
 const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(48,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2),g=new THREE.BufferGeometry();
 g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(U,2));g.setAttribute('color',new THREE.Float32BufferAttribute(C,3));g.setIndex(I);g.computeBoundingSphere();S.add(new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:tex,vertexColors:true,alphaTest:.5})));
-const mk=D.markers.map(([type,x,y,z,label])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:type==='special_dispenser'?0xff3030:type==='dispenser'?0xffffff:0xff00b7,transparent:true,opacity:.82,depthTest:false,depthWrite:false}));m.position.set(x+.5,y+.5,z+.5);m.userData={type,label};m.renderOrder=1000;S.add(m);return m});
+const mk=D.markers.map(([type,x,y,z,label])=>{const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:type.includes('dispenser')?0xffffff:0xff00b7,transparent:true,opacity:.82,depthTest:false,depthWrite:false}));m.position.set(x+.5,y+.5,z+.5);m.userData={type,label};m.renderOrder=1000;
+if(type==='special_dispenser'){const edge=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(1.06,1.06,1.06)),new THREE.LineBasicMaterial({color:0xff3030,depthTest:false,depthWrite:false}));edge.renderOrder=1001;m.add(edge)}
+S.add(m);return m});
 const exits=D.exits.map(([p,d],i)=>{const v=new THREE.Vector3(...d),m=new THREE.MeshBasicMaterial({color:0xff9a3c}),gr=new THREE.Group(),shaft=new THREE.Mesh(new THREE.CylinderGeometry(.22,.22,3.2,10),m),head=new THREE.Mesh(new THREE.ConeGeometry(.65,1.2,12),m);shaft.position.y=1.6;head.position.y=3.8;gr.add(shaft,head);gr.position.set(p[0]+.5,p[1]+.5,p[2]+.5);gr.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),v);gr.userData.exit=i;S.add(gr);return gr});
 S.updateMatrixWorld(true);
 const helpers=exits.map(e=>{const h=new THREE.Box3Helper(new THREE.Box3().setFromObject(e).expandByScalar(.22),0xffb56b);h.material.depthTest=false;h.material.transparent=true;h.material.opacity=.85;h.renderOrder=1002;h.visible=false;S.add(h);return h});
