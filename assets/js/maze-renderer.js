@@ -179,18 +179,17 @@ const exitBoxes=ex.map(gr=>{
  const b=new THREE.Box3().setFromObject(gr);b.expandByScalar(.22);
  const h=new THREE.Box3Helper(b,0xffb56b);h.material.depthTest=false;h.material.transparent=true;h.material.opacity=.85;h.renderOrder=1002;h.visible=false;S.add(h);return h;
 });
-function highlightExits(on){exitBoxes.forEach(h=>h.visible=on&&$('arr').checked)}
+function highlightExits(on){exitBoxes.forEach(h=>h.visible=Boolean(on))}
 
 const kc={melee:0xff00b7,ranged:0xff00b7,breeze:0xff00b7,small_melee:0xff00b7,dispenser:0xffffff};
 const mk=D.m.filter(([k])=>k!=='vault'&&k!=='ominous').map(([k,x,y,z,l])=>{
  const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:kc[k]||0xff00b7,transparent:true,opacity:.82,depthTest:false,depthWrite:false}));
  m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;m.userData.type=k;m.renderOrder=1000;S.add(m);return m;
 });
-const vis=()=>{mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
-const txt='Drag to orbit, scroll to zoom, Shift-drag or right-drag to pan. Hover a piece, marker or exit for details.';
-let hv='';const inf=()=>$('info').textContent=hv||txt;
+const vis=()=>{mk.forEach(m=>m.visible=m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
+
 let th=.8,ph=1.05,rad=48,dn=null;
-const rs=()=>{R.setSize(cv.clientWidth,cv.clientHeight,false);cam.aspect=cv.clientWidth/cv.clientHeight;cam.updateProjectionMatrix()};addEventListener('resize',rs);rs();
+const rs=()=>{R.setSize(cv.clientWidth,cv.clientHeight,false);cam.aspect=cv.clientWidth/cv.clientHeight;cam.updateProjectionMatrix()};addEventListener('resize',rs);if(typeof ResizeObserver!=='undefined')new ResizeObserver(rs).observe(cv.parentElement);rs();
 const rc=new THREE.Raycaster(),mv=new THREE.Vector2(),cast=e=>{const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);rc.setFromCamera(mv,cam);return rc};
 // Pick complete architectural volumes, not individual visible block faces.
 // Keep the current selection briefly while crossing a volume boundary.
@@ -198,8 +197,7 @@ const pickPoint=new THREE.Vector3(),pickBox=new THREE.Box3();
 function showHover(part,marker=null,exit=false){
  hl(marker||exit?-1:part);highlightExits(exit);
  const state=marker?{kind:'marker',type:marker.userData.type,label:marker.userData.l}:exit?{kind:'exit',selected:exit}:part>0?{kind:'piece',label:D.pn[part]}:null;
- hv=marker?marker.userData.l:exit?exit:part>0?(window.MazeUI?.displayName(D.pn[part])||D.pn[part]):'';
- window.MazeUI?.show(state);inf();
+ window.MazeUI?.show(state);
 }
 function pickPiece(ray){
  let best=-1,dist=Infinity;
@@ -227,7 +225,7 @@ cv.onpointermove=e=>{
  const raycaster=cast(e);
  const marker=raycaster.intersectObjects(mk.filter(m=>m.visible),false)[0]?.object;
  if(marker){showHover(-1,marker);return}
- const hit=$('arr').checked&&raycaster.intersectObjects(ex.filter(x=>x.visible),true)[0];
+ const hit=raycaster.intersectObjects(ex,true)[0];
  if(hit){let obj=hit.object;while(obj&&!obj.userData.exitName)obj=obj.parent;if(obj){showHover(-1,null,obj.userData.exitName);return}}
  showHover(pickPiece(raycaster.ray));
 };
@@ -235,6 +233,6 @@ cv.onpointerleave=()=>showHover(-1);
 cv.onpointercancel=()=>{dn=null;showHover(-1)};
 cv.onpointerup=e=>{dn=null};
 cv.onwheel=e=>{e.preventDefault();rad=Math.min(120,Math.max(8,rad*(1+e.deltaY*.0007)))};
-const setCut=h=>{cutH=h;g.setDrawRange(0,cnt[h]*6);vis();$('lo').setAttribute('aria-pressed',String(h===5));$('hi').setAttribute('aria-pressed',String(h===14));showHover(-1)};$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);if($('reset-view'))$('reset-view').onclick=()=>{th=.8;ph=1.05;rad=48;T.set(X/2,Y/2-1,Z/2);setCut(14)};$('arr').onchange=e=>{ex.forEach(gr=>gr.visible=e.target.checked);showHover(-1)};$('slt').onchange=()=>{vis();showHover(-1)};vis();
+const setCut=h=>{cutH=h;g.setDrawRange(0,cnt[h]*6);vis();$('lo').setAttribute('aria-pressed',String(h===5));$('hi').setAttribute('aria-pressed',String(h===14));showHover(-1)};$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);if($('reset-view'))$('reset-view').onclick=()=>{th=.8;ph=1.05;rad=48;T.set(X/2,Y/2-1,Z/2);showHover(-1)};vis();
 (function loop(){cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam);requestAnimationFrame(loop)})();
 })();
