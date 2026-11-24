@@ -8,7 +8,7 @@
  ['small','Small melee spawner','0.000','0.00%'],
  ['vault','Vault','6.907','99.91%'],
  ['ominous','Ominous vault','1.000','100.00%'],
- ['dispenser','Dispenser','3.926','67.67%'],
+ ['dispenser','Chamber dispenser','3.926','67.67%'],
  ['lingering','Any lingering potion','0.542','36.43%'],
  ['weakness','Any weakness potion','0.271','21.97%'],
  ['poison','Any poison potion','0.271','21.97%'],
