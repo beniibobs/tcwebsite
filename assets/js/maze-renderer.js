@@ -109,7 +109,10 @@ for(const [idx,kind,dir] of shapeModels){
  const model=kind===0?'slab':kind===6?'button':kind===7?null:kind===2||kind===3?'outer_stairs':'stairs';
  if(model){
    for(const el of minecraftBlockModels[model])root.add(minecraftElement(idx,kind,dir,el));
-   if(kind!==0&&kind!==6){
+   if(kind===6){
+      // Floor-mounted oak button: floor-facing model rotation from oak_button blockstates.
+      root.rotation.y=-dir*Math.PI/2;
+   }else if(kind!==0){
       // Minecraft's blockstate JSON determines the Y rotation per facing and corner.
       let degrees=rotY[dir];
       if(kind===2)degrees=(degrees+270)%360;
