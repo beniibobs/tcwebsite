@@ -50,9 +50,8 @@
    }else if(state.kind==='marker'){
       const k=state.type;
       if(k==='dispenser'){
-        title='Wall dispenser';img=icon('dispenser');sub='Placement: 50%';
-        content=bars([['Water bucket',4/29*100],['Arrows',4/29*100],['Snowballs',6/29*100],['Eggs',2/29*100],['Fire charges',6/29*100],['Splash potion',3/29*100],['Lingering potion',4/29*100]]);
-        foot='Loot per generated dispenser.';
+        title='Dispensers';img=icon('dispenser');
+        content='<div class="maze-hover-explanation"><p>The only dispensers in Maze generate with Q4 quadrants. Each Q4 has 8 possible dispenser locations, each with a 50% chance to place a dispenser.</p><p>If you have no Q4s (the Parkour piece), you have no dispensers.</p></div>';
       }else{
         const opts={breeze:['Breeze'],melee:['Zombie','Husk','Spider'],ranged:['Skeleton','Stray','Bogged'],small_melee:['Slime','Cave spider','Silverfish','Baby zombie']}[k]||[];
         const names={breeze:'Breeze spawner',melee:'Melee spawner',ranged:'Ranged spawner',small_melee:'Small melee spawner'};
@@ -78,5 +77,5 @@
    card.innerHTML='<div class="maze-hover-title">'+img+'<h3>'+esc(title)+'</h3></div>'+(sub?'<p class="maze-hover-sub">'+esc(sub)+'</p>':'')+content+(foot?'<p class="maze-hover-note">'+esc(foot)+'</p>':'');
    card.hidden=false;
  }
- window.MazeUI={show,displayName(label){const h=label.match(/hallway_(\d)/),r=label.match(/ramp_(\d)/),q=label.match(/quadrant_(\d)/);return h?'Lower arm: '+hallName[h[1]]:r?'Upper arm: '+rampName[r[1]]:q?'Quadrant: Q'+q[1]:label==='Center'?'Centre':label;}};
+ window.MazeUI={show,probability,displayName(label){const h=label.match(/hallway_(\d)/),r=label.match(/ramp_(\d)/),q=label.match(/quadrant_(\d)/);return h?'Lower arm: '+hallName[h[1]]:r?'Upper arm: '+rampName[r[1]]:q?'Quadrant: Q'+q[1]:label==='Center'?'Centre':label;}};
 })();
