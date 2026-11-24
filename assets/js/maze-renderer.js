@@ -45,8 +45,8 @@ q.forEach(({p,i,j})=>{P.push(...p);const[tu,tv]=ax===0?[j,i]:[i,j];U.push((tc+.0
 I.push(b0,b0+1,b0+2,b0,b0+2,b0+3);fy.push(y)})}
 const cnt=[];for(let h=0;h<=Y;h++)cnt.push(fy.filter(v=>v<h).length);const cv=$('c'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}),S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2);
 R.setPixelRatio(Math.min(devicePixelRatio,2));
-const g=new THREE.BufferGeometry(),tex=new THREE.TextureLoader().load('data:image/png;base64,'+D.t);// Nearest pixels up close; filtered mip levels at a distance to reduce shimmer.
-tex.magFilter=THREE.NearestFilter;tex.minFilter=THREE.NearestMipmapLinearFilter;tex.generateMipmaps=true;tex.anisotropy=Math.min(4,R.capabilities.getMaxAnisotropy());
+const g=new THREE.BufferGeometry(),tex=new THREE.TextureLoader().load('data:image/png;base64,'+D.t);// Keep the texture atlas pixel-sharp at all distances. Mipmap sampling of adjacent atlas tiles and anisotropic filtering softened the pixel art.
+tex.magFilter=THREE.NearestFilter;tex.minFilter=THREE.NearestFilter;tex.generateMipmaps=false;tex.anisotropy=1;
 // Full transformed NBT template bounds: includes air inside each assembly.
 // Half-open extents follow the same coordinate rotation as the placed blocks.
 const pieceBounds=new Map(Object.entries({"1":[12,1,12,17,13,17],"2":[2,1,12,12,6,17],"3":[12,1,2,17,6,12],"4":[12,1,17,17,6,27],"5":[17,1,12,27,6,17],"6":[2,6,12,12,13,17],"7":[12,6,2,17,13,12],"8":[17,6,12,27,13,17],"9":[12,6,17,17,13,27],"10":[1,1,1,12,13,12],"11":[2,1,17,12,13,27],"12":[17,1,2,27,13,12],"13":[17,1,17,27,13,27]}).map(([k,v])=>[+k,v]));
@@ -64,7 +64,7 @@ const tileMaterial=(tile)=>{
  if(tile===29)return materials[29]??(materials[29]=new THREE.MeshBasicMaterial({map:frontTexture,side:THREE.DoubleSide}));
  if(tile===30)return materials[30]??(materials[30]=new THREE.MeshBasicMaterial({map:oakTexture,side:THREE.DoubleSide}));
  if(materials[tile])return materials[tile];
- const t=tex.clone();t.offset.set((tile%AC)/AC,1-(Math.floor(tile/AC)+1)/AR);t.repeat.set(1/AC,1/AR);t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestMipmapLinearFilter;t.generateMipmaps=true;t.anisotropy=Math.min(4,R.capabilities.getMaxAnisotropy());t.needsUpdate=true;
+ const t=tex.clone();t.offset.set((tile%AC)/AC,1-(Math.floor(tile/AC)+1)/AR);t.repeat.set(1/AC,1/AR);t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestFilter;t.generateMipmaps=false;t.anisotropy=1;t.needsUpdate=true;
  return materials[tile]=new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide,alphaTest:.25});
 };
 tex.image?.addEventListener('load',()=>{Object.values(materials).forEach(m=>{if(m.map)m.map.needsUpdate=true})});
@@ -74,7 +74,7 @@ const minecraftBlockModelsPacked='eNrtld1qhDAQhd8lvZ0LU6oM+yqlFN3NsoJNFpPsFsR37x
 const modelBytes=Uint8Array.from(atob(minecraftBlockModelsPacked),ch=>ch.charCodeAt(0));
 const minecraftBlockModels=JSON.parse(new TextDecoder().decode(await new Response(new Blob([modelBytes]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer()));
 // Actual inactive vault textures from the 26.3 JAR.
-const vaultMaterial=(png)=>{const t=new THREE.TextureLoader().load('data:image/png;base64,'+png);t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestMipmapLinearFilter;t.generateMipmaps=true;t.anisotropy=Math.min(4,R.capabilities.getMaxAnisotropy());return new THREE.MeshBasicMaterial({map:t,alphaTest:.5,side:THREE.DoubleSide})};
+const vaultMaterial=(png)=>{const t=new THREE.TextureLoader().load('data:image/png;base64,'+png);t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestFilter;t.generateMipmaps=false;t.anisotropy=1;return new THREE.MeshBasicMaterial({map:t,alphaTest:.5,side:THREE.DoubleSide})};
 const vaultTex={front:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAANlBMVEUAAACvycmdtraBmptvgoJscWtYYFhAYniURA5FSkIqRFU3OzUyNUAsLTsqJDUYLDkQHSUYFCSN0elUAAAAAXRSTlMAQObYZgAAAI1JREFUeNo9jVEOwzAIQ2nahGFSzO5/2ZFU3RMf1kNg6aMPD1UgvGIXs+GBEtuYibl78sOarGjCLCIUEVlQkCKSjOAOEHAL4BVKQjPXgZZU0bXgt2CFJbhEGf4FoQRr1gmeFpbW5/vzIxXQtzaTJAqSlaX34cfRWjuvy0fvMsy8nec2bjZkLu55L+ac8wdU1QmyYrOBrgAAAABJRU5ErkJggg=='),ominousFront:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAOVBMVEUAAACvycmdtraBmptvgoJscWtYYFhAYnhFSkIqRFU3OzUyNUAsLTtvDSIpKCgYLDlVARMQHSUYFCTXLi2kAAAAAXRSTlMAQObYZgAAAJZJREFUeNodjAkOxDAIA+kBAdLiev//2CWxUPCMIkRNrVLVLMsaxN2qbIm13cWztL438/26pAtY7UqtmoqQYH3ObKR/xZBApdPN+sklBlhJVpHNHDKaE78OMmsJCAk0g5QtEAOBnhFYRykiGOjpQsjg2iNil/2DAKIDgISoWh7HeZ7XfaepirnneV3bpLvJXHnmszLnnH+3LgpeMUtEjgAAAABJRU5ErkJggg=='),side:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAALVBMVEUAAACvycmdtraBmptvgoJscWtYYFhAYnhFSkIqRFU3OzUyNUAsLTsYLDkQHSWy0ig6AAAAAXRSTlMAQObYZgAAAHdJREFUeNptjEsOwzAIRCd2wHwC9z9ugUWzaJ/MaPSEAREJMxXMUglmMuFBrCSki0lh1h2RRQzToDVIYCJSf8XJWe7RitMCqDcx4v3yFaF6Co34czRwMl+Rs1GEFhHdQMR2XWutfd/GRGARW3uPMRGGN48/jbv7By++B+6QYZGGAAAAAElFTkSuQmCC'),top:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAJ1BMVEUSDxslHy5rh5lAYngqRFUYLDkQHSUsLTsyNUA6QEVscWtYYFg3OzXH1J7tAAAAbUlEQVR42gXBAUokARBFsfyaXha8/2UF7WeyL7bvsP/FvlKu7rXZ558f9CN6b4+WaOm6EyWUulGokl1nd8jOefZb8m5MHnvFOrM89vFSO5zzasbV63VQhkpnClPM0zrIxTw85d7P3m08Zua4Fn8vmE8+7PJXpgAAAABJRU5ErkJggg=='),ominousTop:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAHlBMVEVscWtYYFhFSkI6QEU3OzUyNUAsLTspKCglHy4SDxsJHydUAAAAdklEQVR42gXBgXHDMAwEMDxlX7v/uon4AYJkLs62xDFxJ/fousMzu226Ow9jfGzZ9TEZubNK7Nx0wipaSw5d9eartMkbJO1Fvo8ujjgoORP8/xFzMs5kolcycwxGghg6enaUmD01Xa8ZMl7rmDVpOOnVgICm/ACEV0FNzK9l5QAAAABJRU5ErkJggg=='),bottom:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEUlHy46QEUyNUAsLTtGQY9NAAAATElEQVR42mMAA7vU0D0M9v93/WHQZ2D4wSBj/0eFQeL1fxMGiffvgazdr1UYZN6tVmHQ+bVaA8QyYZCx3mMBUWz/b/0fBru00D1gkwAeCBpHXCs9KQAAAABJRU5ErkJggg==')};
 minecraftBlockModels.slab_top=[{from:[0,8,0],to:[16,16,16],faces:{down:{uv:[0,0,16,16],texture:'#bottom'},up:{uv:[0,0,16,16],texture:'#top'},north:{uv:[0,0,16,8],texture:'#side'},south:{uv:[0,0,16,8],texture:'#side'},west:{uv:[0,0,16,8],texture:'#side'},east:{uv:[0,0,16,8],texture:'#side'}}}];
 const specialMeshes=[];
@@ -180,7 +180,7 @@ const mk=D.m.filter(([k])=>k!=='vault'&&k!=='ominous').map(([k,x,y,z,l])=>{
  m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;m.renderOrder=1000;S.add(m);return m;
 });
 const vis=()=>{mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
-const txt=['Drag to orbit, scroll to zoom. Hover anywhere within an interior piece, including its air space, to show its outline.','Both exits are highlighted because they belong together: orange is the lower exit, blue the upper. The lower exit is the one that connects about 60% of the time, the upper about 40%. Exit positions are not consistent with the rotation of the room’s interior.'];
+const txt=['Drag to orbit, scroll to zoom, Shift-drag or right-drag to pan. Hover a piece to show its outline.','Both exits are highlighted because they belong together: orange is the lower exit, blue the upper. The lower exit is the one that connects about 60% of the time, the upper about 40%. Exit positions are not consistent with the rotation of the room’s interior.'];
 let hv='',so=false;const inf=()=>$('info').textContent=hv||txt[+so],sel=on=>{so=on;ex.forEach(gr=>gr.children.forEach(m=>m.material.color.setHex(on?0xffffff:gr.userData.c)));inf()};sel(false);
 let th=.8,ph=1.05,rad=48,dn=null;
 const rs=()=>{R.setSize(cv.clientWidth,cv.clientHeight,false);cam.aspect=cv.clientWidth/cv.clientHeight;cam.updateProjectionMatrix()};addEventListener('resize',rs);rs();
@@ -203,9 +203,18 @@ function pickPiece(ray){
  }
  return best;
 }
-cv.onpointerdown=e=>{stopHoverTimer();dn=[e.clientX,e.clientY,0];cv.setPointerCapture(e.pointerId)};
+// Shift-drag or right-drag pans the camera when inspecting a zoomed-in detail.
+const panRight=new THREE.Vector3(),panUp=new THREE.Vector3();
+cv.oncontextmenu=e=>e.preventDefault();
+cv.onpointerdown=e=>{if(e.button!==0&&e.button!==2)return;stopHoverTimer();dn=[e.clientX,e.clientY,0,e.shiftKey||e.button===2];cv.setPointerCapture(e.pointerId)};
 cv.onpointermove=e=>{
- if(dn){const dx=e.clientX-dn[0],dy=e.clientY-dn[1];dn=[e.clientX,e.clientY,dn[2]+Math.abs(dx)+Math.abs(dy)];th+=dx*.002;ph=Math.min(3,Math.max(.1,ph-dy*.002));return}
+ if(dn){const dx=e.clientX-dn[0],dy=e.clientY-dn[1],pan=dn[3];dn=[e.clientX,e.clientY,dn[2]+Math.abs(dx)+Math.abs(dy),pan];
+ if(pan){
+   const units=2*rad*Math.tan(cam.fov*Math.PI/360)/Math.max(1,cv.clientHeight);
+   panRight.setFromMatrixColumn(cam.matrixWorld,0);panUp.setFromMatrixColumn(cam.matrixWorld,1);
+   T.addScaledVector(panRight,-dx*units);T.addScaledVector(panUp,dy*units);
+ }else{th+=dx*.002;ph=Math.min(3,Math.max(.1,ph-dy*.002))}
+ return}
  const raycaster=cast(e),part=pickPiece(raycaster.ray);
  const marker=raycaster.intersectObjects(mk.filter(m=>m.visible),false)[0];
  markerText=marker?.object.userData.l||'';
@@ -215,8 +224,8 @@ cv.onpointermove=e=>{
 };
 cv.onpointerleave=()=>{stopHoverTimer();pendingPart=-1;markerText='';showHover(-1)};
 cv.onpointercancel=()=>{dn=null;stopHoverTimer();pendingPart=-1;markerText='';showHover(-1)};
-cv.onpointerup=e=>{if(dn&&dn[2]<5)sel(cast(e).intersectObjects(ex,true).length>0);dn=null};
+cv.onpointerup=e=>{if(dn&&!dn[3]&&dn[2]<5)sel(cast(e).intersectObjects(ex,true).length>0);dn=null};
 cv.onwheel=e=>{e.preventDefault();rad=Math.min(120,Math.max(8,rad*(1+e.deltaY*.0007)))};
-const setCut=h=>{cutH=h;g.setDrawRange(0,cnt[h]*6);vis();$('lo').setAttribute('aria-pressed',String(h===5));$('hi').setAttribute('aria-pressed',String(h===14));stopHoverTimer();pendingPart=-1;markerText='';showHover(-1)};$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);if($('reset-view'))$('reset-view').onclick=()=>{th=.8;ph=1.05;rad=48;setCut(14)};$('arr').onchange=e=>ex.forEach(gr=>gr.visible=e.target.checked);$('slt').onchange=vis;vis();
+const setCut=h=>{cutH=h;g.setDrawRange(0,cnt[h]*6);vis();$('lo').setAttribute('aria-pressed',String(h===5));$('hi').setAttribute('aria-pressed',String(h===14));stopHoverTimer();pendingPart=-1;markerText='';showHover(-1)};$('lo').onclick=()=>setCut(5);$('hi').onclick=()=>setCut(14);if($('reset-view'))$('reset-view').onclick=()=>{th=.8;ph=1.05;rad=48;T.set(X/2,Y/2-1,Z/2);setCut(14)};$('arr').onchange=e=>ex.forEach(gr=>gr.visible=e.target.checked);$('slt').onchange=vis;vis();
 (function loop(){cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam);requestAnimationFrame(loop)})();
 })();
