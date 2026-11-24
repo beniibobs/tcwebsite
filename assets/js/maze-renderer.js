@@ -18,6 +18,12 @@ for(let idx=0;idx<n;idx++)if(pc[idx]===21&&a[idx]!==255){
 }
 for(let idx=0;idx<n;idx++)if(pc[idx]===29)a[idx]=255;
 for(const [idx,state] of zombieBlocks){a[idx]=state;pc[idx]=29;}
+// Explicit air in the four wall_dispenser addons must overwrite the parent quadrant.
+for(const i of [2757,2815,2586,2584,6962,7020,6817,6875])a[i]=255;
+// Reward pieces: seven normal vaults each have five bottom slabs; the ominous
+// vault has two top slabs. N/E/S/W front directions follow the rotated jigsaws.
+const rewardModels=[[2122,0],[2093,0],[2064,0],[2964,0],[2906,0],[2935,8,3],[2364,0],[2363,0],[2362,0],[3176,0],[3174,0],[3175,8,2],[2388,0],[2387,0],[2386,0],[3200,0],[3198,0],[3199,8,2],[1991,0],[1962,0],[1933,0],[2833,0],[2775,0],[2804,8,3],[5996,0],[6025,0],[6054,0],[6836,0],[6894,0],[6865,8,1],[2403,0],[2402,0],[2401,0],[3215,0],[3213,0],[3214,8,2],[6514,0],[6515,0],[6516,0],[7384,0],[7386,0],[7385,8,0],[8106,10],[8104,10],[7264,9,2]];
+shapeModels.push(...rewardModels.map(([i,k,d=0])=>[i,k,d,0,0]));
 const originalPalette=a.slice();
 const partialVoxelIndices=new Set(shapeModels.map(([idx])=>idx));
 for(const [idx,kind] of shapeModels)a[idx]=255;
@@ -39,7 +45,8 @@ q.forEach(({p,i,j})=>{P.push(...p);const[tu,tv]=ax===0?[j,i]:[i,j];U.push((tc+.0
 I.push(b0,b0+1,b0+2,b0,b0+2,b0+3);fy.push(y)})}
 const cnt=[];for(let h=0;h<=Y;h++)cnt.push(fy.filter(v=>v<h).length);const cv=$('c'),R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true}),S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2);
 R.setPixelRatio(Math.min(devicePixelRatio,2));
-const g=new THREE.BufferGeometry(),tex=new THREE.TextureLoader().load('data:image/png;base64,'+D.t);tex.magFilter=tex.minFilter=THREE.NearestFilter;tex.generateMipmaps=false;
+const g=new THREE.BufferGeometry(),tex=new THREE.TextureLoader().load('data:image/png;base64,'+D.t);// Nearest pixels up close; filtered mip levels at a distance to reduce shimmer.
+tex.magFilter=THREE.NearestFilter;tex.minFilter=THREE.NearestMipmapLinearFilter;tex.generateMipmaps=true;tex.anisotropy=Math.min(4,R.capabilities.getMaxAnisotropy());
 // Full transformed NBT template bounds: includes air inside each assembly.
 // Half-open extents follow the same coordinate rotation as the placed blocks.
 const pieceBounds=new Map(Object.entries({"1":[12,1,12,17,13,17],"2":[2,1,12,12,6,17],"3":[12,1,2,17,6,12],"4":[12,1,17,17,6,27],"5":[17,1,12,27,6,17],"6":[2,6,12,12,13,17],"7":[12,6,2,17,13,12],"8":[17,6,12,27,13,17],"9":[12,6,17,17,13,27],"10":[1,1,1,12,13,12],"11":[2,1,17,12,13,27],"12":[17,1,2,27,13,12],"13":[17,1,17,27,13,27]}).map(([k,v])=>[+k,v]));
@@ -57,7 +64,7 @@ const tileMaterial=(tile)=>{
  if(tile===29)return materials[29]??(materials[29]=new THREE.MeshBasicMaterial({map:frontTexture,side:THREE.DoubleSide}));
  if(tile===30)return materials[30]??(materials[30]=new THREE.MeshBasicMaterial({map:oakTexture,side:THREE.DoubleSide}));
  if(materials[tile])return materials[tile];
- const t=tex.clone();t.offset.set((tile%AC)/AC,1-(Math.floor(tile/AC)+1)/AR);t.repeat.set(1/AC,1/AR);t.magFilter=t.minFilter=THREE.NearestFilter;t.generateMipmaps=false;t.needsUpdate=true;
+ const t=tex.clone();t.offset.set((tile%AC)/AC,1-(Math.floor(tile/AC)+1)/AR);t.repeat.set(1/AC,1/AR);t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestMipmapLinearFilter;t.generateMipmaps=true;t.anisotropy=Math.min(4,R.capabilities.getMaxAnisotropy());t.needsUpdate=true;
  return materials[tile]=new THREE.MeshBasicMaterial({map:t,side:THREE.DoubleSide,alphaTest:.25});
 };
 tex.image?.addEventListener('load',()=>{Object.values(materials).forEach(m=>{if(m.map)m.map.needsUpdate=true})});
@@ -66,6 +73,10 @@ tex.image?.addEventListener('load',()=>{Object.values(materials).forEach(m=>{if(
 const minecraftBlockModelsPacked='eNrtld1qhDAQhd8lvZ0LU6oM+yqlFN3NsoJNFpPsFsR37xhdibv+00JbxAujnC9jzpnBgmkTp7lmu9eCHXP1QYsA6HoDZhQ98AgQeESPx3gvSFewg7rK6m4vjZg0TmHEp7G5YDv2lChjaDNge5tlFUkvHVcCs+cp2qhzJZQqNydPi31anR5Et06NEa+VXcPXGPFXoc1y3FFEi3gN7aiyLKGNAwn147ht0+bh+YnDfnaq2F5/q4/Ele42lXGtuYP0o5PzCt2MJF0qpcjft0bfGv0/Nzp4fd0cT7nvHfPRSdfZiKNHuW/JWZb3ezbX8bof3cTTPtvE/42Jx9kTjz8w8d883rhsvHHRb0xncbI18y9rZtIlljyUfjIh2RW1yXB4Bh4MJhMC1eO1wve2WU5FM4E/xBMCf3FANAh085gBdAKInD4Y03csn9STyeUXwyDaKw==';
 const modelBytes=Uint8Array.from(atob(minecraftBlockModelsPacked),ch=>ch.charCodeAt(0));
 const minecraftBlockModels=JSON.parse(new TextDecoder().decode(await new Response(new Blob([modelBytes]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer()));
+// Actual inactive vault textures from the 26.3 JAR.
+const vaultMaterial=(png)=>{const t=new THREE.TextureLoader().load('data:image/png;base64,'+png);t.magFilter=THREE.NearestFilter;t.minFilter=THREE.NearestMipmapLinearFilter;t.generateMipmaps=true;t.anisotropy=Math.min(4,R.capabilities.getMaxAnisotropy());return new THREE.MeshBasicMaterial({map:t,alphaTest:.5,side:THREE.DoubleSide})};
+const vaultTex={front:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAANlBMVEUAAACvycmdtraBmptvgoJscWtYYFhAYniURA5FSkIqRFU3OzUyNUAsLTsqJDUYLDkQHSUYFCSN0elUAAAAAXRSTlMAQObYZgAAAI1JREFUeNo9jVEOwzAIQ2nahGFSzO5/2ZFU3RMf1kNg6aMPD1UgvGIXs+GBEtuYibl78sOarGjCLCIUEVlQkCKSjOAOEHAL4BVKQjPXgZZU0bXgt2CFJbhEGf4FoQRr1gmeFpbW5/vzIxXQtzaTJAqSlaX34cfRWjuvy0fvMsy8nec2bjZkLu55L+ac8wdU1QmyYrOBrgAAAABJRU5ErkJggg=='),ominousFront:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAOVBMVEUAAACvycmdtraBmptvgoJscWtYYFhAYnhFSkIqRFU3OzUyNUAsLTtvDSIpKCgYLDlVARMQHSUYFCTXLi2kAAAAAXRSTlMAQObYZgAAAJZJREFUeNodjAkOxDAIA+kBAdLiev//2CWxUPCMIkRNrVLVLMsaxN2qbIm13cWztL438/26pAtY7UqtmoqQYH3ObKR/xZBApdPN+sklBlhJVpHNHDKaE78OMmsJCAk0g5QtEAOBnhFYRykiGOjpQsjg2iNil/2DAKIDgISoWh7HeZ7XfaepirnneV3bpLvJXHnmszLnnH+3LgpeMUtEjgAAAABJRU5ErkJggg=='),side:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAALVBMVEUAAACvycmdtraBmptvgoJscWtYYFhAYnhFSkIqRFU3OzUyNUAsLTsYLDkQHSWy0ig6AAAAAXRSTlMAQObYZgAAAHdJREFUeNptjEsOwzAIRCd2wHwC9z9ugUWzaJ/MaPSEAREJMxXMUglmMuFBrCSki0lh1h2RRQzToDVIYCJSf8XJWe7RitMCqDcx4v3yFaF6Co34czRwMl+Rs1GEFhHdQMR2XWutfd/GRGARW3uPMRGGN48/jbv7By++B+6QYZGGAAAAAElFTkSuQmCC'),top:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAJ1BMVEUSDxslHy5rh5lAYngqRFUYLDkQHSUsLTsyNUA6QEVscWtYYFg3OzXH1J7tAAAAbUlEQVR42gXBAUokARBFsfyaXha8/2UF7WeyL7bvsP/FvlKu7rXZ558f9CN6b4+WaOm6EyWUulGokl1nd8jOefZb8m5MHnvFOrM89vFSO5zzasbV63VQhkpnClPM0zrIxTw85d7P3m08Zua4Fn8vmE8+7PJXpgAAAABJRU5ErkJggg=='),ominousTop:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAHlBMVEVscWtYYFhFSkI6QEU3OzUyNUAsLTspKCglHy4SDxsJHydUAAAAdklEQVR42gXBgXHDMAwEMDxlX7v/uon4AYJkLs62xDFxJ/fousMzu226Ow9jfGzZ9TEZubNK7Nx0wipaSw5d9eartMkbJO1Fvo8ujjgoORP8/xFzMs5kolcycwxGghg6enaUmD01Xa8ZMl7rmDVpOOnVgICm/ACEV0FNzK9l5QAAAABJRU5ErkJggg=='),bottom:vaultMaterial('iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEUlHy46QEUyNUAsLTtGQY9NAAAATElEQVR42mMAA7vU0D0M9v93/WHQZ2D4wSBj/0eFQeL1fxMGiffvgazdr1UYZN6tVmHQ+bVaA8QyYZCx3mMBUWz/b/0fBru00D1gkwAeCBpHXCs9KQAAAABJRU5ErkJggg==')};
+minecraftBlockModels.slab_top=[{from:[0,8,0],to:[16,16,16],faces:{down:{uv:[0,0,16,16],texture:'#bottom'},up:{uv:[0,0,16,16],texture:'#top'},north:{uv:[0,0,16,8],texture:'#side'},south:{uv:[0,0,16,8],texture:'#side'},west:{uv:[0,0,16,8],texture:'#side'},east:{uv:[0,0,16,8],texture:'#side'}}}];
 const specialMeshes=[];
 const invisibleMat=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false});
 const modelFaces=['east','west','up','down','south','north'];
@@ -102,12 +113,16 @@ function minecraftElement(idx,kind,dir,el){
 for(const [idx,kind,dir,modelY,modelX] of shapeModels){
  const x=idx%X,y=Math.floor(idx/(X*Z)),z=Math.floor(idx/X)%Z;
  const root=new THREE.Group();
- const model=kind===0?'slab':kind===6?'button':kind===7?null:kind===2||kind===3?'outer_stairs':kind===4||kind===5?'inner_stairs':'stairs';
+ const model=kind===0?'slab':kind===10?'slab_top':kind===6?'button':kind>=7?null:kind===2||kind===3?'outer_stairs':kind===4||kind===5?'inner_stairs':'stairs';
  if(model){
    for(const el of minecraftBlockModels[model])root.add(minecraftElement(idx,kind,dir,el));
    root.rotation.order='YXZ';
    root.rotation.y=-modelY*Math.PI/180;
    root.rotation.x=-modelX*Math.PI/180;
+ }else if(kind===8||kind===9){
+   const om=kind===9,side=vaultTex.side,faces=[side,side,om?vaultTex.ominousTop:vaultTex.top,vaultTex.bottom,side,side];
+   const slot=[5,0,4,1][dir];faces[slot]=om?vaultTex.ominousFront:vaultTex.front;
+   root.add(new THREE.Mesh(new THREE.BoxGeometry(1,1,1),faces));
  }else{
    // Dispenser is a complete cube; its NBT state determines which side is the front.
    const pal=D.p[originalPalette[idx]],side=tileMaterial(pal[2]);
@@ -132,7 +147,7 @@ const architecturalPart=p=>p>=1&&p<=13;
 let boundsHelper=null;const clearBounds=()=>{if(boundsHelper){S.remove(boundsHelper);boundsHelper.geometry.dispose();boundsHelper.material.dispose();boundsHelper=null}};
 let hp=-1;
 const hl=p=>{if(!architecturalPart(p))p=-1;if(p===hp)return;hp=p;
- const glowStrength=.09;
+ const glowStrength=.24;
  for(let i=0;i<vp.length;i++){
    const on=vp[i]===p;
    for(let c=0;c<3;c++){const base=C[3*i+c];ca.array[3*i+c]=on?Math.min(1,base+glowStrength):base;}
@@ -143,7 +158,7 @@ const hl=p=>{if(!architecturalPart(p))p=-1;if(p===hp)return;hp=p;
    const orig=o.userData.originalMaterials;
    if(!orig)continue;
    if(o.userData.part===p){
-     if(!o.userData.hoverMaterials)o.userData.hoverMaterials=orig.map(m=>{const t=m.clone();if(t.color)t.color.lerp(new THREE.Color(0xffffff),.12);return t});
+     if(!o.userData.hoverMaterials)o.userData.hoverMaterials=orig.map(m=>{const t=m.clone();if(t.color)t.color.lerp(new THREE.Color(0xffffff),.35);return t});
      o.material=o.userData.hoverMaterials;
    }else o.material=orig;
  }
@@ -159,9 +174,9 @@ const ex=[],up=new THREE.Vector3(0,1,0);
 D.j.forEach(([k,x,y,z])=>{const d=x===X-1?[1,0,0]:x===0?[-1,0,0]:z===Z-1?[0,0,1]:[0,0,-1],m=new THREE.MeshBasicMaterial({color:y<6?0xff9a3c:0x3cc8ff}),gr=new THREE.Group(),
 s=new THREE.Mesh(new THREE.CylinderGeometry(.25,.25,5,10),m),c=new THREE.Mesh(new THREE.ConeGeometry(.7,1.6,12),m);s.position.y=2.5;c.position.y=5.8;gr.add(s,c);
 gr.position.set(x+.5,y+.5,z+.5);gr.quaternion.setFromUnitVectors(up,new THREE.Vector3(...d));gr.userData.c=m.color.getHex();S.add(gr);ex.push(gr)});
-const kc={melee:0x6ce5d7,ranged:0x6ce5d7,breeze:0x6ce5d7,small_melee:0x6ce5d7,dispenser:0xe9b96b};
+const kc={melee:0x82ed4e,ranged:0x82ed4e,breeze:0x82ed4e,small_melee:0x82ed4e,dispenser:0xe9b96b};
 const mk=D.m.filter(([k])=>k!=='vault'&&k!=='ominous').map(([k,x,y,z,l])=>{
- const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:kc[k]||0x6ce5d7,transparent:true,opacity:.58,depthTest:false,depthWrite:false}));
+ const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:kc[k]||0x82ed4e,transparent:true,opacity:.58,depthTest:false,depthWrite:false}));
  m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;m.renderOrder=1000;S.add(m);return m;
 });
 const vis=()=>{mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
@@ -176,12 +191,7 @@ const pickPoint=new THREE.Vector3(),pickBox=new THREE.Box3();
 let pendingPart=-1,hoverTimer=null,markerText='';
 function stopHoverTimer(){if(hoverTimer!==null){clearTimeout(hoverTimer);hoverTimer=null}}
 function showHover(part){hl(part);hv=markerText||(part>0?D.pn[part]:'');inf()}
-function queueHover(part){
- if(part===hp){stopHoverTimer();pendingPart=part;showHover(part);return}
- if(part===pendingPart&&hoverTimer!==null)return;
- stopHoverTimer();pendingPart=part;
- hoverTimer=setTimeout(()=>{hoverTimer=null;showHover(pendingPart)},85);
-}
+function queueHover(part){stopHoverTimer();pendingPart=part;showHover(part);}
 function pickPiece(ray){
  let best=-1,dist=Infinity;
  for(const [part,b] of pieceBounds){
