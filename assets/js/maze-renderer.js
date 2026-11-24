@@ -18,6 +18,7 @@ for(let idx=0;idx<n;idx++)if(pc[idx]===21&&a[idx]!==255){
 for(let idx=0;idx<n;idx++)if(pc[idx]===29)a[idx]=255;
 for(const [idx,state] of zombieBlocks){a[idx]=state;pc[idx]=29;}
 const originalPalette=a.slice();
+const partialVoxelIndices=new Set(shapeModels.map(([idx])=>idx));
 for(const [idx,kind] of shapeModels)a[idx]=255;
 D.m.forEach(m=>{if(m[0]==='melee'&&String(m[4]).includes('spider'))m[4]='Trial spawner · melee · zombie (matching melee category)'});
 D.pn[29]='Spawner: melee/zombie';
@@ -27,7 +28,7 @@ D.j.forEach(([k,x,y,z])=>st.push([x===X-1?x-1:x===0?1:x,y,z===Z-1?z-1:z===0?1:z]
 while(st.length){const[x,y,z]=st.pop();if(!inb(x,y,z)||ins[id(x,y,z)]||sl(x,y,z))continue;ins[id(x,y,z)]=1;for(const d of N)st.push([x+d[0],y+d[1],z+d[2]])}
 let cutH=14;const fy=[],P=[],C=[],U=[],I=[],vp=[],sh=[.85,.85,1,.6,.75,.75],AC=D.ac,AR=D.ar;
 for(let y=0;y<Y;y++)for(let z=0;z<Z;z++)for(let x=0;x<X;x++){const b=a[id(x,y,z)];if(b===255)continue;const[cl,tp,sw,bt]=D.p[b];
-N.forEach((d,k)=>{const nx=x+d[0],ny=y+d[1],nz=z+d[2];if(!inb(nx,ny,nz)||!ins[id(nx,ny,nz)])return;
+N.forEach((d,k)=>{const nx=x+d[0],ny=y+d[1],nz=z+d[2];if(!inb(nx,ny,nz)||(!ins[id(nx,ny,nz)]&&!partialVoxelIndices.has(id(nx,ny,nz))))return;
 const t=k===2?tp:k===3?bt:sw,ax=k>>1,u=(ax+1)%3,v=(ax+2)%3,o=[x,y,z];if(d[ax]>0)o[ax]++;
 const q=[[0,0],[1,0],[1,1],[0,1]].map(([i,j])=>{const p=o.slice();p[u]+=i;p[v]+=j;return{p,i,j}});
 const e=q[1].p.map((s,i)=>s-q[0].p[i]),f=q[2].p.map((s,i)=>s-q[0].p[i]),cr=[e[1]*f[2]-e[2]*f[1],e[2]*f[0]-e[0]*f[2],e[0]*f[1]-e[1]*f[0]];
