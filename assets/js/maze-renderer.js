@@ -173,7 +173,7 @@ const hl=p=>{if(!architecturalPart(p))p=-1;if(p===hp)return;hp=p;
 const ex=[],up=new THREE.Vector3(0,1,0);
 D.j.forEach(([k,x,y,z])=>{const d=x===X-1?[1,0,0]:x===0?[-1,0,0]:z===Z-1?[0,0,1]:[0,0,-1],m=new THREE.MeshBasicMaterial({color:0xff9a3c}),gr=new THREE.Group(),
 s=new THREE.Mesh(new THREE.CylinderGeometry(.25,.25,5,10),m),c=new THREE.Mesh(new THREE.ConeGeometry(.7,1.6,12),m);s.position.y=2.5;c.position.y=5.8;gr.add(s,c);
-gr.position.set(x+.5,y+.5,z+.5);gr.quaternion.setFromUnitVectors(up,new THREE.Vector3(...d));gr.userData.c=m.color.getHex();S.add(gr);ex.push(gr)});
+gr.position.set(x+.5,y+.5,z+.5);gr.quaternion.setFromUnitVectors(up,new THREE.Vector3(...d));gr.userData.c=m.color.getHex();gr.userData.exitName=y<6?'Lower exit':'Upper exit';S.add(gr);ex.push(gr)});
 S.updateMatrixWorld(true);
 const exitBoxes=ex.map(gr=>{
  const b=new THREE.Box3().setFromObject(gr);b.expandByScalar(.22);
@@ -181,9 +181,9 @@ const exitBoxes=ex.map(gr=>{
 });
 function highlightExits(on){exitBoxes.forEach(h=>h.visible=on&&$('arr').checked)}
 
-const kc={melee:0x82ed4e,ranged:0x82ed4e,breeze:0x82ed4e,small_melee:0x82ed4e,dispenser:0xe9b96b};
+const kc={melee:0xff00b7,ranged:0xff00b7,breeze:0xff00b7,small_melee:0xff00b7,dispenser:0xffffff};
 const mk=D.m.filter(([k])=>k!=='vault'&&k!=='ominous').map(([k,x,y,z,l])=>{
- const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:kc[k]||0x82ed4e,transparent:true,opacity:.58,depthTest:false,depthWrite:false}));
+ const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:kc[k]||0xff00b7,transparent:true,opacity:.82,depthTest:false,depthWrite:false}));
  m.position.set(x+.5,y+.5,z+.5);m.userData.l=l;m.userData.type=k;m.renderOrder=1000;S.add(m);return m;
 });
 const vis=()=>{mk.forEach(m=>m.visible=$('slt').checked&&m.position.y<cutH);specialMeshes.forEach(m=>m.visible=m.userData.voxelY<cutH)};
@@ -197,8 +197,8 @@ const rc=new THREE.Raycaster(),mv=new THREE.Vector2(),cast=e=>{const r=cv.getBou
 const pickPoint=new THREE.Vector3(),pickBox=new THREE.Box3();
 function showHover(part,marker=null,exit=false){
  hl(marker||exit?-1:part);highlightExits(exit);
- const state=marker?{kind:'marker',type:marker.userData.type,label:marker.userData.l}:exit?{kind:'exit'}:part>0?{kind:'piece',label:D.pn[part]}:null;
- hv=marker?marker.userData.l:exit?'Both possible exits':part>0?D.pn[part]:'';
+ const state=marker?{kind:'marker',type:marker.userData.type,label:marker.userData.l}:exit?{kind:'exit',selected:exit}:part>0?{kind:'piece',label:D.pn[part]}:null;
+ hv=marker?marker.userData.l:exit?exit:part>0?(window.MazeUI?.displayName(D.pn[part])||D.pn[part]):'';
  window.MazeUI?.show(state);inf();
 }
 function pickPiece(ray){
@@ -227,8 +227,8 @@ cv.onpointermove=e=>{
  const raycaster=cast(e);
  const marker=raycaster.intersectObjects(mk.filter(m=>m.visible),false)[0]?.object;
  if(marker){showHover(-1,marker);return}
- const exit=$('arr').checked&&raycaster.intersectObjects(ex.filter(x=>x.visible),true).length>0;
- if(exit){showHover(-1,null,true);return}
+ const hit=$('arr').checked&&raycaster.intersectObjects(ex.filter(x=>x.visible),true)[0];
+ if(hit){let obj=hit.object;while(obj&&!obj.userData.exitName)obj=obj.parent;if(obj){showHover(-1,null,obj.userData.exitName);return}}
  showHover(pickPiece(raycaster.ray));
 };
 cv.onpointerleave=()=>showHover(-1);
