@@ -72,3 +72,11 @@
 @media(max-width:1050px){.maze-main-grid{grid-template-columns:minmax(0,60fr) minmax(0,40fr)}.maze-stats-panel{padding:14px}.maze-stats-panel th,.maze-stats-panel td{padding:9px 7px}}
 @media(max-width:850px){.maze-main-grid{grid-template-columns:1fr}.wrap{width:calc(100% - 28px)}}
 @media(max-width:550px){.maze-hover-card{top:64px;right:9px;width:min(238px,72%);padding:10px}.maze-stats-panel td:first-child{font-size:13px}}
+
+/* Maze: square model viewport and orange selected probability rows. */
+.maze-main-grid .maze-canvas-shell{aspect-ratio:1/1;min-height:0}
+.maze-main-grid .viewer-canvas{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-height:none}
+.maze-hover-row.selected,.maze-hover-row.selected strong{color:var(--copper);font-weight:800}
+.maze-hover-row.selected .maze-hover-track i{background:var(--copper)}
+.maze-hover-title+.maze-hover-bars{margin-top:13px}
+@media(max-width:550px){.maze-main-grid .maze-canvas-shell{aspect-ratio:1/1;min-height:340px}.maze-hover-card{max-height:calc(100% - 75px);overflow:hidden}}
