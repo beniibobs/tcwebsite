@@ -4,7 +4,7 @@
   "chambers": [
     {
       "id": "chamber_1",
-      "name": "Chamber 1",
+      "name": "Overhang",
       "game_file": "chamber_1",
       "url": "rooms/chamber_1.html",
       "chance_at_least_one_pct": 43.967,
@@ -13,7 +13,7 @@
     },
     {
       "id": "chamber_2",
-      "name": "Chamber 2",
+      "name": "Snoverhang",
       "game_file": "chamber_2",
       "url": "rooms/chamber_2.html",
       "chance_at_least_one_pct": 25.053,
@@ -22,7 +22,7 @@
     },
     {
       "id": "chamber_4",
-      "name": "Chamber 4",
+      "name": "Infestation",
       "game_file": "chamber_4",
       "url": "rooms/chamber_4.html",
       "chance_at_least_one_pct": 34.457,
@@ -31,7 +31,7 @@
     },
     {
       "id": "chamber_8",
-      "name": "Chamber 8",
+      "name": "Hotel",
       "game_file": "chamber_8",
       "url": "rooms/chamber_8.html",
       "chance_at_least_one_pct": 55.602,

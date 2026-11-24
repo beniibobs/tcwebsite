@@ -41,3 +41,8 @@ The Maze viewer loads Three.js r128 from a CDN, so that page requires Internet a
 The entire initial offline export (including its original eight raster diagrams, generator script, and complete 100k raw study archive) remains available from the prior chat download, `Trial_Chambers_Atlas_GitHub_Pages.zip`. The current GitHub-hosted version is intentionally a lighter static copy and does not yet include those binary files. For a full mirror, upload the contents of that ZIP to this repository.
 
 Minecraft is a trademark of Mojang/Microsoft. This is an independent community project.
+
+
+## Asset and data attribution
+
+Maze placement thumbnails were supplied by the site owner from [Minecraft Wiki – Trial Chambers](https://minecraft.wiki/w/Trial_Chambers), resized for the site. The site icon is the `copper_bulb_lit.png` texture (lit=true, powered=false) from the supplied Minecraft Java 26.3 client JAR. Maze room placement statistics are derived from `assets/data/chamber_by_location.csv` and `assets/data/site_manifest.json`; they are 100,000-structure emulator estimates, not validated vanilla-world frequencies. The visible placement credit line has been moved here rather than discarded.
