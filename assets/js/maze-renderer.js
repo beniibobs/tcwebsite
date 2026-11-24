@@ -24,6 +24,18 @@ for(const i of [2757,2815,2586,2584,6962,7020,6817,6875])a[i]=255;
 // vault has two top slabs. N/E/S/W front directions follow the rotated jigsaws.
 const rewardModels=[[2122,0],[2093,0],[2064,0],[2964,0],[2906,0],[2935,8,3],[2364,0],[2363,0],[2362,0],[3176,0],[3174,0],[3175,8,2],[2388,0],[2387,0],[2386,0],[3200,0],[3198,0],[3199,8,2],[1991,0],[1962,0],[1933,0],[2833,0],[2775,0],[2804,8,3],[5996,0],[6025,0],[6054,0],[6836,0],[6894,0],[6865,8,1],[2403,0],[2402,0],[2401,0],[3215,0],[3213,0],[3214,8,2],[6514,0],[6515,0],[6516,0],[7384,0],[7386,0],[7385,8,0],[8106,10],[8104,10],[7264,9,2]];
 shapeModels.push(...rewardModels.map(([i,k,d=0])=>[i,k,d,0,0]));
+// All four previously empty Q4 slots are populated for illustration. Vanilla probability stays 50%.
+// Coordinates and orientations derived from the placed Q4 and wall_dispenser templates.
+for(const [x,y,z,f,side] of [[2,2,4,1,-1],[9,2,2,2,0],[4,7,2,2,0],[9,7,2,2,0]]){
+ const idx=(x,y,z)=>(y*Z+z)*X+x;
+ const east=f===1,dx=east?0:-1,dz=east?1:0;
+ const put=(x,y,z,p)=>{a[idx(x,y,z)]=p;pc[idx(x,y,z)]=23;};
+ put(x,y,z,23);put(x,y+1,z,22);put(x+(east?-1:0),y+1,z+(east?0:-1),3);
+ put(x+dx,y,z+dz,2);
+ put(x+dx,y+1,z+dz,255);put(x-dx,y+1,z-dz,255);
+ shapeModels.push([idx(x,y,z),7,f,0,0],[idx(x,y+1,z),6,0,east?270:0,0]);
+ D.m.push(['dispenser',x,y,z,'Dispenser']);
+}
 const originalPalette=a.slice();
 const partialVoxelIndices=new Set(shapeModels.map(([idx])=>idx));
 for(const [idx,kind] of shapeModels)a[idx]=255;
