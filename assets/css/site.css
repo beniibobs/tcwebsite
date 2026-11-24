@@ -37,3 +37,9 @@
 @media(max-width:970px){.maze-main-grid{grid-template-columns:minmax(0,1fr) 270px}}
 @media(max-width:760px){.maze-main-grid{grid-template-columns:1fr}.maze-main-grid .viewer-canvas{height:62vh;min-height:350px}}
 @media(max-width:430px){.floor-selector-overlay{left:9px;top:9px}.maze-main-grid .viewer-canvas{height:450px}}
+
+/* Maze: taller viewport for comfortable close inspection. */
+.maze-main-grid .viewer-canvas{height:max(760px,100vh);min-height:760px;max-height:none}
+@media(max-width:760px){.maze-main-grid .viewer-canvas{height:max(540px,80vh);min-height:540px}}
+@media(max-width:430px){.maze-main-grid .viewer-canvas{height: max(500px,78vh);min-height:500px}}
+.maze-stats-panel{align-self:start}
