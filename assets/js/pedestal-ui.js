@@ -43,7 +43,7 @@ else if(title.startsWith('Slice ')){content=bars([['Slice 1',100/13],['Slice 2',
 else if(/^(P?Q)[1-4]$/.test(title)){
 const names=['Q1','Q2','Q3','Q4','PQ1','PQ2','PQ3','Slice 4 instead'];
 const chances={NW:[14.95,41.0875,41.7975,.05,.045,.0375,.0475,1.985],NE:[14.165,40.8075,40.67,0,0,0,0,4.3575],SW:[15.1225,41.085,41.4725,.1125,.115,.0525,.0975,1.9425],SE:[19.6625,38.5025,38.1075,0,0,0,0,3.7275]};
-sub=(state.corner||'')+' corner'+(state.corner?.endsWith('E')?' · all placements':'');
+sub=({NE:'Between Exits',SW:'Opposite Exits',SE:'Breeze Corner',NW:'Empty Corner'}[state.corner]||'');
 content=bars(names.map((n,i)=>[n,(chances[state.corner]||chances.NW)[i]]),title);
 if(state.corner?.endsWith('E')&&typeof state.shifted==='boolean')title+=' ('+(state.shifted?'Shifted':'Unshifted')+')';
 foot='';
