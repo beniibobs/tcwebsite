@@ -34,15 +34,22 @@ const rows=[["breeze","Breeze spawner","1.000","100.00%"],["melee","Melee spawne
    if(!state){card.hidden=true;return}
    let title='',sub='',content='',foot='',img='';
    if(state.kind==='exit'){
-title='Overhang exits';content=bars([["Middle exit",21.50197778072184],["Upper exit (opposite)",21.403561897912446],["Upper exit (north)",26.79372409485777],["Upper exit (south)",30.30073622650794]],state.selected);
+title='Overhang exits';content=bars([["Middle",21.50197778072184],["Upper 1",21.403561897912446],["Upper 2",26.79372409485777],["Upper 3",30.30073622650794]],state.selected);
 }else if(state.kind==='piece'){
 title=state.label;
-if(title==='Open Walkway'||title==='Closed Walkway'){
-if(state.middle){sub='Middle entrance walkway';content=bars([['Open Walkway',50],['Closed Walkway',50]],title);}
-else{sub='Additional walkway';}
-foot=title==='Open Walkway'?'One regular vault and one ranged spawner.':'One ranged spawner; no regular vault.';
-}else if(title==='Full Corner Column'){foot='Replaces the ominous vault.';}
-else if(title==='Breeze Column'){foot='One guaranteed Breeze spawner.';}
+const choices={
+ 'Middle':[['Open Walkway',50],['Closed Walkway',50]],
+ 'Upper 1':[['Open Walkway',100*13/150],['Closed Walkway',100*13/150],['Full Corner Column',100*49/450],['Short Grate Platform',100*323/900],['Short Platform',100*323/900]],
+ 'Upper 2':[['Open Walkway',100*13/75],['Closed Walkway',100*13/75],['Grate Bridge',100*49/225],['Short Grate Platform',100*49/225],['Short Platform',100*49/225]],
+ 'Upper 3':[['Grate Bridge',100/3],['Short Grate Platform',100/3],['Short Platform',100/3]]
+};
+if(choices[state.slot]){
+ sub=state.slot==='Middle'?'Middle Walkway · guaranteed':state.slot;
+ content=bars(choices[state.slot],title);
+ if(title==='Open Walkway')foot='One regular vault and one ranged spawner.';
+ else if(title==='Closed Walkway')foot='One ranged spawner; no regular vault.';
+ else if(title==='Full Corner Column')foot='Replaces the ominous vault.';
+}else if(title==='Breeze Column'){foot='One guaranteed Breeze spawner.';}
 }else if(state.kind==='marker'){
 const k=state.type;
 if(k==='dispenser'){
