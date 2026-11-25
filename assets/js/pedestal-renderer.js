@@ -1,12 +1,12 @@
 (async()=>{const $=id=>document.getElementById(id),cv=$('c');
 try{
-const res=await fetch('../assets/data/rooms/pedestal-geometry.json?v=2');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
+const res=await fetch('../assets/data/rooms/pedestal-geometry.json?v=3');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
 const unzip=async s=>new Uint8Array(await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
 const get=async name=>{const r=await fetch('../assets/data/rooms/'+name+'-geometry.json');if(!r.ok)throw Error('Shared textures unavailable');return r.json()};
 const [E,A,raw,modelData]=await Promise.all([get('eruption'),get('assembly'),unzip(D.grid),unzip(D.geometry)]);
 // These atlas tile IDs were matched by exact RGBA pixel hashes against the 26.3 JAR.
 const tiles=D.tiles;
-const models=JSON.parse(new TextDecoder().decode(modelData)).map(([solid,faces])=>[solid,faces.map(f=>[tiles[f[0]],...f.slice(1)])]);
+const models=[...JSON.parse(new TextDecoder().decode(modelData)),...(D.additionalModels||[])].map(([solid,faces])=>[solid,faces.map(f=>[tiles[f[0]],...f.slice(1)])]);
 const [X,Y,Z]=D.size,N=X*Y*Z;
 if(raw.length!==2*N)throw Error('Invalid voxel data length');
 const grid=raw.subarray(0,N),parts=raw.subarray(N);
