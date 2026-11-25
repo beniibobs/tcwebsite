@@ -41,7 +41,7 @@ content=bars([['Ladder',25],['Straight Stairs',25],['Spawner Stairs',25],['Block
 foot='Equal jigsaw selection priorities give a 50% chance of the dispenser being processed first. Its own 50% placement roll makes the blocked outcome 25%.';
 }else if(title.startsWith('Right staircase')){
 content=bars([['Ladder',100/6],['Straight Stairs',100/6],['Spawner Stairs',100/6],['Blocked',50]],'Spawner Stairs');
-foot='The disposal and staircase have equal selection priorities. The disposal always fits if processed first, giving a 50% blocked outcome.';
+foot='The disposal and staircase have equal selection priorities. The disposal always fits if processed first, giving a 50% blocked outcome. Spawner Stairs use the generic spawner pool.';
 }else if(title.startsWith('Cover')||title.startsWith('Platform')||title.startsWith('Dispenser')||title==='Uncovered Stair'||title==='Full column'){
 const options=[['Cover 1',2],['Cover 2',2],['Cover 3',2],['Cover 4',2],['Dispenser 1',2],['Dispenser 2',2],['Cover 7',5],['Platform 1',2],['Uncovered Stair',1]];
 content=bars([...options.map(([n,w])=>[n,100*w*(1/44+1/40)]),['Full column',100/22]],title);
@@ -56,6 +56,12 @@ if(k==='special_dispenser'||k==='dispenser'){
 title=k==='special_dispenser'?'Competing wall dispenser':state.label;img=icon('dispenser');
 content=bars([['Placed',k==='special_dispenser'?25:50],['Not placed',k==='special_dispenser'?75:50]],'Placed');
 foot=k==='special_dispenser'?'This red-bordered dispenser competes with the left staircase. It must be processed first and win its 50% roll, giving a 25% placement chance.':'All compatible slots are shown. Normal eligible slots have a 50% placement chance; a floor slot exists only when Dispenser 1 or 2 is chosen.';
+}else if(state.pool==='generic'){
+title='Generic spawner';img=icon(k==='small_melee'?'small':k);
+const categories={melee:'Melee',ranged:'Ranged',small_melee:'Small melee'};
+sub='Example: '+categories[k]+' ('+state.label.charAt(0).toUpperCase()+state.label.slice(1)+')';
+content=bars([['Melee',100/3],['Ranged',100/3],['Small melee',100/3]],categories[k]);
+foot='The spawner/all pool first chooses one of three equally weighted categories. The mob type is then shared with other spawners of that category throughout the Trial Chamber.';
 }else{
 const names={breeze:'Breeze spawner',melee:'Melee spawner',ranged:'Ranged spawner',small_melee:'Small melee spawner'},opts={breeze:['Breeze'],melee:['Zombie','Husk','Spider'],ranged:['Skeleton','Stray','Bogged'],small_melee:['Slime','Cave spider','Silverfish','Baby zombie']};
 const mobs=opts[k]||[],example=state.label.charAt(0).toUpperCase()+state.label.slice(1);title=names[k];img=icon(k==='small_melee'?'small':k);content=bars(mobs.map(m=>[m,100/mobs.length]),example);if(k!=='breeze')foot='One mob type per category throughout the Trial Chamber.';
