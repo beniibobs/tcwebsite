@@ -8,7 +8,7 @@ html.resource-compare-open{overflow:hidden}
 .resource-compare-inner{padding:18px 20px 16px}
 .resource-compare-header{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:15px}
 .resource-compare-heading{display:flex;align-items:center;gap:10px;min-width:0}
-.resource-compare-heading h2{font-size:20px;line-height:1.25;margin:0}
+.resource-compare-heading h2{font:700 24px/1.15 system-ui,"Segoe UI",sans-serif;letter-spacing:-.025em;margin:0}
 .resource-compare-heading #resource-compare-icon{display:flex;align-items:center;flex:none}
 .resource-compare-close{border:1px solid var(--line);border-radius:7px;background:var(--panel2);color:var(--ink);font-size:24px;line-height:1;cursor:pointer;min-width:34px;height:34px;flex:none}
 .resource-compare-close:hover{background:var(--line)}
@@ -18,12 +18,14 @@ html.resource-compare-open{overflow:hidden}
 .resource-compare-table .num{text-align:right;font-variant-numeric:tabular-nums}
 .resource-compare-table thead th:first-child{width:39%}
 .resource-compare-table thead th:nth-child(2){width:24%}
-.resource-compare-table tbody th{font-weight:600}
+.resource-compare-table th{font-family:inherit;font-size:inherit;text-transform:none;font-variant:normal;letter-spacing:normal}.resource-compare-table tbody th{font-weight:600;color:var(--ink)}
 .resource-compare-table tbody th small{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:3px;line-height:1.25}
-.resource-compare-table .is-overall{background:var(--panel2)}
-.resource-compare-table #resource-compare-overall tr>*{border-bottom:3px solid var(--line)}
+.resource-compare-table .is-overall{background:transparent}
+.resource-compare-table #resource-compare-overall tr>*{border-bottom:0}
+.resource-compare-table .resource-compare-gap td{height:20px;padding:0;border:0;background:transparent}
+.resource-compare-table #resource-compare-rooms tr:hover{background:#333439}
+.resource-compare-table #resource-compare-rooms tr:hover th{box-shadow:inset 3px 0 var(--copper)}
 .resource-compare-table .is-current{background:#333439}
 .resource-compare-table .is-current th{box-shadow:inset 3px 0 var(--copper)}
 .resource-compare-table .maze-probability{min-width:0}
-.resource-compare-note{font-size:11px;line-height:1.45;color:var(--muted);margin:13px 0 0}
-@media(max-width:440px){.resource-compare-inner{padding:12px 10px}.resource-compare-table th,.resource-compare-table td{padding:9px 5px}.resource-compare-table{font-size:12px}.resource-compare-heading h2{font-size:17px}.resource-compare-table .maze-probability strong{font-size:12px}}
+@media(max-width:440px){.resource-compare-inner{padding:12px 10px}.resource-compare-table th,.resource-compare-table td{padding:9px 5px}.resource-compare-table{font-size:12px}.resource-compare-heading h2{font-size:20px}.resource-compare-table .maze-probability strong{font-size:12px}}
