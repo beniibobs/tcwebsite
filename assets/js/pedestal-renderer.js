@@ -1,11 +1,11 @@
 (async()=>{const $=id=>document.getElementById(id),cv=$('c');
 try{
-const res=await fetch('../assets/data/rooms/pedestal-geometry.json?v=1');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
+const res=await fetch('../assets/data/rooms/pedestal-geometry.json?v=2');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
 const unzip=async s=>new Uint8Array(await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
 const get=async name=>{const r=await fetch('../assets/data/rooms/'+name+'-geometry.json');if(!r.ok)throw Error('Shared textures unavailable');return r.json()};
 const [E,A,raw,modelData]=await Promise.all([get('eruption'),get('assembly'),unzip(D.grid),unzip(D.geometry)]);
 // These atlas tile IDs were matched by exact RGBA pixel hashes against the 26.3 JAR.
-const tiles=[1,11,2,3,4,6,7,5,10,13,49,25,54,26,56,14,44,45,17,8,9,32,19,18,20,12,23,33,34,19,35,20];
+const tiles=D.tiles;
 const models=JSON.parse(new TextDecoder().decode(modelData)).map(([solid,faces])=>[solid,faces.map(f=>[tiles[f[0]],...f.slice(1)])]);
 const [X,Y,Z]=D.size,N=X*Y*Z;
 if(raw.length!==2*N)throw Error('Invalid voxel data length');
@@ -18,11 +18,11 @@ const [eruptionTiles,assemblyTiles,mossy]=await Promise.all([load(E.extra),load(
 // Preserve the previous Hotel/Maze UV inset, plus one extruded guard texel
 // around each atlas tile. Nearest filtering stays pixel-crisp and cannot sample
 // a transparent or white neighboring tile at the edges.
-const source=document.createElement('canvas');source.width=128;source.height=128;
-const src=source.getContext('2d');src.imageSmoothingEnabled=false;src.drawImage(base,0,0);src.drawImage(extra,0,64);src.drawImage(eruptionTiles,0,96);src.drawImage(assemblyTiles,80,96);src.drawImage(mossy,0,112);
-const ac=document.createElement('canvas');ac.width=144;ac.height=144;
+const source=document.createElement('canvas');source.width=128;source.height=144;
+const src=source.getContext('2d');src.imageSmoothingEnabled=false;src.drawImage(base,0,0);src.drawImage(extra,0,64);src.drawImage(eruptionTiles,0,96);src.drawImage(assemblyTiles,80,96);src.drawImage(mossy,0,112);const strip=await load(D.strip);if(strip.width!==144||strip.height!==16)throw Error('Invalid Pedestal texture strip');for(let i=0;i<9;i++){const t=57+i;src.drawImage(strip,16*i,0,16,16,(t%8)*16,Math.floor(t/8)*16,16,16);}
+const ac=document.createElement('canvas');ac.width=144;ac.height=162;
 const ctx=ac.getContext('2d');ctx.imageSmoothingEnabled=false;
-for(let t=0;t<64;t++){
+for(let t=0;t<72;t++){
  const sx=(t%8)*16,sy=Math.floor(t/8)*16,dx=(t%8)*18+1,dy=Math.floor(t/8)*18+1;
  ctx.drawImage(source,sx,sy,16,16,dx,dy,16,16);
  ctx.drawImage(source,sx,sy,1,16,dx-1,dy,1,16);
@@ -42,7 +42,7 @@ const q=id(x,y,z),k=grid[q];if(!k)continue;const [isSolid,faces]=models[k-1];
 if(!air[q]&&!normals.some(d=>inside(x+d[0],y+d[1],z+d[2])&&air[id(x+d[0],y+d[1],z+d[2])]))continue;
 for(const f of faces){const [tile,di,cull]=f,d=normals[di],nx=x+d[0],ny=y+d[1],nz=z+d[2];if(cull>=0&&inside(nx,ny,nz)&&solid(grid[id(nx,ny,nz)]))continue;if(isSolid&&!air[q]&&(!inside(nx,ny,nz)||!air[id(nx,ny,nz)]))continue;
 const a=P.length/3,col=tile%8,row=Math.floor(tile/8),v=shade[di]*(y<3?.81:1);
-for(let j=0;j<4;j++){P.push(x+f[3+3*j]/16,y+f[4+3*j]/16,z+f[5+3*j]/16);U.push((col*18+1+.32+f[15+2*j]*.96)/144,1-(row*18+1+.32+f[16+2*j]*.96)/144);C.push(v,v,v);owners.push(parts[q])}
+for(let j=0;j<4;j++){P.push(x+f[3+3*j]/16,y+f[4+3*j]/16,z+f[5+3*j]/16);U.push((col*18+1+.32+f[15+2*j]*.96)/144,1-(row*18+1+.32+f[16+2*j]*.96)/162);C.push(v,v,v);owners.push(parts[q])}
 const b=3*a,e=[P[b+3]-P[b],P[b+4]-P[b+1],P[b+5]-P[b+2]],w=[P[b+6]-P[b],P[b+7]-P[b+1],P[b+8]-P[b+2]];
 if((e[1]*w[2]-e[2]*w[1])*d[0]+(e[2]*w[0]-e[0]*w[2])*d[1]+(e[0]*w[1]-e[1]*w[0])*d[2]>=0)I.push(a,a+1,a+2,a,a+2,a+3);else I.push(a,a+2,a+1,a,a+3,a+2);
 }}counts.push(I.length)}
@@ -51,7 +51,7 @@ const R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixe
 const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(48,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2),g=new THREE.BufferGeometry();
 g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(U,2));g.setAttribute('color',new THREE.Float32BufferAttribute(C,3));g.setIndex(I);g.computeBoundingSphere();S.add(new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:tex,vertexColors:true,alphaTest:.5})));
 const mk=D.markers.map(([type,x,y,z,label,pool])=>{
- const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:type.includes('dispenser')?0xffffff:type==='vault'?0xffc66b:type==='ominous'?0x6defff:0xff00b7,transparent:true,opacity:type==='vault'||type==='ominous'?.32:.82,depthTest:false,depthWrite:false}));
+ const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:type.includes('dispenser')?0xffffff:type==='vault'?0xffc66b:type==='ominous'?0x6defff:type==='barrel'?0x9f743e:0xff00b7,transparent:true,opacity:type==='vault'||type==='ominous'||type==='barrel'?.32:.82,depthTest:false,depthWrite:false}));
  m.position.set(x+.5,y+.5,z+.5);m.userData={type,label,pool};m.renderOrder=1000;
  if(type==='special_dispenser'){
   const mat=new THREE.MeshBasicMaterial({color:0xff2020,transparent:true,opacity:1,depthTest:false,depthWrite:false});
@@ -88,7 +88,7 @@ const resize=()=>{if(cv.clientWidth&&cv.clientHeight){R.setSize(cv.clientWidth,c
 cv.oncontextmenu=e=>e.preventDefault();
 cv.onpointerdown=e=>{if(e.button!==0&&e.button!==2)return;show(null);drag={x:e.clientX,y:e.clientY,pan:e.shiftKey||e.button===2};cv.setPointerCapture(e.pointerId)};
 cv.onpointermove=e=>{if(drag){const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;if(drag.pan){const u=2*rad*Math.tan(cam.fov*Math.PI/360)/Math.max(1,cv.clientHeight);T.addScaledVector(new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld,0),-dx*u);T.addScaledVector(new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld,1),dy*u)}else{th+=dx*.002;ph=Math.min(3,Math.max(.1,ph-dy*.002))}return}
-const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);rc.setFromCamera(mv,cam);const marker=rc.intersectObjects(mk.filter(m=>m.visible),false)[0]?.object;if(marker){show({kind:'marker',...marker.userData});return}const hit=rc.intersectObjects(exits.filter(e=>e.visible),true)[0];if(hit){let o=hit.object;while(o&&o.userData.exit===undefined)o=o.parent;if(o){show({kind:'exit',selected:D.exitStats[o.userData.exit][0]});return}}const piece=pickPiece(rc.ray);show(piece?{kind:'piece',id:piece.id,label:piece.label}:null)};
+const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);rc.setFromCamera(mv,cam);const marker=rc.intersectObjects(mk.filter(m=>m.visible),false)[0]?.object;if(marker){show({kind:'marker',...marker.userData});return}const hit=rc.intersectObjects(exits.filter(e=>e.visible),true)[0];if(hit){let o=hit.object;while(o&&o.userData.exit===undefined)o=o.parent;if(o){show({kind:'exit',selected:D.exitStats[o.userData.exit][0]});return}}const piece=pickPiece(rc.ray);show(piece?{kind:'piece',id:piece.id,label:piece.label,corner:(piece.b[2]<17?'N':'S')+(piece.b[0]<17?'W':'E')}:null)};
 cv.onpointerup=()=>drag=null;cv.onpointercancel=()=>{drag=null;show(null)};cv.onpointerleave=()=>show(null);cv.addEventListener('wheel',e=>{e.preventDefault();rad=Math.max(8,Math.min(120,rad*(1+e.deltaY*.0007)))},{passive:false});
 setCut(Y);(function loop(){cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam);requestAnimationFrame(loop)})();
 }catch(e){console.error(e);const b=$('viewer-fallback');b.style.display='block';b.textContent='Unable to initialise the 3D viewer: '+e.message}
