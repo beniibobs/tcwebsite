@@ -38,19 +38,17 @@ title='Pedestal exits';content=bars([["Lower exit",63.35213077307445],["Upper ex
 title=state.label;
 if(title==='Centre'){foot='The central piece attaches first and has seven ordinary slice connectors, one ominous slice connector, two generic spawner connectors and one Breeze connector. Two disposal structures obstruct ordinary slice positions.';}
 else if(title==='Ominous slice'){foot='One dedicated ominous slice connector on the centre selects this template. It supplies the room’s ominous vault.';}
-else if(title.startsWith('Slice ')){content=bars([['Slice 1',100/13],['Slice 2',300/13],['Slice 3',300/13],['Slice 4',300/13],['Slice 5',300/13]],title);foot='Weights at a compatible ordinary slice connector. Slice 4 can also attach to a quadrant connector. The two disposal structures block two ordinary slice positions.';}
+else if(title.startsWith('Slice ')){content=bars([['Slice 1',100/13],['Slice 2',300/13],['Slice 3',300/13],['Slice 4',300/13],['Slice 5',300/13]],title);foot='Weights at a compatible ordinary slice connector. Slice 4 can also attach to a quadrant connector. The disposal structures at the two exits block two ordinary slice positions, leaving space into which a neighbouring quadrant can shift.';}
 else if(/^(P?Q)[1-4]$/.test(title)){
-const names=['Q1','Q2','Q3','Q4','PQ1','PQ2','PQ3','No listed quadrant'];
+const names=['Q1','Q2','Q3','Q4','PQ1','PQ2','PQ3','Slice 4 instead'];
 const chances={NW:[14.95,41.0875,41.7975,.05,.045,.0375,.0475,1.985],NE:[14.165,40.8075,40.67,0,0,0,0,4.3575],SW:[15.1225,41.085,41.4725,.1125,.115,.0525,.0975,1.9425],SE:[19.6625,38.5025,38.1075,0,0,0,0,3.7275]};
 sub=(state.corner||'')+' corner · 40,000-room emulator';
 content=bars(names.map((n,i)=>[n,(chances[state.corner]||chances.NW)[i]]),title);
-foot='Q1–Q3 are 10×10; Q4 and PQ1–3 are 11×11. The larger templates compete with wall dispensers and, on the east side, disposal structures. Q1 adds a melee spawner and vault; Q2 and Q3 add two vaults. Q4 has dispenser slots; PQ1–3 add none of these resources. No listed quadrant includes alternate slice or unfilled corner outcomes. Values are estimates, not exact vanilla probabilities.';
+foot='Q1–Q3 are 10×10; Q4 and PQ1–3 are 11×11. The larger templates compete with wall dispensers and, on the east side, disposal structures. Q1 adds a melee spawner and vault; Q2 and Q3 add two vaults. Q4 has dispenser slots; PQ1–3 add none of these resources. Eastern Q1–Q3 can shift five blocks towards the exits, depending on which slice connector is processed first. Slice 4 can also attach directly to a quadrant connector and occupy part of that corner instead of a quadrant. Values count pieces overlapping the nominal corner, including shifted positions, and are emulator estimates.';
 }
 }else if(state.kind==='marker'){
 const k=state.type;
-if(k==='vault'||k==='ominous'){
-title=k==='vault'?'Vault':'Ominous vault';img=icon(k);foot=k==='vault'?'Regular vaults vary with the generated slices and quadrants.':'The dedicated ominous slice contains this vault.';
-}else if(k==='barrel'){
+if(k==='barrel'){
 title='Disposal barrel';img=icon(k);foot='Pedestal has two fixed disposal structures. Their bounding boxes block two ordinary slices.';
 }else if(k==='dispenser'){
 title='Chamber dispenser';img=icon(k);content=bars([['Placed',50],['Not placed',50]],'Placed');foot='The shell has 30 compatible wall dispenser slots, each with a 50% roll. All are shown in this example. The rare Q4 can add additional slots.';
