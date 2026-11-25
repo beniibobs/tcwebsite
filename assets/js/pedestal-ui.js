@@ -23,7 +23,7 @@ const rows=[["breeze","Breeze spawner","1.000","100.00%"],["melee","Melee spawne
  const rampName={1:'Melee',2:'Melee',3:'Ranged',4:'Nothing'};
  const rotationNote='The centre can rotate, so the exits are not fixed relative to the ominous upper arm.';
  const esc=x=>String(x).replace(/[&<>"']/g,v=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[v]));
- const formatChance=p=>p===0?'0 observed':(p<.1?p.toFixed(Math.max(3,Math.ceil(-Math.log10(p))+1)):p.toFixed(2))+'%';
+ const formatChance=p=>p===0?'0.00%':(p<.1?p.toFixed(Math.max(3,Math.ceil(-Math.log10(p))+1)):p.toFixed(2))+'%';
  const bars=(data,selected)=>'<div class="maze-hover-bars">'+data.map(([label,p])=>'<div class="maze-hover-row'+(selected===label?' selected':'')+'"><span>'+esc(label)+'</span><strong>'+formatChance(p)+'</strong><div class="maze-hover-track"><i style="width:'+p+'%"></i></div></div>').join('')+'</div>';
  let key='';
  function selectFeature(feature){for(const row of tb.querySelectorAll('tr'))row.classList.toggle('is-selected',row.dataset.feature===feature)}
@@ -43,8 +43,9 @@ else if(title.startsWith('Slice ')){content=bars([['Slice 1',100/13],['Slice 2',
 else if(/^(P?Q)[1-4]$/.test(title)){
 const names=['Q1','Q2','Q3','Q4','PQ1','PQ2','PQ3','Slice 4 instead'];
 const chances={NW:[14.95,41.0875,41.7975,.05,.045,.0375,.0475,1.985],NE:[14.165,40.8075,40.67,0,0,0,0,4.3575],SW:[15.1225,41.085,41.4725,.1125,.115,.0525,.0975,1.9425],SE:[19.6625,38.5025,38.1075,0,0,0,0,3.7275]};
-sub=(state.corner||'')+' corner';
+sub=(state.corner||'')+' corner'+(state.corner?.endsWith('E')?' · all placements':'');
 content=bars(names.map((n,i)=>[n,(chances[state.corner]||chances.NW)[i]]),title);
+if(state.corner?.endsWith('E')&&typeof state.shifted==='boolean')title+=' ('+(state.shifted?'Shifted':'Unshifted')+')';
 foot='';
 }
 }else if(state.kind==='marker'){
