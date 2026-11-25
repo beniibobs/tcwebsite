@@ -1,0 +1,113 @@
+{
+  "minecraft_version": "26.3",
+  "method": "Whole-structure rigid-template jigsaw emulator. Starting end template, weighted template pools and aliases, compatible connector orientations, rotations, parent-internal or inherited free-space bounding boxes, selection/placement priorities, depth limit 20, distance limit 116, fallback pools. Count actual vault blocks in every placed template; no terrain generation or vanilla RNG.",
+  "runs": 10000,
+  "emulator_rng_seeds": {
+    "first": 200000,
+    "last": 209999
+  },
+  "regular": {
+    "total": 180526,
+    "mean": 18.0526,
+    "at_least_one": 10000,
+    "min": 2,
+    "max": 56,
+    "mean_95ci": [
+      17.90817092,
+      18.19702908
+    ]
+  },
+  "ominous": {
+    "total": 65456,
+    "mean": 6.5456,
+    "at_least_one": 10000,
+    "min": 3,
+    "max": 10,
+    "mean_95ci": [
+      6.52349238,
+      6.56770762
+    ]
+  },
+  "category_totals": {
+    "assembly": [
+      24892,
+      6223
+    ],
+    "atrium": [
+      0,
+      10000
+    ],
+    "overhang": [
+      4148,
+      3837
+    ],
+    "snoverhang": [
+      2074,
+      2935
+    ],
+    "infestation": [
+      7994,
+      3997
+    ],
+    "hotel": [
+      23946,
+      7982
+    ],
+    "corridor_addon": [
+      1468,
+      0
+    ],
+    "encounter": [
+      867,
+      0
+    ],
+    "end": [
+      4980,
+      10000
+    ],
+    "entrance": [
+      13324,
+      0
+    ],
+    "eruption": [
+      14318,
+      5517
+    ],
+    "intersection": [
+      0,
+      6691
+    ],
+    "pedestal": [
+      33431,
+      2732
+    ],
+    "maze": [
+      43581,
+      5542
+    ],
+    "straight": [
+      5503,
+      0
+    ]
+  },
+  "category_total_order": [
+    "regular",
+    "ominous"
+  ],
+  "checks": {
+    "intersection_templates": [
+      3350,
+      3341,
+      3309
+    ],
+    "entrances": 10000,
+    "straight_slices": 80000,
+    "combat_rooms": 40316,
+    "original_v4_mean_combat_rooms": 4.00471
+  },
+  "caveats": [
+    "Emulator sampling uncertainty only, not validation against vanilla seeds.",
+    "Original v4 intersection field is a template index, not number of intersections.",
+    "Maze regular-vault mean in this run is 43581/5542=7.8638, differing from the original Maze-specific audit (6.9074). Room-specific published stats are retained pending reconciliation."
+  ]
+}
