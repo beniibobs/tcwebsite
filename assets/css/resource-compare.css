@@ -22,7 +22,8 @@ html.resource-compare-open{overflow:hidden}
 .resource-compare-table tbody th small{display:block;font-size:10px;color:var(--muted);font-weight:400;margin-top:3px;line-height:1.25}
 .resource-compare-table .is-overall{background:transparent}
 .resource-compare-table #resource-compare-overall tr>*{border-bottom:0}
-.resource-compare-table .resource-compare-gap td{height:20px;padding:0;border:0;background:transparent}
+.resource-compare-table .resource-compare-gap td{height:26px;padding:0;border:0;background:transparent;position:relative}
+.resource-compare-table .resource-compare-gap td::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;background:var(--line);border-radius:1px}
 .resource-compare-table #resource-compare-rooms tr:hover{background:#333439}
 .resource-compare-table #resource-compare-rooms tr:hover th{box-shadow:inset 3px 0 var(--copper)}
 .resource-compare-table .is-current{background:#333439}
