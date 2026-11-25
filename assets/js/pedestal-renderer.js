@@ -50,7 +50,7 @@ if(!I.length)throw Error('No room geometry');
 const R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio||1,2));
 const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(48,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2),g=new THREE.BufferGeometry();
 g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(U,2));g.setAttribute('color',new THREE.Float32BufferAttribute(C,3));g.setIndex(I);g.computeBoundingSphere();S.add(new THREE.Mesh(g,new THREE.MeshBasicMaterial({map:tex,vertexColors:true,alphaTest:.5})));
-const mk=D.markers.map(([type,x,y,z,label,pool])=>{
+const mk=D.markers.filter(([type])=>type!=='vault'&&type!=='ominous').map(([type,x,y,z,label,pool])=>{
  const m=new THREE.Mesh(new THREE.BoxGeometry(.98,.98,.98),new THREE.MeshBasicMaterial({color:type.includes('dispenser')?0xffffff:type==='vault'?0xffc66b:type==='ominous'?0x6defff:type==='barrel'?0x9f743e:0xff00b7,transparent:true,opacity:type==='vault'||type==='ominous'||type==='barrel'?.32:.82,depthTest:false,depthWrite:false}));
  m.position.set(x+.5,y+.5,z+.5);m.userData={type,label,pool};m.renderOrder=1000;
  if(type==='special_dispenser'){
