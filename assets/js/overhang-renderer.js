@@ -1,6 +1,6 @@
 (async()=>{const $=id=>document.getElementById(id),cv=$('c');
 try{
-const res=await fetch('../assets/data/rooms/overhang-geometry.json?v=1');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
+const res=await fetch('../assets/data/rooms/overhang-geometry.json?v=2');if(!res.ok)throw Error('Model data unavailable');const D=await res.json();
 const unzip=async s=>new Uint8Array(await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
 const get=async name=>{const r=await fetch('../assets/data/rooms/'+name+'-geometry.json');if(!r.ok)throw Error('Shared textures unavailable');return r.json()};
 const [E,A,PD,raw,modelData]=await Promise.all([get('eruption'),get('assembly'),get('pedestal'),unzip(D.grid),unzip(D.geometry)]);
@@ -71,7 +71,7 @@ const mk=D.variants[i].markers.map(([type,x,y,z,label,pool])=>{
  group.add(m);return m;
 });
 
-return {group,g,counts,mk,C,owners,volumes:D.variants[i].bounds.map(([id,label,b])=>({id,label,b})),col:g.getAttribute('color')};
+return {group,g,counts,mk,C,owners,volumes:D.variants[i].bounds.map(([id,label,b,slot])=>({id,label,b,slot})),col:g.getAttribute('color')};
 }
 const cache=new Map();
 let variant=0,active=build(0);cache.set(0,active);S.add(active.group);
@@ -99,7 +99,7 @@ const resize=()=>{if(cv.clientWidth&&cv.clientHeight){R.setSize(cv.clientWidth,c
 cv.oncontextmenu=e=>e.preventDefault();
 cv.onpointerdown=e=>{if(e.button!==0&&e.button!==2)return;show(null);drag={x:e.clientX,y:e.clientY,pan:e.shiftKey||e.button===2};cv.setPointerCapture(e.pointerId)};
 cv.onpointermove=e=>{if(drag){const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;if(drag.pan){const u=2*rad*Math.tan(cam.fov*Math.PI/360)/Math.max(1,cv.clientHeight);T.addScaledVector(new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld,0),-dx*u);T.addScaledVector(new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld,1),dy*u)}else{th+=dx*.002;ph=Math.min(3,Math.max(.1,ph-dy*.002))}return}
-const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);rc.setFromCamera(mv,cam);const marker=rc.intersectObjects(active.mk.filter(m=>m.visible),false)[0]?.object;if(marker){show({kind:'marker',...marker.userData});return}const hit=rc.intersectObjects(exits.filter(e=>e.visible),true)[0];if(hit){let o=hit.object;while(o&&o.userData.exit===undefined)o=o.parent;if(o){show({kind:'exit',selected:D.exitStats[o.userData.exit][0]});return}}const piece=pickPiece(rc.ray);if(!piece){show(null);return}show({kind:'piece',id:piece.id,label:piece.label,variant,middle:piece.b[0]===17&&piece.b[2]===11})};
+const r=cv.getBoundingClientRect();mv.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);rc.setFromCamera(mv,cam);const marker=rc.intersectObjects(active.mk.filter(m=>m.visible),false)[0]?.object;if(marker){show({kind:'marker',...marker.userData});return}const hit=rc.intersectObjects(exits.filter(e=>e.visible),true)[0];if(hit){let o=hit.object;while(o&&o.userData.exit===undefined)o=o.parent;if(o){show({kind:'exit',selected:D.exitStats[o.userData.exit][0]});return}}const piece=pickPiece(rc.ray);if(!piece){show(null);return}show({kind:'piece',id:piece.id,label:piece.label,variant,slot:piece.slot})};
 cv.onpointerup=()=>drag=null;cv.onpointercancel=()=>{drag=null;show(null)};cv.onpointerleave=()=>show(null);cv.addEventListener('wheel',e=>{e.preventDefault();rad=Math.max(8,Math.min(120,rad*(1+e.deltaY*.0007)))},{passive:false});
 setCut(Y);(function loop(){cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam);requestAnimationFrame(loop)})();
 }catch(e){console.error(e);const b=$('viewer-fallback');b.style.display='block';b.textContent='Unable to initialise the 3D viewer: '+e.message}
