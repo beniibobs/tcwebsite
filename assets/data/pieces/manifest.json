@@ -1,0 +1,113 @@
+{
+  "corridor/atrium_1": {
+    "name": "Atrium",
+    "asset": "atrium.json",
+    "floors": [
+      7,
+      12,
+      20
+    ],
+    "radius": 52,
+    "seeds": [
+      [
+        14,
+        5,
+        5
+      ],
+      [
+        14,
+        13,
+        17
+      ]
+    ],
+    "waterLevels": {
+      "18": 0,
+      "20": 8,
+      "21": 1
+    },
+    "transparentTiles": [
+      17,
+      19,
+      20
+    ]
+  },
+  "corridor/entrance_1": {
+    "name": "Vent",
+    "asset": "entrance_1.json",
+    "library": "entrance-models.json",
+    "floors": [
+      7,
+      14,
+      20
+    ],
+    "radius": 46,
+    "seeds": [
+      [
+        9,
+        10,
+        9
+      ],
+      [
+        5,
+        10,
+        0
+      ]
+    ]
+  },
+  "corridor/entrance_2": {
+    "name": "Sewer",
+    "asset": "entrance_2.json",
+    "library": "entrance-models.json",
+    "floors": [
+      7,
+      13,
+      20
+    ],
+    "radius": 46,
+    "seeds": [
+      [
+        9,
+        10,
+        9
+      ],
+      [
+        14,
+        6,
+        5
+      ],
+      [
+        7,
+        4,
+        18
+      ]
+    ]
+  },
+  "corridor/entrance_3": {
+    "name": "Twin Staircase",
+    "asset": "entrance_3.json",
+    "library": "entrance-models.json",
+    "floors": [
+      7,
+      14,
+      22
+    ],
+    "radius": 48,
+    "seeds": [
+      [
+        9,
+        10,
+        9
+      ],
+      [
+        9,
+        21,
+        9
+      ],
+      [
+        16,
+        12,
+        13
+      ]
+    ]
+  }
+}
