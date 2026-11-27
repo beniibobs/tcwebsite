@@ -25,10 +25,55 @@ async function init(){
  // Render inward-facing shell surfaces rather than opaque exterior walls; like chamber viewers.
  const air=new Uint8Array(N),stack=[[14,5,5],[14,13,17]];
  while(stack.length){const [x,y,z]=stack.pop();if(!inside(x,y,z))continue;const q=id(x,y,z);if(air[q]||solid(grid[q]))continue;air[q]=1;for(const d of normals)stack.push([x+d[0],y+d[1],z+d[2]])}
- const buffers=[{P:[],U:[],C:[],I:[],counts:[0]},{P:[],U:[],C:[],I:[],counts:[0]}];
+ // Static water mesh follows FluidRenderer's weighted corner heights and
+ // same-fluid face suppression. IDs are verified against the Atrium NBT:
+ // 18 source, 20 falling, 21 level 1. Still/flow frames come from the JAR.
+ const waterTexture=new THREE.Texture(await image('iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAADg0lEQVR42u1Y3W7TMBg9dpymzTY2uu1mEqDxI9gVlzwLL8TbIJ6DK8QFPxJCAyENpo12rFvSNLHNReIsce0kzEytoJGqKrGP4/h8Pp+/Q54+f/kCANJ4BNMlsqnxOWV9dLn8wRAAwPq3igEFAIB4PgAg+vkJUgpInkJKnrcRD1Jy9Dfvwg+HiEeHyJJfIMQrx5WSY233ANOzr054igVf+uTnCUisbdTrOeNZMjlqnGBXpm0Ro8a3vYdQZp1guUgiK1mrsqjGdMGzRUcAIdQQFbxYzDi/52kttNVH8DR2xjOdYZ1BmwbYIiTY2DP2UxqjjxduP8Lkx1sTbfDDHaTRaTl5APD8ECJL8o8RGdZ2HjvhF64BV5HgGfcoT+OctUI0pRQlw4pZFzzrqvZKzXVG2y69nx4xaTxu3b+EeIDgxlB3xS88AkQW19mTYk7k9H2u+hPiOeOZzrxN9btmC1u/pmxCWQCRJXp6KFaI1xgjgv5V/BJEwAz9rXvlHq0yxNO4uqHL/yqjrnjWls8Vc7oW2DRAZQG93aoxXg/U69UmRQiFlLzM33ralOBlOpMidcIv/iTIU4CQ+dCtnBQJC8yZw/Od8czGmG3Ptqm/3h7e3s8nAgkAWN89AACcfXsNAJhNvpcTtSwRPH+ALD4zRE8AIaIWPBrxS3EO0AWs+jFVIij1a22D4X4HfNCIZ35/MxeD3noRQblYROPDxuqu6zlAHyebnht1wJSnCWWVc7yYT2cFfy74pagGk8mRMYTD4QMQysoUJqUABK/1dcWztd0nNdDlyUdjHa/2rmrX97weGbaTo/pX2pBGp+CzS2NFl8ZjhNsPEY8OjeE9i05BWeCGXxY/oEkfbOWuHw6d8ez4/avGCaqTnc5820lRv1dips4DFycfyn0qRNqySsK2eoXJdH388voBUszV87qpEY0+O+MpZf1Ork9bP9WufsHGHoKNvTmc3i/cfmT3E8MdiCwuFPyqni/NDZE541d+QJvj09UZsnmBbdXjyg9YsB9wYwvQphkim1YqzsBkFxvreROTVbwsMkNX/D/nBxBC/swP0PNzV/fXqryWE6DuL6h713p+5Qe4+gHXzQJ6RCjmt+48qz2/OH6XV4Gzi8Yq8rr1/H/gBwQ36we0eX2qahsM79eenx+9MVZ5yulp8wvUe2WWrPyAePylsZ4X2axWz6t8LyGc8b8BCfGuIeaqwNcAAAAASUVORK5CYII='));
+ waterTexture.magFilter=waterTexture.minFilter=THREE.NearestFilter;waterTexture.generateMipmaps=false;waterTexture.needsUpdate=true;
+ const buffers=Array.from({length:3},()=>({P:[],U:[],C:[],I:[],counts:[0]}));
+ const at=(x,y,z)=>inside(x,y,z)?grid[id(x,y,z)]:0;
+ const wet=k=>k===18||k===20||k===21;
+ const height=(x,y,z)=>{const k=at(x,y,z);return wet(k)?(wet(at(x,y+1,z))?1:k===21?7/9:8/9):solid(k)?-1:0};
+ function corner(x,y,z,dx,dz){
+  const h=height(x,y,z),a=height(x+dx,y,z),b=height(x,y,z+dz);
+  if(h===1||a===1||b===1)return 1;
+  const hs=[h,a,b];if(a>0||b>0)hs.push(height(x+dx,y,z+dz));
+  if(hs.includes(1))return 1;
+  let sum=0,weight=0;for(const v of hs)if(v>=0){const w=v>=.8?10:1;sum+=v*w;weight+=w}
+  return sum/weight;
+ }
+ function fluid(x,y,z,k){
+  const nw=corner(x,y,z,-1,-1),ne=corner(x,y,z,1,-1),se=corner(x,y,z,1,1),sw=corner(x,y,z,-1,1);
+  const {P,U,C,I}=buffers[2];
+  function quad(points,uv,flow,shade){
+   const i=P.length/3;
+   for(let j=0;j<4;j++){
+    const [a,b,c]=points[j];P.push(x+a,y+b,z+c);
+    const [u,v]=uv[j];U.push(((flow?32:0)+.25+u*31.5)/64,1-(.25+v*31.5)/32);C.push(shade,shade,shade);
+   }I.push(i,i+1,i+2,i,i+2,i+3);
+  }
+  const open=(a,b,c)=>{const n=at(x+a,y+b,z+c);return !wet(n)&&!solid(n)};
+  const flat=[[0,0],[1,0],[1,1],[0,1]];
+  if(open(0,1,0)){
+   const own=height(x,y,z),diff=(dx,dz)=>{const h=height(x+dx,y,z+dz);if(h<0)return 0;if(h===0){const below=height(x+dx,y-1,z+dz);return below>0?own-(below-8/9):0}return own-h};
+   const fx=diff(1,0)-diff(-1,0),fz=diff(0,1)-diff(0,-1),moving=Math.hypot(fx,fz)>1e-6;
+   const angle=Math.atan2(fz,fx)-Math.PI/2,cs=Math.cos(angle),sn=Math.sin(angle);
+   const uv=moving?flat.map(([u,v])=>[.5+((u-.5)*cs-(v-.5)*sn)*.5,.5+((u-.5)*sn+(v-.5)*cs)*.5]):flat;
+   quad([[0,nw-.001,0],[1,ne-.001,0],[1,se-.001,1],[0,sw-.001,1]],uv,moving,1);
+  }
+  if(open(0,-1,0))quad([[0,.001,1],[1,.001,1],[1,.001,0],[0,.001,0]],flat,false,.6);
+  function side(dx,dz,a,b,ha,hb,shade){
+   if(!open(dx,0,dz))return;
+   quad([[a[0],ha,a[1]],[b[0],hb,b[1]],[b[0],0,b[1]],[a[0],0,a[1]]],[[0,(1-ha)/2],[.5,(1-hb)/2],[.5,.5],[0,.5]],true,shade);
+  }
+  side(0,-1,[1,.001],[0,.001],ne,nw,.8);
+  side(0,1,[0,.999],[1,.999],sw,se,.8);
+  side(-1,0,[.001,0],[.001,1],nw,sw,.65);
+  side(1,0,[.999,1],[.999,0],se,ne,.65);
+ }
  for(let y=0;y<Y;y++){
   for(let z=0;z<Z;z++)for(let x=0;x<X;x++){
-   const q=id(x,y,z),k=grid[q];if(!k)continue;const [opaque,faces]=models[k-1];
+   const q=id(x,y,z),k=grid[q];if(!k)continue;if(wet(k)){fluid(x,y,z,k);continue}const [opaque,faces]=models[k-1];
    if(!air[q]&&!normals.some(d=>inside(x+d[0],y+d[1],z+d[2])&&air[id(x+d[0],y+d[1],z+d[2])]))continue;
    for(const f of faces){
     const [tile,di,cull]=f,d=normals[di],nx=x+d[0],ny=y+d[1],nz=z+d[2];
@@ -51,7 +96,7 @@ async function init(){
  const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(48,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2);
  const geometry=buffers.map(({P,U,C,I},i)=>{
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(U,2));g.setAttribute('color',new THREE.Float32BufferAttribute(C,3));g.setIndex(I);g.computeBoundingSphere();
-  const m=new THREE.MeshBasicMaterial({map:tex,vertexColors:true,alphaTest:i?.02:.5,transparent:!!i,depthWrite:!i});S.add(new THREE.Mesh(g,m));return g;
+  const m=new THREE.MeshBasicMaterial({map:i===2?waterTexture:tex,vertexColors:true,alphaTest:i?.02:.5,transparent:!!i,depthWrite:!i,side:i===2?THREE.DoubleSide:THREE.FrontSide});const mesh=new THREE.Mesh(g,m);if(i===2)mesh.renderOrder=2;S.add(mesh);return g;
  });
  let th=.8,ph=1.05,rad=52,drag=null,cut=Y,scheduled=false;
  function draw(){scheduled=false;if(current!=='corridor/atrium_1')return;cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam)}

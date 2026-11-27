@@ -16,7 +16,7 @@ function ranked(pieces,query){
  }).filter(x=>x.score>=0).sort((a,b)=>b.score-a.score||a.i-b.i).map(x=>x.p);
 }
 try{
- const res=await fetch('assets/data/overview-loot.json?v=2');if(!res.ok)throw Error('Loot data unavailable');const D=await res.json();
+ const res=await fetch('assets/data/overview-loot.json?v=3');if(!res.ok)throw Error('Loot data unavailable');const D=await res.json();
  const tabs=[...document.querySelectorAll('[data-loot-category]')];let active='materials';
  function category(id){
  const c=D.categories.find(x=>x[0]===id);if(!c)return;
