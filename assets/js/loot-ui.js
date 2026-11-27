@@ -31,9 +31,9 @@ try{
  }
  tabs.forEach((t,i)=>{t.onclick=()=>category(t.dataset.lootCategory);t.addEventListener('keydown',e=>{let j=e.key==='ArrowRight'?(i+1)%tabs.length:e.key==='ArrowLeft'?(i+tabs.length-1)%tabs.length:e.key==='Home'?0:e.key==='End'?tabs.length-1:-1;if(j>=0){e.preventDefault();category(tabs[j].dataset.lootCategory);tabs[j].focus()}})});
  category(active);
- let matches=[],selectedIndex=0,selectedPiece=D.pieces.find(p=>p.file==='corridor/entrance_1');
+ let matches=[],selectedIndex=0,selectedPiece=D.pieces.find(p=>p.file==='corridor/atrium_1');
  function close(){results.hidden=true;input.setAttribute('aria-expanded','false');input.removeAttribute('aria-activedescendant')}
- function select(p){if(!p)return;selectedPiece=p;$('piece-selected-name').textContent=p.name;$('piece-selected-file').textContent=p.file+'.nbt';input.value=p.name;close()}
+ function select(p){if(!p)return;selectedPiece=p;$('piece-selected-name').textContent=p.name;$('piece-selected-file').textContent=p.file+'.nbt';input.value=p.name;window.PieceViewer?.select(p.file);close()}
  function highlight(){const opts=[...results.querySelectorAll('[role="option"]')];opts.forEach((o,i)=>o.setAttribute('aria-selected',String(i===selectedIndex)));if(opts[selectedIndex]){input.setAttribute('aria-activedescendant',opts[selectedIndex].id);opts[selectedIndex].scrollIntoView({block:'nearest'})}}
  function search(){
  matches=ranked(D.pieces,input.value).slice(0,30);selectedIndex=0;results.replaceChildren();
@@ -49,7 +49,7 @@ try{
  });
  document.addEventListener('pointerdown',e=>{if(!e.target.closest('.piece-search-wrap'))close()});
  input.addEventListener('blur',()=>close());
- // Initial selected piece is deliberately a placeholder until the renderer is added.
+ // Start with the implemented Atrium example.
  select(selectedPiece);input.value='';
 }catch(e){console.error(e);body.innerHTML='<tr><td colspan="3">Loot statistics unavailable.</td></tr>';input.disabled=true;}
 })();

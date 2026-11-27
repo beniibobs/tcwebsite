@@ -29,3 +29,5 @@
 /* Fixed desktop panel height: switching category does not resize the piece viewer. */
 .overview-page .loot-grid{min-height:610px;align-items:stretch}.overview-page .loot-grid .loot-stats-panel{height:610px;display:flex;flex-direction:column}.loot-grid #loot-table-panel{overflow-y:auto;min-height:0;flex:1}.loot-tabs{display:grid;grid-template-columns:1fr 1.5fr 1fr}.loot-tabs button{white-space:normal;min-width:0}.loot-piece-viewer{height:610px}.loot-grid .piece-preview{min-height:0}
 @media(max-width:850px){.overview-page .loot-grid .loot-stats-panel{height:575px}.loot-piece-viewer{height:420px}.overview-page .loot-grid{min-height:0}}
+
+.piece-render-shell{position:relative;isolation:isolate;flex:1;min-height:0;overflow:hidden}.piece-render-shell[hidden],.piece-preview[hidden],.piece-render-status[hidden]{display:none}.piece-render-canvas{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab}.piece-render-canvas:active{cursor:grabbing}.piece-render-status{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:var(--muted);font-size:13px;max-width:85%;text-align:center;pointer-events:none}
