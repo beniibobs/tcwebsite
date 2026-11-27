@@ -1,0 +1,28 @@
+/* Loot section: mirrored version of the Overview core viewer. */
+.overview-page .loot-grid{grid-template-columns:minmax(0,40fr) minmax(0,60fr);margin-bottom:32px}
+.overview-page .loot-grid .loot-stats-panel{border-left:0;border-right:1px solid var(--line)}
+.loot-tabs{display:flex;flex-wrap:wrap;gap:5px;padding:0 10px 10px}
+.loot-tabs button{flex:1 1 auto;padding:8px 7px;min-height:34px;border:1px solid var(--line);border-radius:5px;background:var(--panel2);color:var(--muted);font:600 12px/1.25 system-ui,sans-serif;white-space:nowrap}
+.loot-tabs button[aria-selected=true]{background:var(--teal);border-color:var(--teal);color:var(--bg)}
+.loot-tabs button:hover:not([aria-selected=true]){color:var(--ink);background:var(--line)}
+.loot-tabs button:focus-visible,.piece-results button:focus-visible,.piece-search-wrap input:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
+.loot-icon{display:inline-block;width:32px;height:32px;flex:none;background-image:url('../loot-icons.png?v=1');background-size:160px 128px;background-repeat:no-repeat;image-rendering:pixelated}
+.loot-scope{font-size:11px;line-height:1.45;margin:0;padding:12px 15px;color:var(--muted)}
+.loot-piece-viewer{display:flex;flex-direction:column;min-width:0;min-height:490px;background:var(--panel)}
+.piece-toolbar{position:relative;padding:15px;border-bottom:1px solid var(--line);z-index:6}
+.piece-toolbar label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
+.piece-search-wrap{position:relative}
+.piece-search-wrap input{width:100%;padding:10px 12px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:7px;font-size:14px}
+.piece-results{position:absolute;top:calc(100% + 4px);left:0;right:0;max-height:285px;overflow:auto;background:var(--panel2);border:1px solid var(--line);border-radius:7px;box-shadow:0 10px 24px #0006;padding:4px}
+.piece-results[hidden]{display:none}
+.piece-results button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;padding:8px 10px;border:0;border-radius:4px;background:none;color:var(--ink);text-align:left;font:600 13px/1.3 system-ui,sans-serif}
+.piece-results button:hover,.piece-results button[aria-selected=true]{background:var(--tealsoft);color:var(--teal)}
+.piece-results button small{font-size:11px;font-weight:400;color:var(--muted);overflow-wrap:anywhere}
+.piece-no-results{padding:10px;color:var(--muted);font-size:12px}
+.piece-preview{display:flex;flex:1;min-height:360px;align-items:center;justify-content:center;text-align:center;padding:30px 18px;color:var(--muted)}
+.piece-preview h3{font:700 24px/1.2 system-ui,sans-serif;letter-spacing:-.02em;color:var(--ink);margin:10px 0}
+.piece-preview code{font-size:12px;overflow-wrap:anywhere}
+.piece-preview p{font-size:13px;margin:16px 0 0}
+.piece-preview-glyph{font-size:56px;line-height:1;color:var(--line)}
+@media(max-width:1050px){.overview-page .loot-grid{grid-template-columns:minmax(0,46fr) minmax(0,54fr)}}
+@media(max-width:850px){.overview-page .loot-grid{grid-template-columns:1fr}.overview-page .loot-grid .loot-stats-panel{border-right:0;border-top:0;border-bottom:1px solid var(--line)}.loot-piece-viewer{min-height:370px}.piece-preview{min-height:280px}}

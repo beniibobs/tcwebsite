@@ -1,0 +1,645 @@
+{
+  "version": "26.3",
+  "scope": "Available generated loot, excluding trial-spawner drops and vault opening rewards; natural blocks are counted in place.",
+  "method": "100,000 v5 per-structure container count vectors combined with exact weighted loot-table rolls, nested pools, random conditions, and stack counts from client JAR. Per item: E[X]=sum of mean counts times per-container expectations; P(X>=1)=1-mean(product of per-container zero probabilities raised to each observed count). Include intersection barrel; add Cake Chest based on independent v4 end_2 frequency 49.819% because v5 lacks starting_end. This independent mixture affects mineral availability, not their means. Cake and amethyst source is Cake Chest only. No vault or spawner rewards. Block mineral items counted as nine units; potions count bottles, not dispenser stacks. Powder snow: 395 shell blocks minus 3 lower staircase, 57 per Middle/Upper1 full walkway, 51 per Upper2 full walkway, 46 per Upper1/Upper3 column, using 10k Snoverhang slot frequencies. All eight representative voxel layouts verify these additive losses. Mean snow per Snoverhang 302.0387 × v4 mean chamber_2 count .27622. Pointed dripstone: 2 per trapped staircase and 100 per encounter_4. Existing v5 probabilities reproduced to eight decimals. All values conditional on generated loot not consumed/destroyed. Potions use a generic tinted native overlay icon.",
+  "categories": [
+    [
+      "materials",
+      "Materials",
+      [
+        [
+          "Iron ingots",
+          8,
+          23.36829827,
+          99.99967744
+        ],
+        [
+          "Diamonds",
+          9,
+          2.75170234,
+          67.99455818
+        ],
+        [
+          "Emeralds",
+          10,
+          41.04718416,
+          99.99998981
+        ],
+        [
+          "Amethyst shards",
+          14,
+          3.24402791,
+          19.78799376
+        ],
+        [
+          "Honeycomb",
+          0,
+          11.49050768,
+          91.42898006
+        ],
+        [
+          "Powder snow (blocks)",
+          6,
+          83.429129714,
+          25.053
+        ],
+        [
+          "Pointed dripstone",
+          7,
+          2.4965,
+          48.434
+        ]
+      ]
+    ],
+    [
+      "supplies",
+      "Supplies",
+      [
+        [
+          "Honey bottles",
+          1,
+          1.10853864,
+          49.73178529
+        ],
+        [
+          "Glow berries",
+          5,
+          0.41176,
+          5.5502869
+        ],
+        [
+          "Golden apples",
+          11,
+          0.23327833,
+          20.95973803
+        ],
+        [
+          "Ominous bottles",
+          12,
+          0.49268384,
+          37.50125018
+        ],
+        [
+          "Trial keys",
+          13,
+          1.38810636,
+          74.98431187
+        ],
+        [
+          "Cake",
+          15,
+          0.5792907,
+          19.78799376
+        ],
+        [
+          "Ender pearls",
+          16,
+          2.03624211,
+          71.65653272
+        ]
+      ]
+    ],
+    [
+      "collectibles",
+      "Collectibles",
+      [
+        [
+          "Bolt armor trim",
+          2,
+          0.17495875,
+          16.14229993
+        ],
+        [
+          "Music disc (Precipice)",
+          3,
+          0.11663917,
+          11.05255473
+        ],
+        [
+          "Music disc (Creator (Music Box))",
+          4,
+          0.61308547,
+          45.77901731
+        ],
+        [
+          "Either music disc",
+          3,
+          0.72972464,
+          51.76561279
+        ]
+      ]
+    ],
+    [
+      "potions",
+      "Potions",
+      [
+        [
+          "Any potion",
+          17,
+          18.81661092,
+          95.71105769
+        ],
+        [
+          "Any lingering potion",
+          19,
+          10.67391862,
+          89.31312939
+        ],
+        [
+          "Any splash potion",
+          18,
+          8.00543897,
+          83.72091948
+        ],
+        [
+          "Any drinkable potion",
+          17,
+          0.13725333,
+          5.5502869
+        ],
+        [
+          "Potion of Regeneration",
+          17,
+          0.06862667,
+          3.08021144
+        ],
+        [
+          "Potion of Strength",
+          17,
+          0.06862667,
+          3.08021144
+        ],
+        [
+          "Splash Potion of Weakness",
+          18,
+          2.66847966,
+          50.68852011
+        ],
+        [
+          "Splash Potion of Poison",
+          18,
+          2.66847966,
+          50.68852011
+        ],
+        [
+          "Splash Potion of Slowness",
+          18,
+          2.66847966,
+          50.68852011
+        ],
+        [
+          "Lingering Potion of Weakness",
+          19,
+          2.66847966,
+          50.68852011
+        ],
+        [
+          "Lingering Potion of Poison",
+          19,
+          2.66847966,
+          50.68852011
+        ],
+        [
+          "Lingering Potion of Slowness",
+          19,
+          2.66847966,
+          50.68852011
+        ],
+        [
+          "Lingering Potion of Healing",
+          19,
+          2.66847966,
+          50.68852011
+        ]
+      ]
+    ],
+    [
+      "effects",
+      "Potion effects",
+      [
+        [
+          "Any weakness potion",
+          17,
+          5.33695931,
+          72.99020643
+        ],
+        [
+          "Any poison potion",
+          17,
+          5.33695931,
+          72.99020643
+        ],
+        [
+          "Any healing potion",
+          19,
+          2.66847966,
+          50.68852011
+        ],
+        [
+          "Any slowness potion",
+          17,
+          5.33695931,
+          72.99020643
+        ]
+      ]
+    ]
+  ],
+  "pieces": [
+    {
+      "name": "Supply Chest Connector",
+      "file": "chests/connectors/supply"
+    },
+    {
+      "name": "Supply Chest",
+      "file": "chests/supply"
+    },
+    {
+      "name": "Arrow Dispenser",
+      "file": "corridor/addon/arrow_dispenser"
+    },
+    {
+      "name": "Bridge Lower",
+      "file": "corridor/addon/bridge_lower"
+    },
+    {
+      "name": "Chandelier Upper",
+      "file": "corridor/addon/chandelier_upper"
+    },
+    {
+      "name": "Decoration Upper",
+      "file": "corridor/addon/decoration_upper"
+    },
+    {
+      "name": "Display 1",
+      "file": "corridor/addon/display_1"
+    },
+    {
+      "name": "Display 2",
+      "file": "corridor/addon/display_2"
+    },
+    {
+      "name": "Display 3",
+      "file": "corridor/addon/display_3"
+    },
+    {
+      "name": "Head Upper",
+      "file": "corridor/addon/head_upper"
+    },
+    {
+      "name": "Ladder To Middle",
+      "file": "corridor/addon/ladder_to_middle"
+    },
+    {
+      "name": "Open Walkway",
+      "file": "corridor/addon/open_walkway"
+    },
+    {
+      "name": "Open Walkway Upper",
+      "file": "corridor/addon/open_walkway_upper"
+    },
+    {
+      "name": "Reward Upper",
+      "file": "corridor/addon/reward_upper"
+    },
+    {
+      "name": "Staircase",
+      "file": "corridor/addon/staircase"
+    },
+    {
+      "name": "Wall",
+      "file": "corridor/addon/wall"
+    },
+    {
+      "name": "Walled Walkway",
+      "file": "corridor/addon/walled_walkway"
+    },
+    {
+      "name": "Bogged Relief",
+      "file": "corridor/atrium/bogged_relief"
+    },
+    {
+      "name": "Breeze Relief",
+      "file": "corridor/atrium/breeze_relief"
+    },
+    {
+      "name": "Grand Staircase 1",
+      "file": "corridor/atrium/grand_staircase_1"
+    },
+    {
+      "name": "Grand Staircase 2",
+      "file": "corridor/atrium/grand_staircase_2"
+    },
+    {
+      "name": "Grand Staircase 3",
+      "file": "corridor/atrium/grand_staircase_3"
+    },
+    {
+      "name": "Spider Relief",
+      "file": "corridor/atrium/spider_relief"
+    },
+    {
+      "name": "Spiral Relief",
+      "file": "corridor/atrium/spiral_relief"
+    },
+    {
+      "name": "Atrium",
+      "file": "corridor/atrium_1"
+    },
+    {
+      "name": "Wall",
+      "file": "corridor/end_1"
+    },
+    {
+      "name": "Cake Chest",
+      "file": "corridor/end_2"
+    },
+    {
+      "name": "Vent",
+      "file": "corridor/entrance_1"
+    },
+    {
+      "name": "Sewer",
+      "file": "corridor/entrance_2"
+    },
+    {
+      "name": "Twin Staircase",
+      "file": "corridor/entrance_3"
+    },
+    {
+      "name": "First Plate",
+      "file": "corridor/first_plate"
+    },
+    {
+      "name": "Second Plate",
+      "file": "corridor/second_plate"
+    },
+    {
+      "name": "Straight 1: No door",
+      "file": "corridor/straight_1"
+    },
+    {
+      "name": "Straight 2: Lower door",
+      "file": "corridor/straight_2"
+    },
+    {
+      "name": "Straight 3: Middle door",
+      "file": "corridor/straight_3"
+    },
+    {
+      "name": "Straight 4: Upper door",
+      "file": "corridor/straight_4"
+    },
+    {
+      "name": "Straight 5: Lower door",
+      "file": "corridor/straight_5"
+    },
+    {
+      "name": "Straight 6: Middle door, Spawner",
+      "file": "corridor/straight_6"
+    },
+    {
+      "name": "Straight 7: Upper door",
+      "file": "corridor/straight_7"
+    },
+    {
+      "name": "Straight 8: No door, Spawner",
+      "file": "corridor/straight_8"
+    },
+    {
+      "name": "Corridor Barrel",
+      "file": "decor/barrel"
+    },
+    {
+      "name": "Black Bed",
+      "file": "decor/black_bed"
+    },
+    {
+      "name": "Blue Bed",
+      "file": "decor/blue_bed"
+    },
+    {
+      "name": "Brown Bed",
+      "file": "decor/brown_bed"
+    },
+    {
+      "name": "Candle 1",
+      "file": "decor/candle_1"
+    },
+    {
+      "name": "Candle 2",
+      "file": "decor/candle_2"
+    },
+    {
+      "name": "Candle 3",
+      "file": "decor/candle_3"
+    },
+    {
+      "name": "Candle 4",
+      "file": "decor/candle_4"
+    },
+    {
+      "name": "Cyan Bed",
+      "file": "decor/cyan_bed"
+    },
+    {
+      "name": "Dead Bush Pot",
+      "file": "decor/dead_bush_pot"
+    },
+    {
+      "name": "Disposal Barrel",
+      "file": "decor/disposal"
+    },
+    {
+      "name": "Empty Pot",
+      "file": "decor/empty_pot"
+    },
+    {
+      "name": "Flow Pot",
+      "file": "decor/flow_pot"
+    },
+    {
+      "name": "Gray Bed",
+      "file": "decor/gray_bed"
+    },
+    {
+      "name": "Green Bed",
+      "file": "decor/green_bed"
+    },
+    {
+      "name": "Guster Pot",
+      "file": "decor/guster_pot"
+    },
+    {
+      "name": "Light Blue Bed",
+      "file": "decor/light_blue_bed"
+    },
+    {
+      "name": "Light Gray Bed",
+      "file": "decor/light_gray_bed"
+    },
+    {
+      "name": "Lime Bed",
+      "file": "decor/lime_bed"
+    },
+    {
+      "name": "Magenta Bed",
+      "file": "decor/magenta_bed"
+    },
+    {
+      "name": "Orange Bed",
+      "file": "decor/orange_bed"
+    },
+    {
+      "name": "Pink Bed",
+      "file": "decor/pink_bed"
+    },
+    {
+      "name": "Purple Bed",
+      "file": "decor/purple_bed"
+    },
+    {
+      "name": "Red Bed",
+      "file": "decor/red_bed"
+    },
+    {
+      "name": "Scrape Pot",
+      "file": "decor/scrape_pot"
+    },
+    {
+      "name": "Undecorated Pot",
+      "file": "decor/undecorated_pot"
+    },
+    {
+      "name": "White Bed",
+      "file": "decor/white_bed"
+    },
+    {
+      "name": "Yellow Bed",
+      "file": "decor/yellow_bed"
+    },
+    {
+      "name": "Chamber Dispenser",
+      "file": "dispensers/chamber"
+    },
+    {
+      "name": "Floor Dispenser",
+      "file": "dispensers/floor_dispenser"
+    },
+    {
+      "name": "Wall Dispenser",
+      "file": "dispensers/wall_dispenser"
+    },
+    {
+      "name": "Cache",
+      "file": "hallway/cache_1"
+    },
+    {
+      "name": "Corner Staircase",
+      "file": "hallway/corner_staircase"
+    },
+    {
+      "name": "Corner Staircase Down",
+      "file": "hallway/corner_staircase_down"
+    },
+    {
+      "name": "Corridor Connector 1",
+      "file": "hallway/corridor_connector_1"
+    },
+    {
+      "name": "Encounter 1",
+      "file": "hallway/encounter_1"
+    },
+    {
+      "name": "Encounter 2",
+      "file": "hallway/encounter_2"
+    },
+    {
+      "name": "Encounter 3",
+      "file": "hallway/encounter_3"
+    },
+    {
+      "name": "Encounter 4",
+      "file": "hallway/encounter_4"
+    },
+    {
+      "name": "Encounter 5",
+      "file": "hallway/encounter_5"
+    },
+    {
+      "name": "Left Corner",
+      "file": "hallway/left_corner"
+    },
+    {
+      "name": "Long Straight Staircase",
+      "file": "hallway/long_straight_staircase"
+    },
+    {
+      "name": "Long Straight Staircase Down",
+      "file": "hallway/long_straight_staircase_down"
+    },
+    {
+      "name": "Lower Hallway Connector",
+      "file": "hallway/lower_hallway_connector"
+    },
+    {
+      "name": "Right Corner",
+      "file": "hallway/right_corner"
+    },
+    {
+      "name": "Rubble",
+      "file": "hallway/rubble"
+    },
+    {
+      "name": "Rubble Chamber",
+      "file": "hallway/rubble_chamber"
+    },
+    {
+      "name": "Rubble Chamber Thin",
+      "file": "hallway/rubble_chamber_thin"
+    },
+    {
+      "name": "Rubble Thin",
+      "file": "hallway/rubble_thin"
+    },
+    {
+      "name": "Straight",
+      "file": "hallway/straight"
+    },
+    {
+      "name": "Straight Staircase",
+      "file": "hallway/straight_staircase"
+    },
+    {
+      "name": "Straight Staircase Down",
+      "file": "hallway/straight_staircase_down"
+    },
+    {
+      "name": "Trapped Staircase",
+      "file": "hallway/trapped_staircase"
+    },
+    {
+      "name": "Upper Hallway Connector",
+      "file": "hallway/upper_hallway_connector"
+    },
+    {
+      "name": "Aquarium",
+      "file": "intersection/intersection_1"
+    },
+    {
+      "name": "Loft",
+      "file": "intersection/intersection_2"
+    },
+    {
+      "name": "Column",
+      "file": "intersection/intersection_3"
+    },
+    {
+      "name": "Ominous Vault",
+      "file": "reward/ominous_vault"
+    },
+    {
+      "name": "Vault",
+      "file": "reward/vault"
+    }
+  ]
+}
