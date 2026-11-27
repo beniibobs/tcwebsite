@@ -7073,5 +7073,158 @@
         2
       ]
     ]
+  },
+  "decor/barrel": {
+    "name": "Corridor Barrel",
+    "asset": "decor__barrel.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 1
+  },
+  "hallway/corridor_connector_1": {
+    "name": "Corridor Connector 1",
+    "asset": "hallway__corridor_connector_1.json",
+    "library": "remaining-models.json",
+    "floors": [
+      7
+    ],
+    "radius": 13,
+    "seeds": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        4,
+        1,
+        1
+      ],
+      [
+        4,
+        4,
+        1
+      ],
+      [
+        2,
+        3,
+        1
+      ]
+    ]
+  },
+  "decor/cyan_bed": {
+    "name": "Cyan Bed",
+    "asset": "decor__cyan_bed.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4.5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 0.45
+  },
+  "decor/dead_bush_pot": {
+    "name": "Dead Bush Pot",
+    "asset": "decor__dead_bush_pot.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 1
+  },
+  "corridor/addon/decoration_upper": {
+    "name": "Decoration Upper",
+    "asset": "corridor__addon__decoration_upper.json",
+    "library": "remaining-models.json",
+    "floors": [
+      4
+    ],
+    "radius": 9,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 2
+  },
+  "corridor/addon/display_1": {
+    "name": "Display 1",
+    "asset": "corridor__addon__display_1.json",
+    "library": "remaining-models.json",
+    "floors": [
+      6
+    ],
+    "radius": 11,
+    "seeds": [],
+    "exterior": true
+  },
+  "corridor/addon/display_2": {
+    "name": "Display 2",
+    "asset": "corridor__addon__display_2.json",
+    "library": "remaining-models.json",
+    "floors": [
+      8
+    ],
+    "radius": 15,
+    "seeds": [],
+    "exterior": true
+  },
+  "corridor/addon/display_3": {
+    "name": "Display 3",
+    "asset": "corridor__addon__display_3.json",
+    "library": "remaining-models.json",
+    "floors": [
+      4
+    ],
+    "radius": 11,
+    "seeds": [],
+    "exterior": true
+  },
+  "decor/disposal": {
+    "name": "Disposal Barrel",
+    "asset": "decor__disposal.json",
+    "library": "remaining-models.json",
+    "floors": [
+      4
+    ],
+    "radius": 7,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 2
+  },
+  "decor/empty_pot": {
+    "name": "Empty Pot",
+    "asset": "decor__empty_pot.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 1
   }
 }
