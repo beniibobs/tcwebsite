@@ -7226,5 +7226,618 @@
     "minRadius": 1.2,
     "maxRadius": 30,
     "targetY": 1
+  },
+  "hallway/encounter_1": {
+    "name": "Evil Vent",
+    "asset": "hallway__encounter_1.json",
+    "library": "remaining-models.json",
+    "floors": [
+      5,
+      11
+    ],
+    "radius": 31,
+    "seeds": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        4
+      ],
+      [
+        1,
+        1,
+        7
+      ],
+      [
+        1,
+        1,
+        10
+      ],
+      [
+        1,
+        1,
+        13
+      ],
+      [
+        1,
+        1,
+        16
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        4
+      ],
+      [
+        1,
+        4,
+        7
+      ],
+      [
+        1,
+        4,
+        10
+      ],
+      [
+        1,
+        4,
+        13
+      ],
+      [
+        1,
+        4,
+        16
+      ],
+      [
+        1,
+        7,
+        1
+      ],
+      [
+        1,
+        7,
+        4
+      ],
+      [
+        1,
+        7,
+        7
+      ],
+      [
+        1,
+        7,
+        10
+      ],
+      [
+        1,
+        7,
+        13
+      ],
+      [
+        1,
+        7,
+        16
+      ],
+      [
+        1,
+        10,
+        1
+      ],
+      [
+        1,
+        10,
+        4
+      ],
+      [
+        1,
+        10,
+        7
+      ],
+      [
+        1,
+        10,
+        10
+      ],
+      [
+        1,
+        10,
+        13
+      ],
+      [
+        1,
+        10,
+        16
+      ],
+      [
+        4,
+        1,
+        1
+      ],
+      [
+        4,
+        1,
+        4
+      ],
+      [
+        4,
+        1,
+        7
+      ],
+      [
+        4,
+        1,
+        10
+      ],
+      [
+        4,
+        1,
+        13
+      ],
+      [
+        4,
+        1,
+        16
+      ],
+      [
+        4,
+        4,
+        1
+      ],
+      [
+        4,
+        4,
+        4
+      ],
+      [
+        4,
+        4,
+        7
+      ],
+      [
+        4,
+        4,
+        10
+      ],
+      [
+        4,
+        4,
+        13
+      ],
+      [
+        4,
+        4,
+        16
+      ],
+      [
+        4,
+        7,
+        1
+      ],
+      [
+        4,
+        7,
+        4
+      ],
+      [
+        4,
+        7,
+        7
+      ],
+      [
+        4,
+        7,
+        10
+      ],
+      [
+        4,
+        7,
+        13
+      ],
+      [
+        4,
+        7,
+        16
+      ],
+      [
+        4,
+        10,
+        1
+      ],
+      [
+        4,
+        10,
+        4
+      ],
+      [
+        4,
+        10,
+        7
+      ],
+      [
+        4,
+        10,
+        10
+      ],
+      [
+        4,
+        10,
+        13
+      ],
+      [
+        4,
+        10,
+        16
+      ],
+      [
+        7,
+        1,
+        1
+      ],
+      [
+        7,
+        1,
+        4
+      ],
+      [
+        7,
+        1,
+        7
+      ],
+      [
+        7,
+        1,
+        10
+      ],
+      [
+        7,
+        1,
+        13
+      ],
+      [
+        7,
+        1,
+        16
+      ],
+      [
+        7,
+        4,
+        1
+      ],
+      [
+        7,
+        4,
+        4
+      ],
+      [
+        7,
+        4,
+        7
+      ],
+      [
+        7,
+        4,
+        10
+      ],
+      [
+        7,
+        4,
+        13
+      ],
+      [
+        7,
+        4,
+        16
+      ],
+      [
+        7,
+        7,
+        1
+      ],
+      [
+        7,
+        7,
+        4
+      ],
+      [
+        7,
+        7,
+        7
+      ],
+      [
+        7,
+        7,
+        10
+      ],
+      [
+        7,
+        7,
+        13
+      ],
+      [
+        7,
+        7,
+        16
+      ],
+      [
+        7,
+        10,
+        1
+      ],
+      [
+        7,
+        10,
+        4
+      ],
+      [
+        7,
+        10,
+        7
+      ],
+      [
+        7,
+        10,
+        10
+      ],
+      [
+        7,
+        10,
+        13
+      ],
+      [
+        7,
+        10,
+        16
+      ],
+      [
+        10,
+        1,
+        1
+      ],
+      [
+        10,
+        1,
+        4
+      ],
+      [
+        10,
+        1,
+        7
+      ],
+      [
+        10,
+        1,
+        10
+      ],
+      [
+        10,
+        1,
+        13
+      ],
+      [
+        10,
+        1,
+        16
+      ],
+      [
+        10,
+        4,
+        1
+      ],
+      [
+        10,
+        4,
+        4
+      ],
+      [
+        10,
+        4,
+        7
+      ],
+      [
+        10,
+        4,
+        10
+      ],
+      [
+        10,
+        4,
+        13
+      ],
+      [
+        10,
+        4,
+        16
+      ],
+      [
+        10,
+        7,
+        1
+      ],
+      [
+        10,
+        7,
+        4
+      ],
+      [
+        10,
+        7,
+        7
+      ],
+      [
+        10,
+        7,
+        10
+      ],
+      [
+        10,
+        7,
+        13
+      ],
+      [
+        10,
+        7,
+        16
+      ],
+      [
+        10,
+        10,
+        1
+      ],
+      [
+        10,
+        10,
+        4
+      ],
+      [
+        10,
+        10,
+        7
+      ],
+      [
+        10,
+        10,
+        10
+      ],
+      [
+        10,
+        10,
+        13
+      ],
+      [
+        10,
+        10,
+        16
+      ],
+      [
+        6,
+        5,
+        8
+      ]
+    ]
+  },
+  "corridor/first_plate": {
+    "name": "First Plate",
+    "asset": "corridor__first_plate.json",
+    "library": "remaining-models.json",
+    "floors": [
+      1
+    ],
+    "radius": 37,
+    "seeds": [],
+    "exterior": true,
+    "targetY": 0.5,
+    "phi": 0.75
+  },
+  "dispensers/floor_dispenser": {
+    "name": "Floor Dispenser",
+    "asset": "dispensers__floor_dispenser.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 1
+  },
+  "decor/flow_pot": {
+    "name": "Flow Pot",
+    "asset": "decor__flow_pot.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 1
+  },
+  "corridor/atrium/grand_staircase_1": {
+    "name": "Grand Staircase 1",
+    "asset": "corridor__atrium__grand_staircase_1.json",
+    "library": "remaining-models.json",
+    "floors": [
+      8
+    ],
+    "radius": 24,
+    "seeds": [],
+    "exterior": true
+  },
+  "corridor/atrium/grand_staircase_2": {
+    "name": "Grand Staircase 2",
+    "asset": "corridor__atrium__grand_staircase_2.json",
+    "library": "remaining-models.json",
+    "floors": [
+      8
+    ],
+    "radius": 24,
+    "seeds": [],
+    "exterior": true
+  },
+  "corridor/atrium/grand_staircase_3": {
+    "name": "Grand Staircase 3",
+    "asset": "corridor__atrium__grand_staircase_3.json",
+    "library": "remaining-models.json",
+    "floors": [
+      8
+    ],
+    "radius": 24,
+    "seeds": [],
+    "exterior": true
+  },
+  "decor/gray_bed": {
+    "name": "Gray Bed",
+    "asset": "decor__gray_bed.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4.5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 0.45
+  },
+  "decor/green_bed": {
+    "name": "Green Bed",
+    "asset": "decor__green_bed.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4.5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 0.45
+  },
+  "decor/guster_pot": {
+    "name": "Guster Pot",
+    "asset": "decor__guster_pot.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 1
   }
 }
