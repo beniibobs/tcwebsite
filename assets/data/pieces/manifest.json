@@ -2373,5 +2373,189 @@
         4
       ]
     ]
+  },
+  "intersection/intersection_1": {
+    "name": "Aquarium",
+    "asset": "intersection_1.json",
+    "library": "batch1-models.json",
+    "floors": [
+      7,
+      13,
+      20
+    ],
+    "radius": 49,
+    "seeds": [
+      [
+        11,
+        4,
+        14
+      ],
+      [
+        14,
+        6,
+        11
+      ],
+      [
+        14,
+        12,
+        11
+      ],
+      [
+        11,
+        15,
+        14
+      ],
+      [
+        9,
+        4,
+        9
+      ]
+    ]
+  },
+  "corridor/addon/arrow_dispenser": {
+    "name": "Arrow Dispenser",
+    "asset": "arrow_dispenser.json",
+    "library": "batch1-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 15,
+    "seeds": [],
+    "exterior": true,
+    "targetY": 1
+  },
+  "decor/black_bed": {
+    "name": "Black Bed",
+    "asset": "black_bed.json",
+    "library": "batch1-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4.5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.5,
+    "maxRadius": 20,
+    "targetY": 0.45
+  },
+  "hallway/encounter_2": {
+    "name": "Bloxing Ring",
+    "asset": "encounter_2.json",
+    "library": "batch1-models.json",
+    "floors": [
+      5,
+      11
+    ],
+    "radius": 30,
+    "seeds": [
+      [
+        7,
+        2,
+        7
+      ],
+      [
+        7,
+        6,
+        7
+      ],
+      [
+        9,
+        8,
+        7
+      ]
+    ]
+  },
+  "decor/blue_bed": {
+    "name": "Blue Bed",
+    "asset": "blue_bed.json",
+    "library": "batch1-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4.5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.5,
+    "maxRadius": 20,
+    "targetY": 0.45
+  },
+  "corridor/atrium/bogged_relief": {
+    "name": "Bogged Relief",
+    "asset": "bogged_relief.json",
+    "library": "batch1-models.json",
+    "floors": [
+      11
+    ],
+    "radius": 26,
+    "seeds": [],
+    "exterior": true,
+    "theta": 0.2,
+    "phi": 1.18
+  },
+  "corridor/atrium/breeze_relief": {
+    "name": "Breeze Relief",
+    "asset": "breeze_relief.json",
+    "library": "batch1-models.json",
+    "floors": [
+      11
+    ],
+    "radius": 26,
+    "seeds": [],
+    "exterior": true,
+    "theta": 0.2,
+    "phi": 1.18
+  },
+  "corridor/addon/bridge_lower": {
+    "name": "Bridge Lower",
+    "asset": "bridge_lower.json",
+    "library": "batch1-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 15,
+    "seeds": [],
+    "exterior": true,
+    "targetY": 1
+  },
+  "decor/brown_bed": {
+    "name": "Brown Bed",
+    "asset": "brown_bed.json",
+    "library": "batch1-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 4.5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.5,
+    "maxRadius": 20,
+    "targetY": 0.45
+  },
+  "hallway/cache_1": {
+    "name": "Cache",
+    "asset": "cache_1.json",
+    "library": "batch1-models.json",
+    "floors": [
+      5,
+      7
+    ],
+    "radius": 27,
+    "seeds": [
+      [
+        2,
+        2,
+        7
+      ],
+      [
+        4,
+        4,
+        7
+      ],
+      [
+        2,
+        3,
+        5
+      ]
+    ]
   }
 }

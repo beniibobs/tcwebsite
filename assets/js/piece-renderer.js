@@ -5,14 +5,35 @@ const $=id=>document.getElementById(id),cv=$('piece-render'),shell=$('piece-rend
 const unzip=async s=>new Uint8Array(await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
 const image=s=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=bad;im.src='data:image/png;base64,'+s});
 const base='assets/data/pieces/',tag=$('piece-template-tag'),floorControls=$('piece-floor-controls');
-const manifestPromise=fetch(base+'manifest.json?v=2').then(r=>{if(!r.ok)throw Error('Piece manifest unavailable');return r.json()});
+const manifestPromise=fetch(base+'manifest.json?v=3').then(r=>{if(!r.ok)throw Error('Piece manifest unavailable');return r.json()});
 const libraries=new Map(),views=new Map();let current=null,revision=0,view=null,R=null;
-const json=async path=>{const r=await fetch(base+path+'?v=2');if(!r.ok)throw Error('Model data unavailable: '+path);return r.json()};
+const json=async path=>{const r=await fetch(base+path+'?v=3');if(!r.ok)throw Error('Model data unavailable: '+path);return r.json()};
 const loadImage=url=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=()=>bad(Error('Texture atlas unavailable'));im.src=url});
+async function packedAtlas(d){
+ const p=await json(d.atlasPackedFile),[source,delta]=await Promise.all([loadImage(base+p.source+'?v=2'),unzip(p.delta)]);
+ const canvas=document.createElement('canvas');canvas.width=18*d.cols;canvas.height=18*d.rows;
+ const ctx=canvas.getContext('2d');ctx.imageSmoothingEnabled=false;
+ const sourceCols=source.width/18,sourceRows=source.height/18;
+ if(!Number.isInteger(sourceCols)||!Number.isInteger(sourceRows)||p.map.length>d.cols*d.rows||delta.length%1024!==0)throw Error('Invalid packed texture atlas');
+ for(let i=0;i<p.map.length;i++){
+  const n=p.map[i],x=(i%d.cols)*18,y=Math.floor(i/d.cols)*18;
+  if(n>=0){if(n>=sourceCols*sourceRows)throw Error('Invalid shared tile');ctx.drawImage(source,(n%sourceCols)*18,Math.floor(n/sourceCols)*18,18,18,x,y,18,18);}
+  else{
+   const k=-n-1;if((k+1)*1024>delta.length)throw Error('Invalid delta tile');
+   const tile=ctx.createImageData(18,18);
+   for(let yy=0;yy<18;yy++)for(let xx=0;xx<18;xx++){
+    const a=(k*256+Math.max(0,Math.min(15,yy-1))*16+Math.max(0,Math.min(15,xx-1)))*4;
+    tile.data.set(delta.subarray(a,a+4),(yy*18+xx)*4);
+   }
+   ctx.putImageData(tile,x,y);
+  }
+ }
+ return canvas;
+}
 function library(key,data){
  if(!libraries.has(key)){
   const pending=(async()=>{const d=data||await json(key);
-   const [raw,atlas]=await Promise.all([unzip(d.models),d.atlasFile?loadImage(base+d.atlasFile+'?v=2'):image(d.atlas)]);
+   const [raw,atlas]=await Promise.all([unzip(d.models),d.atlasPackedFile?packedAtlas(d):d.atlasFile?loadImage(base+d.atlasFile+'?v=2'):image(d.atlas)]);
    const models=JSON.parse(new TextDecoder().decode(raw));
    if(atlas.width!==18*d.cols||atlas.height!==18*d.rows)throw Error('Invalid texture dimensions');
    const tex=new THREE.Texture(atlas);tex.magFilter=tex.minFilter=THREE.NearestFilter;tex.generateMipmaps=false;tex.needsUpdate=true;
@@ -97,11 +118,11 @@ async function init(file,cfg){
  for(let y=0;y<Y;y++){
   for(let z=0;z<Z;z++)for(let x=0;x<X;x++){
    const q=id(x,y,z),k=grid[q];if(!k)continue;if(wet(k)){fluid(x,y,z,k);continue}const [opaque,faces]=models[k-1];
-   if(!air[q]&&!normals.some(d=>inside(x+d[0],y+d[1],z+d[2])&&air[id(x+d[0],y+d[1],z+d[2])]))continue;
+   if(!cfg.exterior&&!air[q]&&!normals.some(d=>inside(x+d[0],y+d[1],z+d[2])&&air[id(x+d[0],y+d[1],z+d[2])]))continue;
    for(const f of faces){
     const [tile,di,cull]=f,d=normals[di],nx=x+d[0],ny=y+d[1],nz=z+d[2];
-    if(cull>=0&&inside(nx,ny,nz)&&solid(grid[id(nx,ny,nz)]))continue;
-    if(opaque&&!air[q]&&(!inside(nx,ny,nz)||!air[id(nx,ny,nz)]))continue;
+    if(cull>=0&&inside(nx,ny,nz)&&(solid(grid[id(nx,ny,nz)])||((D.transparentTiles||[]).includes(tile)&&grid[id(nx,ny,nz)]===k&&k>0&&models[k-1][1].length===6)))continue;
+    if(!cfg.exterior&&opaque&&!air[q]&&(!inside(nx,ny,nz)||!air[id(nx,ny,nz)]))continue;
     const {P,U,C,I}=buffers[(cfg.transparentTiles||D.transparentTiles||[]).includes(tile)?1:0],a=P.length/3,col=tile%D.cols,row=Math.floor(tile/D.cols),v=shade[di]*(y<3?.82:1);
     for(let j=0;j<4;j++){
      P.push(x+f[3+3*j]/16,y+f[4+3*j]/16,z+f[5+3*j]/16);
@@ -116,23 +137,24 @@ async function init(file,cfg){
  }
  if(!buffers[0].I.length)throw Error('Empty piece geometry');
  if(!R){R=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true});R.setPixelRatio(Math.min(devicePixelRatio||1,2));}
- const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(48,1,.1,500),T=new THREE.Vector3(X/2,Y/2-1,Z/2);
+ const S=new THREE.Scene(),cam=new THREE.PerspectiveCamera(48,1,.1,500),T=new THREE.Vector3(X/2,cfg.targetY??Y/2-1,Z/2);
  const geometry=buffers.map(({P,U,C,I},i)=>{
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(U,2));g.setAttribute('color',new THREE.Float32BufferAttribute(C,3));g.setIndex(I);g.computeBoundingSphere();
   const m=new THREE.MeshBasicMaterial({map:i===2?waterTexture:tex,vertexColors:true,alphaTest:i?.02:.5,transparent:!!i,depthWrite:!i,side:i===2?THREE.DoubleSide:THREE.FrontSide});const mesh=new THREE.Mesh(g,m);if(i===2)mesh.renderOrder=2;S.add(mesh);return g;
  });
- let th=.8,ph=1.05,rad=cfg.radius,drag=null,cut=Y,scheduled=false;
+ let th=cfg.theta??.8,ph=cfg.phi??1.05,rad=cfg.radius,drag=null,cut=Y,scheduled=false;
  function draw(){scheduled=false;if(current!==file)return;cam.position.set(T.x+rad*Math.sin(ph)*Math.cos(th),T.y+rad*Math.cos(ph),T.z+rad*Math.sin(ph)*Math.sin(th));cam.lookAt(T);R.render(S,cam)}
  function render(){if(!scheduled&&current===file){scheduled=true;requestAnimationFrame(draw)}}
  const resize=()=>{if(cv.clientWidth&&cv.clientHeight){R.setSize(cv.clientWidth,cv.clientHeight,false);cam.aspect=cv.clientWidth/cv.clientHeight;cam.updateProjectionMatrix();render()}};
  const setCut=h=>{cut=h;geometry.forEach((g,i)=>g.setDrawRange(0,buffers[i].counts[h]));shell.querySelectorAll('[data-piece-cut]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.pieceCut===h)));render()};
  function activate(){
+ floorControls.hidden=cfg.floors.length<=1;
  floorControls.replaceChildren(...cfg.floors.map((h,i)=>{const b=document.createElement('button');b.type='button';b.dataset.pieceCut=h;b.textContent='Floor '+(i+1);b.setAttribute('aria-pressed',String(h===cut));b.onclick=()=>setCut(h);return b}));
- $('piece-reset-view').onclick=()=>{th=.8;ph=1.05;rad=cfg.radius;T.set(X/2,Y/2-1,Z/2);render()};
+ $('piece-reset-view').onclick=()=>{th=cfg.theta??.8;ph=cfg.phi??1.05;rad=cfg.radius;T.set(X/2,cfg.targetY??Y/2-1,Z/2);render()};
  cv.oncontextmenu=e=>e.preventDefault();cv.onpointerdown=e=>{if(e.button!==0&&e.button!==2)return;drag={x:e.clientX,y:e.clientY,pan:e.shiftKey||e.button===2};cv.setPointerCapture(e.pointerId)};
  cv.onpointermove=e=>{if(!drag)return;const dx=e.clientX-drag.x,dy=e.clientY-drag.y;drag.x=e.clientX;drag.y=e.clientY;if(drag.pan){const u=2*rad*Math.tan(cam.fov*Math.PI/360)/Math.max(1,cv.clientHeight);T.addScaledVector(new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld,0),-dx*u);T.addScaledVector(new THREE.Vector3().setFromMatrixColumn(cam.matrixWorld,1),dy*u)}else{th+=dx*.002;ph=Math.min(3,Math.max(.1,ph-dy*.002))}render()};
  cv.onpointerup=cv.onpointercancel=cv.onlostpointercapture=stopDrag;
- cv.onwheel=e=>{e.preventDefault();rad=Math.max(8,Math.min(130,rad*(1+e.deltaY*.0007)));render()};
+ cv.onwheel=e=>{e.preventDefault();rad=Math.max(cfg.minRadius??8,Math.min(cfg.maxRadius??130,rad*(1+e.deltaY*.0007)));render()};
  setCut(cut);resize();}
  function stopDrag(){drag=null}
  return {resize,stopDrag,activate};

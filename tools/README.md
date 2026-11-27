@@ -18,3 +18,16 @@ Recipes choose the base, a representative child per connector pool or explicit c
 This is a deterministic representative-template assembler, not a vanilla world-generation simulator. It supports standard variant blockstates, parent inheritance, the entrance bed models, closed single chests, blank decorated pots, static water, and the selected recursive attachments. Multipart states, double chests, dynamic entities, additional block entities, more complex rotations and special renderers need further implementation and testing. The visual examples are not intended to show every possible configuration.
 
 To add a compiled piece, register its name, asset, library, interior flood-fill seeds, floor cuts and camera radius in `assets/data/pieces/manifest.json`. Verify decoded grid dimensions, state and texture indices, connector placement and floor-cut face counts. Review the result interactively before marking the batch final.
+
+## Alphabetical batch 1
+
+Build to a fresh staging directory (do not overwrite the entrance/slice atlas):
+
+```sh
+python tools/build_pieces.py /path/to/minecraft-26.3-client.jar tools/recipes/alphabetical-1.json /tmp/tc-batch1
+python tools/pack_atlas.py /tmp/tc-batch1 assets/data/pieces/entrance-atlas.png
+```
+
+Copy the ten layout JSON files, batch1-models.json and batch1-atlas-pack.json into assets/data/pieces. The batch adds general element rotation/rescale, rotating directional block-state properties, and the default tripwire state. The published packed atlas references the existing entrance atlas for unchanged tiles and stores compressed RGBA interiors for new tiles. The viewer reconstructs their 18px bordered tiles on demand. Keep the referenced entrance atlas unchanged unless also rebuilding the packed map. Standalone decorations can opt into exterior rendering and closer camera settings in the manifest.
+
+The earlier entrance and slice assets are unchanged. This exporter revision is for new batches; regenerating old batches with the new rotation logic may change those models.

@@ -1,0 +1,104 @@
+{
+  "library": "batch1-models.json",
+  "atlas": "batch1-atlas.png",
+  "pieces": [
+    {
+      "base": "intersection/intersection_1",
+      "asset": "intersection_1.json",
+      "floors": [
+        7,
+        13,
+        20
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault"
+      }
+    },
+    {
+      "base": "corridor/addon/arrow_dispenser",
+      "asset": "arrow_dispenser.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true
+    },
+    {
+      "base": "decor/black_bed",
+      "asset": "black_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true
+    },
+    {
+      "base": "hallway/encounter_2",
+      "asset": "encounter_2.json",
+      "floors": [
+        5,
+        11
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser"
+      }
+    },
+    {
+      "base": "decor/blue_bed",
+      "asset": "blue_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true
+    },
+    {
+      "base": "corridor/atrium/bogged_relief",
+      "asset": "bogged_relief.json",
+      "floors": [
+        11
+      ],
+      "inside_only": true
+    },
+    {
+      "base": "corridor/atrium/breeze_relief",
+      "asset": "breeze_relief.json",
+      "floors": [
+        11
+      ],
+      "inside_only": true
+    },
+    {
+      "base": "corridor/addon/bridge_lower",
+      "asset": "bridge_lower.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true
+    },
+    {
+      "base": "decor/brown_bed",
+      "asset": "brown_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true
+    },
+    {
+      "base": "hallway/cache_1",
+      "asset": "cache_1.json",
+      "floors": [
+        5,
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/chests/supply": "chests/connectors/supply",
+        "minecraft:trial_chambers/chests/contents/supply": "chests/supply"
+      }
+    }
+  ]
+}

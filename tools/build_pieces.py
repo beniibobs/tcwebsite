@@ -33,6 +33,8 @@ def place(path,r=0,offset=(0,0,0)):
   if name=='jigsaw':
    final=b['nbt']['final_state'].split(':',1)[1];name=final.split('[')[0];prop=dict(kv.split('=') for kv in final.split('[',1)[1].rstrip(']').split(',')) if '[' in final else {}
   if 'facing' in prop and prop['facing'] in D:prop['facing']=names[dirs.index(rot(D[prop['facing']],r))]
+  directional={k:prop.pop(k) for k in ['north','east','south','west'] if k in prop}
+  for k,v in directional.items():prop[names[dirs.index(rot(D[k],r))]]=v
   if r%2 and prop.get('axis') in ('x','z'):prop['axis']='z' if prop['axis']=='x' else 'x'
   if name=='air':blocks.pop(p,None)
   else:blocks[p]=(name,tuple(sorted(prop.items())))
@@ -52,11 +54,18 @@ def transform(p,x,y):
  for _ in range(x//90):b,c=c,-b
  a,b,c=rot((a,b,c),y//90)
  return [a+8,b+8,c+8]
+def rotate_element(p,e):
+ r=e.get('rotation')
+ if not r:return p
+ a=list(p);o=r['origin'];a=[x-y for x,y in zip(a,o)];i='xyz'.index(r['axis']);j=(i+1)%3;k=(i+2)%3;t=math.radians(r['angle']);c=math.cos(t);sn=math.sin(t);scale=1/c if r.get('rescale') else 1
+ a[j],a[k]=(a[j]*c-a[k]*sn)*scale,(a[j]*sn+a[k]*c)*scale
+ return [round(x+y,5) for x,y in zip(a,o)]
 def uv_default(d,a,b):
  x,y,z=a;X,Y,Z=b
  return {'east':[16-Z,16-Y,16-z,16-y],'west':[z,16-Y,Z,16-y],'up':[x,z,X,Z],'down':[x,16-Z,X,16-z],'south':[x,16-Y,X,16-y],'north':[16-X,16-Y,16-x,16-y]}[d]
 def compile(s):
  name,pp=s;pr=dict(pp)
+ if name=='tripwire' and not pr:pr={k:'false' for k in ['attached','north','east','south','west']}
  if name=='water':return [0,[[tile('block/water_still'),2,-1,0,14,0,16,14,0,16,14,16,0,14,16,0,0,16,0,16,16,0,16]]]
  state=json.loads(z.read('assets/minecraft/blockstates/'+name+'.json'));opts=state['variants'];key=next(k for k in opts if all(pr.get(a)==b for a,b in (p.split('=') for p in k.split(',') if p)));v=opts[key];v=v[0] if isinstance(v,list) else v;x,y=v.get('x',0),v.get('y',0);m=model(v['model']);textures=m['textures'];faces=[]
  def resolve(t):
@@ -68,7 +77,7 @@ def compile(s):
   a,b=e['from'],e['to'];xx,yy,zz=a;X,Y,Z=b
   pts={'east':[[X,Y,Z],[X,Y,zz],[X,yy,zz],[X,yy,Z]],'west':[[xx,Y,zz],[xx,Y,Z],[xx,yy,Z],[xx,yy,zz]],'up':[[xx,Y,zz],[X,Y,zz],[X,Y,Z],[xx,Y,Z]],'down':[[xx,yy,Z],[X,yy,Z],[X,yy,zz],[xx,yy,zz]],'south':[[xx,Y,Z],[X,Y,Z],[X,yy,Z],[xx,yy,Z]],'north':[[X,Y,zz],[xx,Y,zz],[xx,yy,zz],[X,yy,zz]]}
   for d,f in e['faces'].items():
-   points=pts[d];v0=transform([8+c for c in D[d]],x,y);di=dirs.index(tuple(c-8 for c in v0));u0,v0,u1,v1=f.get('uv',uv_default(d,a,b));uv=[[u0,v0],[u1,v0],[u1,v1],[u0,v1]];k=f.get('rotation',0)//90;uv=uv[k:]+uv[:k];pts2=[transform(p,x,y) for p in points]
+   points=pts[d];v0=transform([8+c for c in D[d]],x,y);di=dirs.index(tuple(c-8 for c in v0));u0,v0,u1,v1=f.get('uv',uv_default(d,a,b));uv=[[u0,v0],[u1,v0],[u1,v1],[u0,v1]];k=f.get('rotation',0)//90;uv=uv[k:]+uv[:k];pts2=[transform(rotate_element(p,e),x,y) for p in points]
    # actual blockstate UV lock on horizontal faces (world north)
    if v.get('uvlock') and di==2:uv=[[p[0],p[2]] for p in pts2]
    faces.append([resolve(f['texture']),di,di if 'cullface' in f else -1,*sum(pts2,[]),*sum(uv,[])])
@@ -121,7 +130,7 @@ def compile(s):
  if n=='decorated_pot':return pot_model()
  out=oldcompile(s)
  if n.endswith('_leaves'):out[0]=0
- if n=='dead_bush':
+ if False and n=='dead_bush':
   # Element rotation/rescale in the JAR's cross model (45 degrees around Y).
   for f in out[1]:
    for j in range(4):
