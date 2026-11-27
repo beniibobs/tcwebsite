@@ -1,0 +1,224 @@
+{
+  "library": "entrance-models.json",
+  "atlas": "entrance-atlas.png",
+  "pieces": [
+    {
+      "base": "corridor/entrance_1",
+      "asset": "entrance_1.json",
+      "floors": [
+        7,
+        14,
+        20
+      ],
+      "pools": {
+        "minecraft:trial_chambers/entrance": "corridor/addon/display_1",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      }
+    },
+    {
+      "base": "corridor/entrance_2",
+      "asset": "entrance_2.json",
+      "floors": [
+        7,
+        13,
+        20
+      ],
+      "pools": {
+        "minecraft:trial_chambers/entrance": "corridor/addon/display_3",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      }
+    },
+    {
+      "base": "corridor/entrance_3",
+      "asset": "entrance_3.json",
+      "floors": [
+        7,
+        14,
+        22
+      ],
+      "pools": {
+        "minecraft:trial_chambers/entrance": "corridor/addon/display_3",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      }
+    },
+    {
+      "base": "corridor/straight_1",
+      "asset": "straight_1.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/corridors/addon/middle": "corridor/addon/open_walkway"
+      },
+      "connectors": {
+        "corridor/straight_1:8,1,1": "decor/barrel",
+        "corridor/straight_1:10,1,3": "decor/barrel",
+        "corridor/straight_1:3,3,3": "decor/undecorated_pot",
+        "corridor/straight_1:5,3,3": "decor/barrel"
+      },
+      "inside_only": true
+    },
+    {
+      "base": "corridor/straight_2",
+      "asset": "straight_2.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/corridors/addon/middle_upper": "corridor/addon/decoration_upper"
+      },
+      "connectors": {
+        "corridor/straight_2:10,1,1": "decor/barrel",
+        "corridor/straight_2:5,3,1": "decor/barrel",
+        "corridor/straight_2:13,3,3": "decor/undecorated_pot",
+        "corridor/straight_2:15,3,2": "decor/barrel"
+      },
+      "inside_only": true
+    },
+    {
+      "base": "corridor/straight_3",
+      "asset": "straight_3.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/corridors/addon/middle": "corridor/addon/open_walkway"
+      },
+      "connectors": {
+        "corridor/straight_3:8,1,1": "decor/barrel",
+        "corridor/straight_3:10,1,3": "decor/barrel",
+        "corridor/straight_3:3,3,3": "decor/undecorated_pot",
+        "corridor/straight_3:5,3,3": "decor/barrel"
+      },
+      "inside_only": true
+    },
+    {
+      "base": "corridor/straight_4",
+      "asset": "straight_4.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/corridors/addon/middle_upper": "corridor/addon/decoration_upper"
+      },
+      "connectors": {
+        "corridor/straight_4:8,1,1": "decor/barrel",
+        "corridor/straight_4:10,1,3": "decor/barrel",
+        "corridor/straight_4:3,3,3": "decor/undecorated_pot",
+        "corridor/straight_4:13,3,3": "decor/barrel"
+      },
+      "inside_only": true
+    },
+    {
+      "base": "corridor/straight_5",
+      "asset": "straight_5.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/corridors/addon/middle": "corridor/addon/open_walkway"
+      },
+      "connectors": {
+        "corridor/straight_5:8,1,1": "decor/barrel",
+        "corridor/straight_5:10,1,3": "decor/barrel",
+        "corridor/straight_5:3,3,3": "decor/undecorated_pot",
+        "corridor/straight_5:13,3,3": "decor/barrel"
+      },
+      "inside_only": true
+    },
+    {
+      "base": "corridor/straight_6",
+      "asset": "straight_6.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      },
+      "connectors": {
+        "corridor/straight_6:8,1,1": "decor/barrel",
+        "corridor/straight_6:3,3,3": "decor/barrel"
+      },
+      "inside_only": true
+    },
+    {
+      "base": "corridor/straight_7",
+      "asset": "straight_7.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      },
+      "connectors": {
+        "corridor/straight_7:8,1,1": "decor/barrel",
+        "corridor/straight_7:10,1,3": "decor/barrel",
+        "corridor/straight_7:3,3,3": "decor/undecorated_pot",
+        "corridor/straight_7:15,3,2": "decor/barrel"
+      },
+      "inside_only": true
+    },
+    {
+      "base": "corridor/straight_8",
+      "asset": "straight_8.json",
+      "floors": [
+        6,
+        12,
+        19
+      ],
+      "pools": {
+        "minecraft:trial_chambers/corridors/addon/lower": "corridor/addon/staircase",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      },
+      "connectors": {
+        "corridor/straight_8:3,3,1": "decor/barrel",
+        "corridor/straight_8:15,3,1": "decor/barrel",
+        "corridor/straight_8:3,8,1": "decor/undecorated_pot",
+        "corridor/straight_8:3,8,3": "decor/barrel"
+      },
+      "inside_only": true
+    }
+  ]
+}

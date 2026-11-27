@@ -30,8 +30,10 @@ def place(path,r=0,offset=(0,0,0)):
  d=nbt(path)
  for b in d['blocks']:
   s=d['palette'][b['state']];name=s['id'].split(':')[1];prop=s.get('properties',{}).copy();p=tuple(a+b for a,b in zip(rot(b['pos'],r),offset))
-  if name=='jigsaw':name=b['nbt']['final_state'].split(':')[1].split('[')[0];prop={}
+  if name=='jigsaw':
+   final=b['nbt']['final_state'].split(':',1)[1];name=final.split('[')[0];prop=dict(kv.split('=') for kv in final.split('[',1)[1].rstrip(']').split(',')) if '[' in final else {}
   if 'facing' in prop and prop['facing'] in D:prop['facing']=names[dirs.index(rot(D[prop['facing']],r))]
+  if r%2 and prop.get('axis') in ('x','z'):prop['axis']='z' if prop['axis']=='x' else 'x'
   if name=='air':blocks.pop(p,None)
   else:blocks[p]=(name,tuple(sorted(prop.items())))
  return d
@@ -70,7 +72,7 @@ def compile(s):
    # actual blockstate UV lock on horizontal faces (world north)
    if v.get('uvlock') and di==2:uv=[[p[0],p[2]] for p in pts2]
    faces.append([resolve(f['texture']),di,di if 'cullface' in f else -1,*sum(pts2,[]),*sum(uv,[])])
- solid=int(len(elements)==1 and elements[0]['from']==[0,0,0] and elements[0]['to']==[16,16,16] and not any(k in name for k in ['grate','glass','vault']))
+ solid=int(len(elements)==1 and elements[0]['from']==[0,0,0] and elements[0]['to']==[16,16,16] and not any(k in name for k in ['grate','glass','vault','trial_spawner']))
  return [solid,faces]
 
 oldcompile=compile
@@ -85,14 +87,38 @@ def box(a,b,tiles,r):
   if d not in tiles:continue
   t,w,h=tiles[d];di=dirs.index(rot(D[d],r));out.append([t,di,-1,*sum([transform(p,0,r*90) for p in points],[]),0,0,w,0,w,h,0,h])
  return out
+def entity_cube(label,a,b,uv,r,texture):
+ # ModelPart.Cube and Polygon constructor order from the client JAR.
+ # Vertex numbering: 0..3 at min Z, 4..7 at max Z, y is world-up.
+ x,y,z0=a;X,Y,Z=b;w,h,d=X-x,Y-y,Z-z0;u,v=uv
+ pts=[[x,y,z0],[X,y,z0],[X,Y,z0],[x,Y,z0],[x,y,Z],[X,y,Z],[X,Y,Z],[x,Y,Z]]
+ rects={'down':([5,4,0,1],(u+d,v,u+d+w,v+d)), 'up':([2,3,7,6],(u+d+w,v+d,u+d+2*w,v)), 'west':([0,4,7,3],(u,v+d,u+d,v+d+h)), 'north':([1,0,3,2],(u+d,v+d,u+d+w,v+d+h)), 'east':([5,1,2,6],(u+d+w,v+d,u+2*d+w,v+d+h)), 'south':([4,5,6,7],(u+2*d+w,v+d,u+2*d+2*w,v+d+h))}
+ faces=[]
+ for name,(order,(u0,v0,u1,v1)) in rects.items():
+  loU,loV=min(u0,u1),min(v0,v1);hiU,hiV=max(u0,u1),max(v0,v1)
+  key=label+'_'+name;im=Image.new('RGBA',(16,16));im.paste(texture.crop((loU,loV,hiU,hiV)),(0,0));extra['block/'+key]=im;t=tile(key)
+  di=dirs.index(rot(D[name],r));uvs=[[u1-loU,v0-loV],[u0-loU,v0-loV],[u0-loU,v1-loV],[u1-loU,v1-loV]]
+  faces.append([t,di,-1,*sum([transform(pts[i],0,r*90) for i in order],[]),*sum(uvs,[])])
+ return faces
+
 def chest_model(p):
- r={'north':0,'east':1,'south':2,'west':3}[p['facing']];faces=[]
- for label,a,b,yy,hh in [('base',[1,0,1],[15,10,15],33,10),('lid',[1,10,1],[15,14,15],14,4)]:
-  t={d:(crop('chest_'+label+'_'+d,(u,yy,u+14,yy+hh)),14,hh) for d,u in [('east',0),('north',14),('west',28),('south',42)]};t['up']=(crop('chest_'+label+'_top',(14,yy-14,28,yy)),14,14);t['down']=t['up'];faces+=box(a,b,t,r)
- t=(crop('chest_latch',(1,1,3,5)),2,4);faces+=box([7,8,0],[9,12,1],{d:t for d in D},r);return [0,faces]
+ # ChestModel.createSingleBodyLayer: base tex(0,19), lid tex(0,0),
+ # lock tex(0,0); lid and lock both offset by (0,9,1).
+ # ChestRenderer rotates the south-facing model by -facing.toYRot().
+ if p.get('type','single')!='single':raise ValueError('Double chest needs separate model')
+ r={'south':0,'west':1,'north':2,'east':3}[p['facing']]
+ return [0,entity_cube('chest_base',[1,0,1],[15,10,15],(0,19),r,chest)+entity_cube('chest_lid',[1,9,1],[15,14,15],(0,0),r,chest)+entity_cube('chest_lock',[7,7,15],[9,11,16],(0,0),r,chest)]
+def pot_model():
+ base=Image.open(io.BytesIO(z.read('assets/minecraft/textures/entity/decorated_pot/decorated_pot_base.png'))).convert('RGBA');side=Image.open(io.BytesIO(z.read('assets/minecraft/textures/entity/decorated_pot/decorated_pot_side.png'))).convert('RGBA')
+ def face(name,im,rect):
+  t=Image.new('RGBA',(16,16));t.paste(im.crop(rect),(0,0));extra['block/'+name]=t;return (tile(name),rect[2]-rect[0],rect[3]-rect[1])
+ sides=face('pot_body',side,(1,0,15,16));top=face('pot_top',base,(14,13,28,27));bottom=face('pot_bottom',base,(0,13,14,27));neck=face('pot_neck',base,(0,8,8,11));necktop=face('pot_neck_top',base,(8,0,16,8));collar=face('pot_collar',base,(0,11,6,12));collartop=face('pot_collar_top',base,(6,5,12,11))
+ def sideset(s,t,b):return {d:t if d=='up' else b if d=='down' else s for d in D}
+ return [0,box([1,0,1],[15,16,15],sideset(sides,top,bottom),0)+box([4.8,15.8,4.8],[11.2,17.2,11.2],sideset(collar,collartop,collartop),0)+box([4.1,17.1,4.1],[11.9,19.9,11.9],sideset(neck,necktop,necktop),0)]
 def compile(s):
  n,pp=s
  if n=='chest':return chest_model(dict(pp))
+ if n=='decorated_pot':return pot_model()
  out=oldcompile(s)
  if n.endswith('_leaves'):out[0]=0
  if n=='dead_bush':
@@ -103,8 +129,44 @@ def compile(s):
  return out
 # model parent data supports standard template bed, stairs, doors etc.
 # Use actual display pool and valid aligned connector matching.
-def attach(parent,conn,path):
- p=conn['pos'];pd=nbt(parent);f=pd['palette'][conn['state']]['properties']['orientation'].split('_')[0];d=nbt(path);c=next(b for b in d['blocks'] if d['palette'][b['state']]['id']=='minecraft:jigsaw' and b['nbt']['name']==conn['nbt']['target']);f2=d['palette'][c['state']]['properties']['orientation'].split('_')[0];r=next(r for r in range(4) if rot(D[f2],r)==tuple(-v for v in D[f]));o=tuple(a+b-c for a,b,c in zip(p,D[f],rot(c['pos'],r)));place(path,r,o);return [path,r,list(o)]
+def connection(parent,conn,path,pr=0,po=(0,0,0)):
+ pd=nbt(parent);ori=pd['palette'][conn['state']]['properties']['orientation'].split('_');f=rot(D[ori[0]],pr);top=rot(D[ori[1]],pr);p=tuple(a+b for a,b in zip(rot(conn['pos'],pr),po));d=nbt(path)
+ for c in d['blocks']:
+  if d['palette'][c['state']]['id']!='minecraft:jigsaw' or c['nbt']['name']!=conn['nbt']['target']:continue
+  fo,to=d['palette'][c['state']]['properties']['orientation'].split('_')
+  for r in range(4):
+   if rot(D[fo],r)!=tuple(-v for v in f):continue
+   if conn['nbt'].get('joint','aligned')=='aligned' and rot(D[to],r)!=top:continue
+   o=tuple(a+b-c for a,b,c in zip(p,f,rot(c['pos'],r)));return r,o,c
+ raise ValueError('No matching oriented jigsaw: '+parent+' -> '+path)
+def attach(parent,conn,path,pr=0,po=(0,0,0)):
+ r,o,c=connection(parent,conn,path,pr,po);place(path,r,o);return [path,r,list(o)]
+
+def bounds(path,r,o):
+ sz=nbt(path)['size'];pts=[tuple(a+b for a,b in zip(rot((x,y,z),r),o)) for x in [0,sz[0]-1] for y in [0,sz[1]-1] for z in [0,sz[2]-1]]
+ return tuple(min(p[i] for p in pts) for i in range(3))+tuple(max(p[i] for p in pts)+1 for i in range(3))
+def overlap(a,b):return all(a[i]<b[i+3] and b[i]<a[i+3] for i in range(3))
+def assemble(entry):
+ root=entry['base'];d=place(root);children=[]
+ def fill(parent,pr,po,used,limit,depth):
+  pd=nbt(parent);dec=0
+  for c in pd['blocks']:
+   if pd['palette'][c['state']]['id']!='minecraft:jigsaw':continue
+   pool=c['nbt']['pool'];path=entry.get('pools',{}).get(pool)
+   # Explicit per-connector choice overrides the pool default, including None.
+   key=parent+':'+','.join(map(str,c['pos']));path=entry.get('connectors',{}).get(key,path)
+   if not path:continue
+   r,o,j=connection(parent,c,path,pr,po);b=bounds(path,r,o)
+   if limit and (not all(b[i]>=limit[i] and b[i+3]<=limit[i+3] for i in range(3)) or any(overlap(b,a) for a in used)):
+    print('Skip non-fitting child',root,path,c['pos'],b);continue
+   place(path,r,o);children.append([path,r,list(o)]);used.append(b)
+   if depth<4:
+    # Nested internal connectors may place into an ancestor's reserved volume.
+    # Spawner connector pieces are routing-only, and the content attaches below them.
+    # Children targeting the interior of this template have their own free-volume domain.
+    fill(path,r,o,[],b,depth+1) if path.startswith('corridor/addon/') else fill(path,r,o,used,limit,depth+1)
+ fill(root,0,(0,0,0),[],bounds(root,0,(0,0,0)) if entry.get('inside_only') else None,0)
+ return d,children
 
 # Each recipe lists a base template, optional child per non-empty connector pool,
 # and display metadata. Pick the explicit child, then derive rotation and translation
@@ -114,11 +176,7 @@ def build(recipe,out):
  texs.clear();extra.clear();model.cache_clear();chest=Image.open(io.BytesIO(z.read('assets/minecraft/textures/entity/chest/normal.png'))).convert('RGBA')
  rooms=[];states=[];models=[]
  for entry in recipe['pieces']:
-  blocks={};p=entry['base'];d=place(p);children=[]
-  for c in d['blocks']:
-   if d['palette'][c['state']]['id']!='minecraft:jigsaw':continue
-   pool=c['nbt']['pool'];path=entry.get('pools',{}).get(pool)
-   if path:children.append(attach(p,c,path))
+  blocks={};p=entry['base'];d,children=assemble(entry)
   lo=tuple(min(0,min(p[i] for p in blocks)) for i in range(3));hi=tuple(max(d['size'][i],max(p[i] for p in blocks)+1) for i in range(3));size=tuple(b-a for a,b in zip(lo,hi));X,Y,Z=size;grid=bytearray(X*Y*Z)
   for pos,s in blocks.items():
    if s not in states:states.append(s);models.append(compile(s))
