@@ -7,7 +7,6 @@
 .loot-tabs button:hover:not([aria-selected=true]){color:var(--ink);background:var(--line)}
 .loot-tabs button:focus-visible,.piece-results button:focus-visible,.piece-search-wrap input:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
 .loot-icon{display:inline-block;width:32px;height:32px;flex:none;background-image:url('../loot-icons.png?v=1');background-size:160px 128px;background-repeat:no-repeat;image-rendering:pixelated}
-.loot-scope{font-size:11px;line-height:1.45;margin:0;padding:12px 15px;color:var(--muted)}
 .loot-piece-viewer{display:flex;flex-direction:column;min-width:0;min-height:490px;background:var(--panel)}
 .piece-toolbar{position:relative;padding:15px;border-bottom:1px solid var(--line);z-index:6}
 .piece-toolbar label{display:block;font-size:13px;font-weight:600;margin-bottom:6px}
@@ -26,3 +25,7 @@
 .piece-preview-glyph{font-size:56px;line-height:1;color:var(--line)}
 @media(max-width:1050px){.overview-page .loot-grid{grid-template-columns:minmax(0,46fr) minmax(0,54fr)}}
 @media(max-width:850px){.overview-page .loot-grid{grid-template-columns:1fr}.overview-page .loot-grid .loot-stats-panel{border-right:0;border-top:0;border-bottom:1px solid var(--line)}.loot-piece-viewer{min-height:370px}.piece-preview{min-height:280px}}
+
+/* Fixed desktop panel height: switching category does not resize the piece viewer. */
+.overview-page .loot-grid{min-height:610px;align-items:stretch}.overview-page .loot-grid .loot-stats-panel{height:610px;display:flex;flex-direction:column}.loot-grid #loot-table-panel{overflow-y:auto;min-height:0;flex:1}.loot-tabs{display:grid;grid-template-columns:1fr 1.5fr 1fr}.loot-tabs button{white-space:normal;min-width:0}.loot-piece-viewer{height:610px}.loot-grid .piece-preview{min-height:0}
+@media(max-width:850px){.overview-page .loot-grid .loot-stats-panel{height:575px}.loot-piece-viewer{height:420px}.overview-page .loot-grid{min-height:0}}

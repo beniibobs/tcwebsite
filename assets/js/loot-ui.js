@@ -3,7 +3,7 @@
 'use strict';
 const $=id=>document.getElementById(id),body=$('loot-stats'),input=$('piece-search'),results=$('piece-results');
 const prob=n=>{
- const v=Math.min(100,Math.max(0,n)),digits=v<100&&v.toFixed(2)==='100.00'?Math.max(4,Math.min(8,Math.ceil(-Math.log10(100-v))+1)):2,p=v.toFixed(digits)+'%',h=v*1.28,s=76-Math.abs(v-50)*.16,l=49-Math.abs(v-50)*.36;
+ const v=Math.min(100,Math.max(0,n)),p=v>99.99&&v<100?'99.99+%':v.toFixed(2)+'%',h=v*1.28,s=76-Math.abs(v-50)*.16,l=49-Math.abs(v-50)*.36;
  return '<div class="maze-probability" style="--prob-color:hsl('+h+' '+s+'% '+l+'%);--prob-text:hsl('+h+' '+s+'% '+Math.max(56,l+13)+'%)"><strong>'+p+'</strong><div class="maze-probability-track" aria-hidden="true"><i style="width:'+v+'%"></i></div></div>';
 };
 const normalize=s=>s.toLowerCase().replace(/^minecraft:trial_chambers\//,'').replace(/\.nbt$/,'').replace(/[_\-:]+/g,' ').trim().replace(/\s+/g,' ');
@@ -16,7 +16,7 @@ function ranked(pieces,query){
  }).filter(x=>x.score>=0).sort((a,b)=>b.score-a.score||a.i-b.i).map(x=>x.p);
 }
 try{
- const res=await fetch('assets/data/overview-loot.json?v=1');if(!res.ok)throw Error('Loot data unavailable');const D=await res.json();
+ const res=await fetch('assets/data/overview-loot.json?v=2');if(!res.ok)throw Error('Loot data unavailable');const D=await res.json();
  const tabs=[...document.querySelectorAll('[data-loot-category]')];let active='materials';
  function category(id){
  const c=D.categories.find(x=>x[0]===id);if(!c)return;
@@ -24,7 +24,7 @@ try{
  tabs.forEach(t=>{const on=t.dataset.lootCategory===id;t.setAttribute('aria-selected',String(on));t.tabIndex=on?0:-1});
  $('loot-table-panel').setAttribute('aria-labelledby','loot-tab-'+id);
  body.replaceChildren(...c[2].map(([name,icon,mean,p])=>{
-  const tr=document.createElement('tr'),label=document.createElement('td'),wrap=document.createElement('span'),img=document.createElement('span'),text=document.createElement('span');wrap.className='mc-stat-label';img.className='loot-icon';img.style.backgroundPosition=(-32*(icon%5))+'px '+(-32*Math.floor(icon/5))+'px';img.setAttribute('aria-hidden','true');text.textContent=name;wrap.append(img,text);label.append(wrap);tr.append(label);
+  const tr=document.createElement('tr'),label=document.createElement('td'),wrap=document.createElement('span'),img=document.createElement('span'),text=document.createElement('span');wrap.className='mc-stat-label';img.className='loot-icon';if(typeof icon==='string'){img.style.backgroundImage='url(data:image/png;base64,'+D.potionIcons[icon]+')';img.style.backgroundSize='32px 32px';img.style.backgroundPosition='0 0'}else img.style.backgroundPosition=(-32*(icon%5))+'px '+(-32*Math.floor(icon/5))+'px';img.setAttribute('aria-hidden','true');text.textContent=name;wrap.append(img,text);label.append(wrap);tr.append(label);
   const e=document.createElement('td');e.className='num';e.textContent=mean.toFixed(3);tr.append(e);
   const chance=document.createElement('td');chance.className='num';chance.innerHTML=prob(p);tr.append(chance);return tr;
  }));
