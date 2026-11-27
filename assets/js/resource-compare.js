@@ -33,7 +33,7 @@ function row(name,pair,selected=false,isOverall=false,scope=''){
  const tr=document.createElement('tr');if(selected){tr.classList.add('is-current');tr.setAttribute('aria-current','true')}if(isOverall)tr.classList.add('is-overall');
  const th=document.createElement('th');th.scope='row';th.textContent=name;if(scope){const small=document.createElement('small');small.textContent=scope;th.append(small)}tr.append(th);
  const expected=document.createElement('td');expected.className='num';expected.textContent=pair[0];tr.append(expected);
- const chance=document.createElement('td');chance.className='num';chance.innerHTML=window.MazeUI.probability(pair[1]);tr.append(chance);return tr;
+ const chance=document.createElement('td');chance.className='num';const p=parseFloat(pair[1]);chance.innerHTML=window.MazeUI.probability(pair[1]).replace(/<strong>[^<]*<\/strong>/,'<strong>'+(p>99.99&&p<100?'99.99+%':p.toFixed(2)+'%')+'</strong>');tr.append(chance);return tr;
 }
 function open(k,label,button,sourceIcon){
  if(!overall[k]||dialog.open)return;

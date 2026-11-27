@@ -14,7 +14,7 @@ const rows=[["breeze","Breeze spawner","0.000","0.00%"],["melee","Melee spawner"
    const lightness=49-Math.abs(value-50)*.36;
    const fill='hsl('+hue+' '+saturation+'% '+lightness+'%)';
    const ink='hsl('+hue+' '+saturation+'% '+Math.max(56,lightness+13)+'%)';
-   return '<div class="maze-probability" style="--prob-color:'+fill+';--prob-text:'+ink+'"><strong>'+p+'</strong><div class="maze-probability-track" aria-hidden="true"><i style="width:'+value+'%"></i></div></div>';
+   return '<div class="maze-probability" style="--prob-color:'+fill+';--prob-text:'+ink+'"><strong>'+(value>99.99&&value<100?'99.99+%':value.toFixed(2)+'%')+'</strong><div class="maze-probability-track" aria-hidden="true"><i style="width:'+value+'%"></i></div></div>';
  };
  tb.innerHTML=rows.map(([k,name,mean,p])=>'<tr data-feature="'+k+'" tabindex="0" title="'+(k==='pot'?'14 possible locations, each with a 20% chance to generate.':k==='lingering'||k==='weakness'||k==='poison'||k==='healing'?'Expected number of dispensers with a qualifying potion stack, not individual bottles.':name)+'"><td><span class="mc-stat-label">'+icon(k)+'<span>'+name+'</span></span></td><td class="num">'+mean+'</td><td class="num">'+probability(p)+'</td></tr>').join('');
  const q=[['Q1',25/216*100],['Q2',23/72*100],['Q3',23/72*100],['Q4',53/216*100]];
