@@ -12448,5 +12448,172 @@
     "minRadius": 1.2,
     "maxRadius": 30,
     "targetY": 0.45
+  },
+  "corridor/addon/reward_upper": {
+    "name": "Reward Upper",
+    "asset": "corridor__addon__reward_upper.json",
+    "library": "remaining-models.json",
+    "floors": [
+      4
+    ],
+    "radius": 9,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 2
+  },
+  "hallway/right_corner": {
+    "name": "Right Corner",
+    "asset": "hallway__right_corner.json",
+    "library": "remaining-models.json",
+    "floors": [
+      7
+    ],
+    "radius": 13,
+    "seeds": [
+      [
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        4
+      ],
+      [
+        1,
+        4,
+        1
+      ],
+      [
+        1,
+        4,
+        4
+      ],
+      [
+        4,
+        1,
+        1
+      ],
+      [
+        4,
+        1,
+        4
+      ],
+      [
+        4,
+        4,
+        1
+      ],
+      [
+        4,
+        4,
+        4
+      ],
+      [
+        2,
+        3,
+        2
+      ]
+    ]
+  },
+  "hallway/rubble": {
+    "name": "Rubble",
+    "asset": "hallway__rubble.json",
+    "library": "remaining-models.json",
+    "floors": [
+      7
+    ],
+    "radius": 13,
+    "seeds": [],
+    "exterior": true
+  },
+  "hallway/rubble_chamber": {
+    "name": "Rubble Chamber",
+    "asset": "hallway__rubble_chamber.json",
+    "library": "remaining-models.json",
+    "floors": [
+      7
+    ],
+    "radius": 13,
+    "seeds": [],
+    "exterior": true
+  },
+  "hallway/rubble_chamber_thin": {
+    "name": "Rubble Chamber Thin",
+    "asset": "hallway__rubble_chamber_thin.json",
+    "library": "remaining-models.json",
+    "floors": [
+      7
+    ],
+    "radius": 13,
+    "seeds": [],
+    "exterior": true
+  },
+  "hallway/rubble_thin": {
+    "name": "Rubble Thin",
+    "asset": "hallway__rubble_thin.json",
+    "library": "remaining-models.json",
+    "floors": [
+      7
+    ],
+    "radius": 13,
+    "seeds": [],
+    "exterior": true
+  },
+  "decor/scrape_pot": {
+    "name": "Scrape Pot",
+    "asset": "decor__scrape_pot.json",
+    "library": "remaining-models.json",
+    "floors": [
+      2
+    ],
+    "radius": 5,
+    "seeds": [],
+    "exterior": true,
+    "minRadius": 1.2,
+    "maxRadius": 30,
+    "targetY": 1
+  },
+  "corridor/second_plate": {
+    "name": "Second Plate",
+    "asset": "corridor__second_plate.json",
+    "library": "remaining-models.json",
+    "floors": [
+      1
+    ],
+    "radius": 37,
+    "seeds": [],
+    "exterior": true,
+    "targetY": 0.5,
+    "phi": 0.75
+  },
+  "corridor/atrium/spider_relief": {
+    "name": "Spider Relief",
+    "asset": "corridor__atrium__spider_relief.json",
+    "library": "remaining-models.json",
+    "floors": [
+      14
+    ],
+    "radius": 26,
+    "seeds": [],
+    "exterior": true,
+    "theta": 0.2,
+    "phi": 1.18
+  },
+  "corridor/atrium/spiral_relief": {
+    "name": "Spiral Relief",
+    "asset": "corridor__atrium__spiral_relief.json",
+    "library": "remaining-models.json",
+    "floors": [
+      12
+    ],
+    "radius": 22,
+    "seeds": [],
+    "exterior": true,
+    "theta": 0.2,
+    "phi": 1.18
   }
 }
