@@ -9,3 +9,7 @@
 .core-hint{padding:7px 12px;color:var(--muted);font-size:11px;border-top:1px solid var(--line)}
 @media(max-width:850px){.overview-page .maze-main-grid .maze-canvas-shell{min-height:420px}}
 @media(max-width:550px){.overview-page .maze-main-grid .maze-canvas-shell{min-height:400px}}
+
+/* Native texture faces: integer 2× scale keeps their pixels sharp. */
+.overview-page .mc-stat-icon.core-flat-icon{width:32px;height:32px;image-rendering:pixelated;object-fit:contain}
+.overview-page .overview-loot-heading{margin-top:14px}
