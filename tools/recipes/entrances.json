@@ -1,0 +1,45 @@
+{
+  "library": "entrance-models.json",
+  "atlas": "entrance-atlas.png",
+  "pieces": [
+    {
+      "base": "corridor/entrance_1",
+      "asset": "entrance_1.json",
+      "floors": [
+        7,
+        14,
+        20
+      ],
+      "pools": {
+        "minecraft:trial_chambers/entrance": "corridor/addon/display_1",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      }
+    },
+    {
+      "base": "corridor/entrance_2",
+      "asset": "entrance_2.json",
+      "floors": [
+        7,
+        13,
+        20
+      ],
+      "pools": {
+        "minecraft:trial_chambers/entrance": "corridor/addon/display_3",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      }
+    },
+    {
+      "base": "corridor/entrance_3",
+      "asset": "entrance_3.json",
+      "floors": [
+        7,
+        14,
+        22
+      ],
+      "pools": {
+        "minecraft:trial_chambers/entrance": "corridor/addon/display_3",
+        "minecraft:trial_chambers/reward/all": "reward/vault"
+      }
+    }
+  ]
+}
