@@ -31,3 +31,14 @@ python tools/pack_atlas.py /tmp/tc-batch1 assets/data/pieces/entrance-atlas.png
 Copy the ten layout JSON files, batch1-models.json and batch1-atlas-pack.json into assets/data/pieces. The batch adds general element rotation/rescale, rotating directional block-state properties, and the default tripwire state. The published packed atlas references the existing entrance atlas for unchanged tiles and stores compressed RGBA interiors for new tiles. The viewer reconstructs their 18px bordered tiles on demand. Keep the referenced entrance atlas unchanged unless also rebuilding the packed map. Standalone decorations can opt into exterior rendering and closer camera settings in the manifest.
 
 The earlier entrance and slice assets are unchanged. This exporter revision is for new batches; regenerating old batches with the new rotation logic may change those models.
+
+## Complete catalogue (alphabetical batches 2–9)
+
+All 98 catalogue entries now have a render. The final 76 layouts use a single shared compressed library, loaded only when one is selected. Build the new layouts in a fresh directory:
+
+```sh
+python tools/build_remaining.py /path/to/minecraft-26.3-client.jar tools/recipes/remaining.json /tmp/tc-remaining
+python tools/pack_catalogue.py /tmp/tc-remaining /path/to/raw-entrance-export /path/to/raw-batch1-export
+```
+
+The exact source library order is significant: use the earlier exporter versions from their respective commits for raw entrance/slice and batch1 assets. The existing published entrance and batch1 libraries must remain immutable while the compressed catalogue refers to them. This revision supports multipart blockstates, patterned decorated pots, and static foliage/redstone tints. Dynamic entities, fluid animation and candle flames remain outside the viewer's scope. Structural links between neighbouring pieces are deliberately not expanded. Floor cuts and camera settings are representative and can be refined after visual review. All 76 published layout blobs match the local exports; the packer verifies exact decoded model faces and texture interiors before publishing.

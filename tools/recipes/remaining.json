@@ -1,0 +1,1738 @@
+{
+  "library": "remaining-models.json",
+  "atlas": "remaining-atlas.png",
+  "pieces": [
+    {
+      "base": "corridor/end_2",
+      "asset": "corridor__end_2.json",
+      "floors": [
+        7,
+        13,
+        20
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/candle_1",
+      "asset": "decor__candle_1.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/candle_2",
+      "asset": "decor__candle_2.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/candle_3",
+      "asset": "decor__candle_3.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/candle_4",
+      "asset": "decor__candle_4.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "dispensers/chamber",
+      "asset": "dispensers__chamber.json",
+      "floors": [
+        1
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/chandelier_upper",
+      "asset": "corridor__addon__chandelier_upper.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "intersection/intersection_3",
+      "asset": "intersection__intersection_3.json",
+      "floors": [
+        7,
+        14,
+        21,
+        28,
+        37
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/corner_staircase",
+      "asset": "hallway__corner_staircase.json",
+      "floors": [
+        5,
+        12
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/corner_staircase_down",
+      "asset": "hallway__corner_staircase_down.json",
+      "floors": [
+        5,
+        12
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/barrel",
+      "asset": "decor__barrel.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/corridor_connector_1",
+      "asset": "hallway__corridor_connector_1.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/cyan_bed",
+      "asset": "decor__cyan_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/dead_bush_pot",
+      "asset": "decor__dead_bush_pot.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/decoration_upper",
+      "asset": "corridor__addon__decoration_upper.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/display_1",
+      "asset": "corridor__addon__display_1.json",
+      "floors": [
+        6
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/display_2",
+      "asset": "corridor__addon__display_2.json",
+      "floors": [
+        8
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/display_3",
+      "asset": "corridor__addon__display_3.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/disposal",
+      "asset": "decor__disposal.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/empty_pot",
+      "asset": "decor__empty_pot.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/encounter_1",
+      "asset": "hallway__encounter_1.json",
+      "floors": [
+        5,
+        11
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/first_plate",
+      "asset": "corridor__first_plate.json",
+      "floors": [
+        1
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "dispensers/floor_dispenser",
+      "asset": "dispensers__floor_dispenser.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/flow_pot",
+      "asset": "decor__flow_pot.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/atrium/grand_staircase_1",
+      "asset": "corridor__atrium__grand_staircase_1.json",
+      "floors": [
+        8
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/atrium/grand_staircase_2",
+      "asset": "corridor__atrium__grand_staircase_2.json",
+      "floors": [
+        8
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/atrium/grand_staircase_3",
+      "asset": "corridor__atrium__grand_staircase_3.json",
+      "floors": [
+        8
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/gray_bed",
+      "asset": "decor__gray_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/green_bed",
+      "asset": "decor__green_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/guster_pot",
+      "asset": "decor__guster_pot.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/head_upper",
+      "asset": "corridor__addon__head_upper.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/ladder_to_middle",
+      "asset": "corridor__addon__ladder_to_middle.json",
+      "floors": [
+        8
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/left_corner",
+      "asset": "hallway__left_corner.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/light_blue_bed",
+      "asset": "decor__light_blue_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/light_gray_bed",
+      "asset": "decor__light_gray_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/lime_bed",
+      "asset": "decor__lime_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "intersection/intersection_2",
+      "asset": "intersection__intersection_2.json",
+      "floors": [
+        7,
+        13,
+        20
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/long_straight_staircase",
+      "asset": "hallway__long_straight_staircase.json",
+      "floors": [
+        5,
+        10,
+        14
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/long_straight_staircase_down",
+      "asset": "hallway__long_straight_staircase_down.json",
+      "floors": [
+        5,
+        10,
+        14
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/lower_hallway_connector",
+      "asset": "hallway__lower_hallway_connector.json",
+      "floors": [
+        5,
+        10,
+        17
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/magenta_bed",
+      "asset": "decor__magenta_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/encounter_5",
+      "asset": "hallway__encounter_5.json",
+      "floors": [
+        5,
+        10
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {
+        "hallway/encounter_5:11,0,10": "decor/undecorated_pot",
+        "hallway/encounter_5:11,0,11": "decor/barrel",
+        "hallway/encounter_5:11,0,12": "decor/flow_pot",
+        "hallway/encounter_5:11,0,13": null,
+        "hallway/encounter_5:13,0,8": "decor/undecorated_pot",
+        "hallway/encounter_5:13,0,15": "decor/barrel",
+        "hallway/encounter_5:14,0,8": "decor/flow_pot",
+        "hallway/encounter_5:14,0,15": null,
+        "hallway/encounter_5:15,0,8": "decor/undecorated_pot",
+        "hallway/encounter_5:15,0,9": "decor/barrel",
+        "hallway/encounter_5:15,0,10": "decor/flow_pot",
+        "hallway/encounter_5:15,0,15": null,
+        "hallway/encounter_5:3,4,3": "decor/undecorated_pot",
+        "hallway/encounter_5:3,4,4": "decor/barrel",
+        "hallway/encounter_5:3,4,5": "decor/flow_pot",
+        "hallway/encounter_5:3,4,8": null,
+        "hallway/encounter_5:3,4,9": "decor/undecorated_pot",
+        "hallway/encounter_5:3,4,10": "decor/barrel",
+        "hallway/encounter_5:3,4,13": "decor/flow_pot",
+        "hallway/encounter_5:3,4,14": null,
+        "hallway/encounter_5:3,4,15": "decor/undecorated_pot",
+        "hallway/encounter_5:8,4,3": "decor/barrel",
+        "hallway/encounter_5:9,4,3": "decor/flow_pot",
+        "hallway/encounter_5:10,4,3": null,
+        "hallway/encounter_5:13,4,20": "decor/undecorated_pot",
+        "hallway/encounter_5:14,4,20": "decor/barrel",
+        "hallway/encounter_5:15,4,18": "decor/flow_pot",
+        "hallway/encounter_5:15,4,19": null,
+        "hallway/encounter_5:15,4,20": "decor/undecorated_pot"
+      }
+    },
+    {
+      "base": "reward/ominous_vault",
+      "asset": "reward__ominous_vault.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/open_walkway",
+      "asset": "corridor__addon__open_walkway.json",
+      "floors": [
+        10
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/open_walkway_upper",
+      "asset": "corridor__addon__open_walkway_upper.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/orange_bed",
+      "asset": "decor__orange_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/pink_bed",
+      "asset": "decor__pink_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/encounter_4",
+      "asset": "hallway__encounter_4.json",
+      "floors": [
+        7,
+        13,
+        22
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/purple_bed",
+      "asset": "decor__purple_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/red_bed",
+      "asset": "decor__red_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/reward_upper",
+      "asset": "corridor__addon__reward_upper.json",
+      "floors": [
+        4
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/right_corner",
+      "asset": "hallway__right_corner.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/rubble",
+      "asset": "hallway__rubble.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/rubble_chamber",
+      "asset": "hallway__rubble_chamber.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/rubble_chamber_thin",
+      "asset": "hallway__rubble_chamber_thin.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/rubble_thin",
+      "asset": "hallway__rubble_thin.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/scrape_pot",
+      "asset": "decor__scrape_pot.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/second_plate",
+      "asset": "corridor__second_plate.json",
+      "floors": [
+        1
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/atrium/spider_relief",
+      "asset": "corridor__atrium__spider_relief.json",
+      "floors": [
+        14
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/atrium/spiral_relief",
+      "asset": "corridor__atrium__spiral_relief.json",
+      "floors": [
+        12
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/staircase",
+      "asset": "corridor__addon__staircase.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/straight",
+      "asset": "hallway__straight.json",
+      "floors": [
+        7
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/straight_staircase",
+      "asset": "hallway__straight_staircase.json",
+      "floors": [
+        5,
+        9
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/straight_staircase_down",
+      "asset": "hallway__straight_staircase_down.json",
+      "floors": [
+        5,
+        9
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "chests/supply",
+      "asset": "chests__supply.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/trapped_staircase",
+      "asset": "hallway__trapped_staircase.json",
+      "floors": [
+        7,
+        13,
+        27
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/encounter_3",
+      "asset": "hallway__encounter_3.json",
+      "floors": [
+        7,
+        13,
+        22
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/undecorated_pot",
+      "asset": "decor__undecorated_pot.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "hallway/upper_hallway_connector",
+      "asset": "hallway__upper_hallway_connector.json",
+      "floors": [
+        5,
+        10,
+        14
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "reward/vault",
+      "asset": "reward__vault.json",
+      "floors": [
+        3
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/wall",
+      "asset": "corridor__addon__wall.json",
+      "floors": [
+        6
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/end_1",
+      "asset": "corridor__end_1.json",
+      "floors": [
+        7,
+        13,
+        20
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "dispensers/wall_dispenser",
+      "asset": "dispensers__wall_dispenser.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "corridor/addon/walled_walkway",
+      "asset": "corridor__addon__walled_walkway.json",
+      "floors": [
+        10
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/white_bed",
+      "asset": "decor__white_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    },
+    {
+      "base": "decor/yellow_bed",
+      "asset": "decor__yellow_bed.json",
+      "floors": [
+        2
+      ],
+      "inside_only": true,
+      "pools": {
+        "minecraft:trial_chambers/reward/all": "reward/vault",
+        "minecraft:trial_chambers/reward/ominous_vault": "reward/ominous_vault",
+        "minecraft:trial_chambers/decor/bed": "decor/blue_bed",
+        "minecraft:trial_chambers/decor": "decor/undecorated_pot",
+        "minecraft:trial_chambers/dispensers/chamber": "dispensers/wall_dispenser",
+        "minecraft:trial_chambers/spawner/all": "spawner/connectors/melee",
+        "minecraft:trial_chambers/spawner/contents/melee": "spawner/melee/zombie",
+        "minecraft:trial_chambers/spawner/breeze": "spawner/connectors/breeze",
+        "minecraft:trial_chambers/spawner/contents/breeze": "spawner/breeze/breeze",
+        "minecraft:trial_chambers/spawner/slow_ranged": "spawner/connectors/slow_ranged",
+        "minecraft:trial_chambers/spawner/contents/slow_ranged": "spawner/slow_ranged/skeleton"
+      },
+      "connectors": {}
+    }
+  ]
+}
