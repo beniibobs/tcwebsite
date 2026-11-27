@@ -5,14 +5,14 @@ const $=id=>document.getElementById(id),cv=$('piece-render'),shell=$('piece-rend
 const unzip=async s=>new Uint8Array(await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
 const image=s=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=bad;im.src='data:image/png;base64,'+s});
 const base='assets/data/pieces/',tag=$('piece-template-tag'),floorControls=$('piece-floor-controls');
-const manifestPromise=fetch(base+'manifest.json?v=1').then(r=>{if(!r.ok)throw Error('Piece manifest unavailable');return r.json()});
+const manifestPromise=fetch(base+'manifest.json?v=2').then(r=>{if(!r.ok)throw Error('Piece manifest unavailable');return r.json()});
 const libraries=new Map(),views=new Map();let current=null,revision=0,view=null,R=null;
-const json=async path=>{const r=await fetch(base+path+'?v=1');if(!r.ok)throw Error('Model data unavailable: '+path);return r.json()};
+const json=async path=>{const r=await fetch(base+path+'?v=2');if(!r.ok)throw Error('Model data unavailable: '+path);return r.json()};
 const loadImage=url=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=()=>bad(Error('Texture atlas unavailable'));im.src=url});
 function library(key,data){
  if(!libraries.has(key)){
   const pending=(async()=>{const d=data||await json(key);
-   const [raw,atlas]=await Promise.all([unzip(d.models),d.atlasFile?loadImage(base+d.atlasFile+'?v=1'):image(d.atlas)]);
+   const [raw,atlas]=await Promise.all([unzip(d.models),d.atlasFile?loadImage(base+d.atlasFile+'?v=2'):image(d.atlas)]);
    const models=JSON.parse(new TextDecoder().decode(raw));
    if(atlas.width!==18*d.cols||atlas.height!==18*d.rows)throw Error('Invalid texture dimensions');
    const tex=new THREE.Texture(atlas);tex.magFilter=tex.minFilter=THREE.NearestFilter;tex.generateMipmaps=false;tex.needsUpdate=true;
