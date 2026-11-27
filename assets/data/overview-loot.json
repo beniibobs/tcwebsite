@@ -174,24 +174,104 @@
   ],
   "pieces": [
     {
-      "name": "Supply Chest Connector",
-      "file": "chests/connectors/supply"
-    },
-    {
-      "name": "Supply Chest",
-      "file": "chests/supply"
+      "name": "Aquarium",
+      "file": "intersection/intersection_1"
     },
     {
       "name": "Arrow Dispenser",
       "file": "corridor/addon/arrow_dispenser"
     },
     {
+      "name": "Atrium",
+      "file": "corridor/atrium_1"
+    },
+    {
+      "name": "Black Bed",
+      "file": "decor/black_bed"
+    },
+    {
+      "name": "Bloxing Ring",
+      "file": "hallway/encounter_2"
+    },
+    {
+      "name": "Blue Bed",
+      "file": "decor/blue_bed"
+    },
+    {
+      "name": "Bogged Relief",
+      "file": "corridor/atrium/bogged_relief"
+    },
+    {
+      "name": "Breeze Relief",
+      "file": "corridor/atrium/breeze_relief"
+    },
+    {
       "name": "Bridge Lower",
       "file": "corridor/addon/bridge_lower"
     },
     {
+      "name": "Brown Bed",
+      "file": "decor/brown_bed"
+    },
+    {
+      "name": "Cache",
+      "file": "hallway/cache_1"
+    },
+    {
+      "name": "Cake Chest",
+      "file": "corridor/end_2"
+    },
+    {
+      "name": "Candle 1",
+      "file": "decor/candle_1"
+    },
+    {
+      "name": "Candle 2",
+      "file": "decor/candle_2"
+    },
+    {
+      "name": "Candle 3",
+      "file": "decor/candle_3"
+    },
+    {
+      "name": "Candle 4",
+      "file": "decor/candle_4"
+    },
+    {
+      "name": "Chamber Dispenser",
+      "file": "dispensers/chamber"
+    },
+    {
       "name": "Chandelier Upper",
       "file": "corridor/addon/chandelier_upper"
+    },
+    {
+      "name": "Column",
+      "file": "intersection/intersection_3"
+    },
+    {
+      "name": "Corner Staircase",
+      "file": "hallway/corner_staircase"
+    },
+    {
+      "name": "Corner Staircase Down",
+      "file": "hallway/corner_staircase_down"
+    },
+    {
+      "name": "Corridor Barrel",
+      "file": "decor/barrel"
+    },
+    {
+      "name": "Corridor Connector 1",
+      "file": "hallway/corridor_connector_1"
+    },
+    {
+      "name": "Cyan Bed",
+      "file": "decor/cyan_bed"
+    },
+    {
+      "name": "Dead Bush Pot",
+      "file": "decor/dead_bush_pot"
     },
     {
       "name": "Decoration Upper",
@@ -210,44 +290,28 @@
       "file": "corridor/addon/display_3"
     },
     {
-      "name": "Head Upper",
-      "file": "corridor/addon/head_upper"
+      "name": "Disposal Barrel",
+      "file": "decor/disposal"
     },
     {
-      "name": "Ladder To Middle",
-      "file": "corridor/addon/ladder_to_middle"
+      "name": "Empty Pot",
+      "file": "decor/empty_pot"
     },
     {
-      "name": "Open Walkway",
-      "file": "corridor/addon/open_walkway"
+      "name": "Evil Vent",
+      "file": "hallway/encounter_1"
     },
     {
-      "name": "Open Walkway Upper",
-      "file": "corridor/addon/open_walkway_upper"
+      "name": "First Plate",
+      "file": "corridor/first_plate"
     },
     {
-      "name": "Reward Upper",
-      "file": "corridor/addon/reward_upper"
+      "name": "Floor Dispenser",
+      "file": "dispensers/floor_dispenser"
     },
     {
-      "name": "Staircase",
-      "file": "corridor/addon/staircase"
-    },
-    {
-      "name": "Wall",
-      "file": "corridor/addon/wall"
-    },
-    {
-      "name": "Walled Walkway",
-      "file": "corridor/addon/walled_walkway"
-    },
-    {
-      "name": "Bogged Relief",
-      "file": "corridor/atrium/bogged_relief"
-    },
-    {
-      "name": "Breeze Relief",
-      "file": "corridor/atrium/breeze_relief"
+      "name": "Flow Pot",
+      "file": "decor/flow_pot"
     },
     {
       "name": "Grand Staircase 1",
@@ -262,6 +326,134 @@
       "file": "corridor/atrium/grand_staircase_3"
     },
     {
+      "name": "Gray Bed",
+      "file": "decor/gray_bed"
+    },
+    {
+      "name": "Green Bed",
+      "file": "decor/green_bed"
+    },
+    {
+      "name": "Guster Pot",
+      "file": "decor/guster_pot"
+    },
+    {
+      "name": "Head Upper",
+      "file": "corridor/addon/head_upper"
+    },
+    {
+      "name": "Ladder To Middle",
+      "file": "corridor/addon/ladder_to_middle"
+    },
+    {
+      "name": "Left Corner",
+      "file": "hallway/left_corner"
+    },
+    {
+      "name": "Light Blue Bed",
+      "file": "decor/light_blue_bed"
+    },
+    {
+      "name": "Light Gray Bed",
+      "file": "decor/light_gray_bed"
+    },
+    {
+      "name": "Lime Bed",
+      "file": "decor/lime_bed"
+    },
+    {
+      "name": "Loft",
+      "file": "intersection/intersection_2"
+    },
+    {
+      "name": "Long Straight Staircase",
+      "file": "hallway/long_straight_staircase"
+    },
+    {
+      "name": "Long Straight Staircase Down",
+      "file": "hallway/long_straight_staircase_down"
+    },
+    {
+      "name": "Lower Hallway Connector",
+      "file": "hallway/lower_hallway_connector"
+    },
+    {
+      "name": "Magenta Bed",
+      "file": "decor/magenta_bed"
+    },
+    {
+      "name": "Minichamber",
+      "file": "hallway/encounter_5"
+    },
+    {
+      "name": "Ominous Vault",
+      "file": "reward/ominous_vault"
+    },
+    {
+      "name": "Open Walkway",
+      "file": "corridor/addon/open_walkway"
+    },
+    {
+      "name": "Open Walkway Upper",
+      "file": "corridor/addon/open_walkway_upper"
+    },
+    {
+      "name": "Orange Bed",
+      "file": "decor/orange_bed"
+    },
+    {
+      "name": "Pink Bed",
+      "file": "decor/pink_bed"
+    },
+    {
+      "name": "Pitfall",
+      "file": "hallway/encounter_4"
+    },
+    {
+      "name": "Purple Bed",
+      "file": "decor/purple_bed"
+    },
+    {
+      "name": "Red Bed",
+      "file": "decor/red_bed"
+    },
+    {
+      "name": "Reward Upper",
+      "file": "corridor/addon/reward_upper"
+    },
+    {
+      "name": "Right Corner",
+      "file": "hallway/right_corner"
+    },
+    {
+      "name": "Rubble",
+      "file": "hallway/rubble"
+    },
+    {
+      "name": "Rubble Chamber",
+      "file": "hallway/rubble_chamber"
+    },
+    {
+      "name": "Rubble Chamber Thin",
+      "file": "hallway/rubble_chamber_thin"
+    },
+    {
+      "name": "Rubble Thin",
+      "file": "hallway/rubble_thin"
+    },
+    {
+      "name": "Scrape Pot",
+      "file": "decor/scrape_pot"
+    },
+    {
+      "name": "Second Plate",
+      "file": "corridor/second_plate"
+    },
+    {
+      "name": "Sewer",
+      "file": "corridor/entrance_2"
+    },
+    {
       "name": "Spider Relief",
       "file": "corridor/atrium/spider_relief"
     },
@@ -270,36 +462,12 @@
       "file": "corridor/atrium/spiral_relief"
     },
     {
-      "name": "Atrium",
-      "file": "corridor/atrium_1"
+      "name": "Staircase",
+      "file": "corridor/addon/staircase"
     },
     {
-      "name": "Wall",
-      "file": "corridor/end_1"
-    },
-    {
-      "name": "Cake Chest",
-      "file": "corridor/end_2"
-    },
-    {
-      "name": "Vent",
-      "file": "corridor/entrance_1"
-    },
-    {
-      "name": "Sewer",
-      "file": "corridor/entrance_2"
-    },
-    {
-      "name": "Twin Staircase",
-      "file": "corridor/entrance_3"
-    },
-    {
-      "name": "First Plate",
-      "file": "corridor/first_plate"
-    },
-    {
-      "name": "Second Plate",
-      "file": "corridor/second_plate"
+      "name": "Straight",
+      "file": "hallway/straight"
     },
     {
       "name": "Straight 1: No door",
@@ -334,206 +502,6 @@
       "file": "corridor/straight_8"
     },
     {
-      "name": "Corridor Barrel",
-      "file": "decor/barrel"
-    },
-    {
-      "name": "Black Bed",
-      "file": "decor/black_bed"
-    },
-    {
-      "name": "Blue Bed",
-      "file": "decor/blue_bed"
-    },
-    {
-      "name": "Brown Bed",
-      "file": "decor/brown_bed"
-    },
-    {
-      "name": "Candle 1",
-      "file": "decor/candle_1"
-    },
-    {
-      "name": "Candle 2",
-      "file": "decor/candle_2"
-    },
-    {
-      "name": "Candle 3",
-      "file": "decor/candle_3"
-    },
-    {
-      "name": "Candle 4",
-      "file": "decor/candle_4"
-    },
-    {
-      "name": "Cyan Bed",
-      "file": "decor/cyan_bed"
-    },
-    {
-      "name": "Dead Bush Pot",
-      "file": "decor/dead_bush_pot"
-    },
-    {
-      "name": "Disposal Barrel",
-      "file": "decor/disposal"
-    },
-    {
-      "name": "Empty Pot",
-      "file": "decor/empty_pot"
-    },
-    {
-      "name": "Flow Pot",
-      "file": "decor/flow_pot"
-    },
-    {
-      "name": "Gray Bed",
-      "file": "decor/gray_bed"
-    },
-    {
-      "name": "Green Bed",
-      "file": "decor/green_bed"
-    },
-    {
-      "name": "Guster Pot",
-      "file": "decor/guster_pot"
-    },
-    {
-      "name": "Light Blue Bed",
-      "file": "decor/light_blue_bed"
-    },
-    {
-      "name": "Light Gray Bed",
-      "file": "decor/light_gray_bed"
-    },
-    {
-      "name": "Lime Bed",
-      "file": "decor/lime_bed"
-    },
-    {
-      "name": "Magenta Bed",
-      "file": "decor/magenta_bed"
-    },
-    {
-      "name": "Orange Bed",
-      "file": "decor/orange_bed"
-    },
-    {
-      "name": "Pink Bed",
-      "file": "decor/pink_bed"
-    },
-    {
-      "name": "Purple Bed",
-      "file": "decor/purple_bed"
-    },
-    {
-      "name": "Red Bed",
-      "file": "decor/red_bed"
-    },
-    {
-      "name": "Scrape Pot",
-      "file": "decor/scrape_pot"
-    },
-    {
-      "name": "Undecorated Pot",
-      "file": "decor/undecorated_pot"
-    },
-    {
-      "name": "White Bed",
-      "file": "decor/white_bed"
-    },
-    {
-      "name": "Yellow Bed",
-      "file": "decor/yellow_bed"
-    },
-    {
-      "name": "Chamber Dispenser",
-      "file": "dispensers/chamber"
-    },
-    {
-      "name": "Floor Dispenser",
-      "file": "dispensers/floor_dispenser"
-    },
-    {
-      "name": "Wall Dispenser",
-      "file": "dispensers/wall_dispenser"
-    },
-    {
-      "name": "Cache",
-      "file": "hallway/cache_1"
-    },
-    {
-      "name": "Corner Staircase",
-      "file": "hallway/corner_staircase"
-    },
-    {
-      "name": "Corner Staircase Down",
-      "file": "hallway/corner_staircase_down"
-    },
-    {
-      "name": "Corridor Connector 1",
-      "file": "hallway/corridor_connector_1"
-    },
-    {
-      "name": "Evil Vent",
-      "file": "hallway/encounter_1"
-    },
-    {
-      "name": "Bloxing Ring",
-      "file": "hallway/encounter_2"
-    },
-    {
-      "name": "Tube",
-      "file": "hallway/encounter_3"
-    },
-    {
-      "name": "Pitfall",
-      "file": "hallway/encounter_4"
-    },
-    {
-      "name": "Minichamber",
-      "file": "hallway/encounter_5"
-    },
-    {
-      "name": "Left Corner",
-      "file": "hallway/left_corner"
-    },
-    {
-      "name": "Long Straight Staircase",
-      "file": "hallway/long_straight_staircase"
-    },
-    {
-      "name": "Long Straight Staircase Down",
-      "file": "hallway/long_straight_staircase_down"
-    },
-    {
-      "name": "Lower Hallway Connector",
-      "file": "hallway/lower_hallway_connector"
-    },
-    {
-      "name": "Right Corner",
-      "file": "hallway/right_corner"
-    },
-    {
-      "name": "Rubble",
-      "file": "hallway/rubble"
-    },
-    {
-      "name": "Rubble Chamber",
-      "file": "hallway/rubble_chamber"
-    },
-    {
-      "name": "Rubble Chamber Thin",
-      "file": "hallway/rubble_chamber_thin"
-    },
-    {
-      "name": "Rubble Thin",
-      "file": "hallway/rubble_thin"
-    },
-    {
-      "name": "Straight",
-      "file": "hallway/straight"
-    },
-    {
       "name": "Straight Staircase",
       "file": "hallway/straight_staircase"
     },
@@ -542,32 +510,60 @@
       "file": "hallway/straight_staircase_down"
     },
     {
+      "name": "Supply Chest",
+      "file": "chests/supply"
+    },
+    {
       "name": "Trapped Staircase",
       "file": "hallway/trapped_staircase"
+    },
+    {
+      "name": "Tube",
+      "file": "hallway/encounter_3"
+    },
+    {
+      "name": "Twin Staircase",
+      "file": "corridor/entrance_3"
+    },
+    {
+      "name": "Undecorated Pot",
+      "file": "decor/undecorated_pot"
     },
     {
       "name": "Upper Hallway Connector",
       "file": "hallway/upper_hallway_connector"
     },
     {
-      "name": "Aquarium",
-      "file": "intersection/intersection_1"
-    },
-    {
-      "name": "Loft",
-      "file": "intersection/intersection_2"
-    },
-    {
-      "name": "Column",
-      "file": "intersection/intersection_3"
-    },
-    {
-      "name": "Ominous Vault",
-      "file": "reward/ominous_vault"
-    },
-    {
       "name": "Vault",
       "file": "reward/vault"
+    },
+    {
+      "name": "Vent",
+      "file": "corridor/entrance_1"
+    },
+    {
+      "name": "Wall",
+      "file": "corridor/addon/wall"
+    },
+    {
+      "name": "Wall",
+      "file": "corridor/end_1"
+    },
+    {
+      "name": "Wall Dispenser",
+      "file": "dispensers/wall_dispenser"
+    },
+    {
+      "name": "Walled Walkway",
+      "file": "corridor/addon/walled_walkway"
+    },
+    {
+      "name": "White Bed",
+      "file": "decor/white_bed"
+    },
+    {
+      "name": "Yellow Bed",
+      "file": "decor/yellow_bed"
     }
   ],
   "potionIcons": {
