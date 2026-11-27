@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id),cv=$('piece-render'),shell=$('piece-rend
 const unzip=async s=>new Uint8Array(await new Response(new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))]).stream().pipeThrough(new DecompressionStream('deflate'))).arrayBuffer());
 const image=s=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=bad;im.src='data:image/png;base64,'+s});
 const base='assets/data/pieces/',tag=$('piece-template-tag'),floorControls=$('piece-floor-controls');
-const manifestPromise=fetch(base+'manifest.json?v=3').then(r=>{if(!r.ok)throw Error('Piece manifest unavailable');return r.json()});
+const manifestPromise=fetch(base+'manifest.json?v=4').then(r=>{if(!r.ok)throw Error('Piece manifest unavailable');return r.json()});
 const libraries=new Map(),views=new Map();let current=null,revision=0,view=null,R=null;
 const json=async path=>{const r=await fetch(base+path+'?v=3');if(!r.ok)throw Error('Model data unavailable: '+path);return r.json()};
 const loadImage=url=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=()=>bad(Error('Texture atlas unavailable'));im.src=url});
@@ -30,9 +30,33 @@ async function packedAtlas(d){
  }
  return canvas;
 }
+async function combinedLibrary(d){
+ const [a,b,mp,tp]=await Promise.all([library(d.sources[0]),library(d.sources[1]),json(d.modelPackFile),json(d.texturePackFile)]);
+ const [raw,bytes]=await Promise.all([unzip(mp.modelPack),unzip(tp.texturePack)]);
+ const models=[],refs=JSON.parse(new TextDecoder().decode(raw));
+ for(const ref of refs){
+  if(ref[0]===3){models.push(ref[1]);continue}
+  const src=[a.models,b.models,models][ref[0]][ref[1]];
+  if(!src||src[1].length!==ref[2].length)throw Error('Invalid model reference');
+  models.push([src[0],src[1].map((f,i)=>[ref[2][i],...f.slice(1)])]);
+ }
+ const old=[];
+ for(const [src,n] of [[a,74],[b,84]]){
+  const im=src.tex.image,canvas=document.createElement('canvas');canvas.width=im.width;canvas.height=im.height;const ctx=canvas.getContext('2d');ctx.drawImage(im,0,0);
+  for(let i=0;i<n;i++)old.push(ctx.getImageData(i%src.cols*18+1,Math.floor(i/src.cols)*18+1,16,16).data);
+ }
+ const indices=old.map(t=>{const map=new Map(),out=new Uint8Array(256);for(let i=0;i<256;i++){const key=Array.from(t.subarray(i*4,i*4+4)).join(',');if(!map.has(key))map.set(key,map.size);out[i]=map.get(key)}return out});
+ const dv=new DataView(bytes.buffer,bytes.byteOffset,bytes.byteLength);let off=0;const read=()=>{const x=dv.getUint16(off,true);off+=2;return x};
+ const n=read(),np=read(),nc=read(),mapping=Array.from({length:n},read);for(let i=0;i<np;i++){indices.push(bytes.subarray(off,off+256));off+=256}
+ for(let i=0;i<nc;i++){const k=read(),l=read(),pal=bytes.subarray(off,off+4*l);off+=4*l;const t=new Uint8ClampedArray(1024),idx=indices[k];if(!idx)throw Error('Invalid palette reference');for(let j=0;j<256;j++){if(idx[j]>=l)throw Error('Invalid palette index');t.set(pal.subarray(idx[j]*4,idx[j]*4+4),j*4)}old.push(t)}
+ if(off!==bytes.length||n!==213||models.length!==156)throw Error('Invalid shared data');
+ const canvas=document.createElement('canvas');canvas.width=d.cols*18;canvas.height=d.rows*18;const ctx=canvas.getContext('2d');
+ for(let i=0;i<n;i++){const src=old[mapping[i]],tile=ctx.createImageData(18,18);if(!src)throw Error('Invalid tile index');for(let y=0;y<18;y++)for(let x=0;x<18;x++){const a=(Math.max(0,Math.min(15,y-1))*16+Math.max(0,Math.min(15,x-1)))*4;tile.data.set(src.subarray(a,a+4),(y*18+x)*4)}ctx.putImageData(tile,i%d.cols*18,Math.floor(i/d.cols)*18)}
+ const tex=new THREE.Texture(canvas);tex.magFilter=tex.minFilter=THREE.NearestFilter;tex.generateMipmaps=false;tex.needsUpdate=true;return {...d,models,tex};
+}
 function library(key,data){
  if(!libraries.has(key)){
-  const pending=(async()=>{const d=data||await json(key);
+  const pending=(async()=>{const d=data||await json(key);if(d.modelPackFile)return combinedLibrary(d);
    const [raw,atlas]=await Promise.all([unzip(d.models),d.atlasPackedFile?packedAtlas(d):d.atlasFile?loadImage(base+d.atlasFile+'?v=2'):image(d.atlas)]);
    const models=JSON.parse(new TextDecoder().decode(raw));
    if(atlas.width!==18*d.cols||atlas.height!==18*d.rows)throw Error('Invalid texture dimensions');
