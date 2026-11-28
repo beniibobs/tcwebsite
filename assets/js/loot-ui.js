@@ -57,14 +57,23 @@ try{
    detailBody.replaceChildren(statRow(name,row[1],...calc(row[2],row[3],counts)));
   }
   function slider(label,max,onInput){
-   const group=document.createElement('div'),head=document.createElement('div'),lab=document.createElement('label'),out=document.createElement('output'),range=document.createElement('input'),ticks=document.createElement('div');
-   group.className='loot-detail-slider';head.className='loot-detail-slider-head';range.type='range';range.min='0';range.max=String(max);range.step='1';range.value='0';range.id='loot-slider-'+controls.children.length;lab.htmlFor=range.id;lab.textContent=label;out.htmlFor=range.id;out.textContent='0';head.append(lab,out);ticks.className='loot-detail-ticks';ticks.setAttribute('aria-hidden','true');
+   const group=document.createElement('div'),lab=document.createElement('label'),bar=document.createElement('div'),range=document.createElement('input'),ticks=document.createElement('div'),thumb=document.createElement('span');
+   group.className='loot-detail-slider';lab.className='loot-detail-slider-head';range.type='range';range.min='0';range.max=String(max);range.step='1';range.value='0';range.id='loot-slider-'+controls.children.length;lab.htmlFor=range.id;lab.textContent=label;
+   bar.className='loot-detail-segments';bar.style.setProperty('--segments',String(max+1));bar.style.setProperty('--selected','0');
+   range.className='loot-detail-range';ticks.className='loot-detail-ticks';ticks.setAttribute('aria-hidden','true');thumb.className='loot-detail-thumb';thumb.setAttribute('aria-hidden','true');thumb.textContent='0';
    for(let i=0;i<=max;i++){const t=document.createElement('span');t.textContent=String(i);ticks.append(t)}
-   range.addEventListener('input',()=>{out.textContent=range.value;onInput(Number(range.value));render()});
-   group.append(head,range,ticks);controls.append(group);
+   function sync(){const value=Number(range.value);bar.style.setProperty('--selected',String(value));thumb.textContent=range.value;onInput(value);render()}
+   range.addEventListener('input',sync);
+   let pointer=null;
+   function setFromPointer(e){const r=bar.getBoundingClientRect();if(!r.width)return;const n=Math.max(0,Math.min(max,Math.floor((e.clientX-r.left)/r.width*(max+1))));if(Number(range.value)!==n){range.value=String(n);sync()}}
+   bar.addEventListener('pointerdown',e=>{if(pointer!==null||e.button!==0)return;e.preventDefault();pointer=e.pointerId;bar.setPointerCapture(pointer);range.focus({preventScroll:true});setFromPointer(e)});
+   bar.addEventListener('pointermove',e=>{if(pointer===e.pointerId)setFromPointer(e)});
+   function end(e){if(pointer===e.pointerId)pointer=null}
+   bar.addEventListener('pointerup',e=>{if(pointer===e.pointerId){setFromPointer(e);end(e)}});bar.addEventListener('pointercancel',end);bar.addEventListener('lostpointercapture',end);
+   bar.append(range,ticks,thumb);group.append(lab,bar);controls.append(group);
   }
   if(cfg.mode==='vault'||cfg.mode==='discs'){
-   slider('Vaults Opened',5,n=>v=n);if(cfg.ominous)slider('Ominous Vaults Opened',5,n=>o=n);
+   slider('Vaults Opened',5,n=>v=n);if(cfg.ominous&&name!=='Ominous Bottle')slider('Ominous Vaults Opened',5,n=>o=n);
    note.textContent='Totals include generated loot and the selected vault rewards, assuming the vaults and keys are available. Mineral blocks count as nine items.';
    if(!['Diamond','Iron Ingot','Emerald'].includes(name))note.textContent='Totals include generated loot and the selected vault rewards, assuming the vaults and keys are available.';
    note.hidden=false;
