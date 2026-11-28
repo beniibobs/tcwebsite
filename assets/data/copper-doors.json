@@ -1,7 +1,7 @@
 {
   "source": {
     "eventual": "100,000-structure v4 study, copper_doors_eventual_branch.csv; denominator includes blocked doors. Chest is rubble_chest, separate from Cache.",
-    "first": "Door-side study, doors_by_height_side.csv, both sides pooled by counts; separate cohort from v4. Middle Chest includes rubble_chest (both chest-bearing rubble templates) and cache (supply-chest attachment); Other includes other_hallway, rubble_no_chest and encounter. This groups first-piece types, not a separate count of successful nested chest placements.",
+    "first": "Door-side study, doors_by_height_side.csv, both sides pooled by counts; separate cohort from v4. Middle Chest includes rubble_chest (both chest-bearing rubble templates), excluding supply caches which use a different loot table. Other includes other_hallway, rubble_no_chest, encounter and cache.",
     "chambers": "chamber_by_location.csv; placed count divided by the v4 per-height denominator. The totals match eventual chamber counts."
   },
   "heights": {
@@ -230,7 +230,7 @@
         },
         {
           "name": "Chest",
-          "count": 67307,
+          "count": 64466,
           "parts": [
             {
               "file": "corridor/straight_3",
@@ -255,7 +255,7 @@
         },
         {
           "name": "Other",
-          "count": 72464,
+          "count": 75305,
           "parts": [
             {
               "file": "corridor/straight_3",
