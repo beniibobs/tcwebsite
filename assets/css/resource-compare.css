@@ -30,3 +30,5 @@ html.resource-compare-open{overflow:hidden}
 .resource-compare-table .is-current th{box-shadow:inset 3px 0 var(--copper)}
 .resource-compare-table .maze-probability{min-width:0}
 @media(max-width:440px){.resource-compare-inner{padding:12px 10px}.resource-compare-table th,.resource-compare-table td{padding:9px 5px}.resource-compare-table{font-size:12px}.resource-compare-heading h2{font-size:20px}.resource-compare-table .maze-probability strong{font-size:12px}}
+
+#overview-encounter-dialog .resource-compare-table tbody tr:last-child>*{border-bottom:0}

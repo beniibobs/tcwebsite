@@ -1,0 +1,2 @@
+/* 100,000 completed v4 structure runs. Count = placed encounters; present = runs containing >=1 of that type. */
+window.AtlasEncounterStats=Object.freeze({"runs":100000,"total":8862,"any":8338,"types":[{"id":2,"name":"Bloxing Ring","count":2161,"present":2138},{"id":1,"name":"Evil Vent","count":1852,"present":1798},{"id":5,"name":"Minichamber","count":694,"present":692},{"id":4,"name":"Pitfall","count":1139,"present":1135},{"id":3,"name":"Tube","count":3016,"present":2952}]});

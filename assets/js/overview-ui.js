@@ -10,5 +10,10 @@ const probability=(p)=>{
    return '<div class="maze-probability" style="--prob-color:'+fill+';--prob-text:'+ink+'"><strong>'+p+'</strong><div class="maze-probability-track" aria-hidden="true"><i style="width:'+value+'%"></i></div></div>';
  };
  
-document.getElementById('overview-stats').innerHTML=rows.map(([k,n,e,p])=>'<tr><td><span class="mc-stat-label">'+(icons[k]?'<img class="mc-stat-icon'+(['chest','barrel','chamber','encounter'].includes(k)?' core-flat-icon':'')+'" width="25" height="25" alt="" src="data:image/png;base64,'+icons[k]+'">':'')+'<span>'+n+'</span></span></td><td class="num">'+e+'</td><td class="num">'+probability(p)+'</td></tr>').join('');
+document.getElementById('overview-stats').innerHTML=rows.map(([k,n,e,p])=>'<tr><td><span class="mc-stat-label">'+(icons[k]?'<img class="mc-stat-icon'+(['chest','barrel','chamber','encounter'].includes(k)?' core-flat-icon':'')+'" width="25" height="25" alt="" src="data:image/png;base64,'+icons[k]+'">':'')+(k==='encounter'?'<button type="button" id="overview-encounter-trigger" class="resource-compare-trigger" aria-haspopup="dialog">'+n+'</button>':'<span>'+n+'</span>')+'</span></td><td class="num">'+e+'</td><td class="num">'+probability(p)+'</td></tr>').join('');
+const encounterTrigger=document.getElementById('overview-encounter-trigger'),encounterDialog=document.getElementById('overview-encounter-dialog'),encounterClose=encounterDialog.querySelector('.resource-compare-close'),encounterBody=encounterDialog.querySelector('tbody'),enc=window.AtlasEncounterStats;
+encounterBody.innerHTML=enc.types.map(e=>'<tr><th scope="row">'+e.name+'</th><td class="num">'+(e.count/enc.runs).toFixed(3)+'</td><td class="num">'+probability((100*e.present/enc.runs).toFixed(2)+'%')+'</td></tr>').join('');
+encounterTrigger.onclick=()=>{document.documentElement.classList.add('resource-compare-open');encounterDialog.showModal();encounterClose.focus()};
+encounterClose.onclick=()=>encounterDialog.close();encounterDialog.addEventListener('click',e=>{if(e.target!==encounterDialog)return;const r=encounterDialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)encounterDialog.close()});encounterDialog.addEventListener('close',()=>{document.documentElement.classList.remove('resource-compare-open');encounterTrigger.focus({preventScroll:true})});
+
 })();
