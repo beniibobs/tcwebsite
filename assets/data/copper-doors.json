@@ -1,0 +1,408 @@
+{
+  "source": {
+    "eventual": "100,000-structure v4 study, copper_doors_eventual_branch.csv; denominator includes blocked doors. Chest is rubble_chest, separate from Cache.",
+    "first": "Door-side study, doors_by_height_side.csv, both sides pooled by counts; separate cohort from v4. Middle Other includes other_hallway, rubble_no_chest, encounter and cache.",
+    "chambers": "chamber_by_location.csv; placed count divided by the v4 per-height denominator. The totals match eventual chamber counts."
+  },
+  "heights": {
+    "lower": {
+      "doorY": 5,
+      "firstDenominator": 228313,
+      "denominator": 228595,
+      "stats": [
+        {
+          "name": "Chamber",
+          "count": 18830
+        },
+        {
+          "name": "Chest",
+          "count": 137312
+        },
+        {
+          "name": "Cache",
+          "count": 10222
+        },
+        {
+          "name": "Encounter",
+          "count": 567
+        }
+      ],
+      "chambers": [
+        {
+          "name": "Overhang",
+          "id": "chamber_1",
+          "count": 2355
+        },
+        {
+          "name": "Snoverhang",
+          "id": "chamber_2",
+          "count": 2252
+        },
+        {
+          "name": "Pedestal",
+          "id": "pedestal",
+          "count": 2351
+        },
+        {
+          "name": "Infestation",
+          "id": "chamber_4",
+          "count": 3504
+        },
+        {
+          "name": "Eruption",
+          "id": "eruption",
+          "count": 2562
+        },
+        {
+          "name": "Assembly",
+          "id": "assembly",
+          "count": 2298
+        },
+        {
+          "name": "Hotel",
+          "id": "chamber_8",
+          "count": 924
+        },
+        {
+          "name": "Maze",
+          "id": "slanted",
+          "count": 2584
+        }
+      ],
+      "variants": [
+        {
+          "name": "Spiral staircase",
+          "count": 106094,
+          "parts": [
+            {
+              "file": "corridor/straight_2",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "file": "hallway/lower_hallway_connector",
+              "rotation": 0,
+              "offset": [
+                -11,
+                -8,
+                0
+              ]
+            }
+          ],
+          "blocked": false
+        },
+        {
+          "name": "Trapped staircase",
+          "count": 68925,
+          "parts": [
+            {
+              "file": "corridor/straight_2",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "file": "hallway/trapped_staircase",
+              "rotation": 0,
+              "offset": [
+                -11,
+                -18,
+                0
+              ]
+            }
+          ],
+          "blocked": false
+        },
+        {
+          "name": "Nothing",
+          "count": 53294,
+          "parts": [
+            {
+              "file": "corridor/straight_2",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "blocked": true
+        }
+      ]
+    },
+    "middle": {
+      "doorY": 10,
+      "firstDenominator": 228170,
+      "denominator": 228935,
+      "stats": [
+        {
+          "name": "Chamber",
+          "count": 84702
+        },
+        {
+          "name": "Chest",
+          "count": 85903
+        },
+        {
+          "name": "Cache",
+          "count": 3602
+        },
+        {
+          "name": "Encounter",
+          "count": 4823
+        }
+      ],
+      "chambers": [
+        {
+          "name": "Overhang",
+          "id": "chamber_1",
+          "count": 12827
+        },
+        {
+          "name": "Snoverhang",
+          "id": "chamber_2",
+          "count": 12658
+        },
+        {
+          "name": "Pedestal",
+          "id": "pedestal",
+          "count": 4591
+        },
+        {
+          "name": "Infestation",
+          "id": "chamber_4",
+          "count": 9067
+        },
+        {
+          "name": "Eruption",
+          "id": "eruption",
+          "count": 6006
+        },
+        {
+          "name": "Assembly",
+          "id": "assembly",
+          "count": 13084
+        },
+        {
+          "name": "Hotel",
+          "id": "chamber_8",
+          "count": 20520
+        },
+        {
+          "name": "Maze",
+          "id": "slanted",
+          "count": 5949
+        }
+      ],
+      "variants": [
+        {
+          "name": "Chamber",
+          "count": 64765,
+          "parts": [
+            {
+              "file": "corridor/straight_3",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "file": "chamber/chamber_4",
+              "rotation": 2,
+              "offset": [
+                -1,
+                7,
+                16
+              ]
+            }
+          ],
+          "blocked": false
+        },
+        {
+          "name": "Rubble",
+          "count": 64466,
+          "parts": [
+            {
+              "file": "corridor/straight_3",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "file": "hallway/rubble_chamber",
+              "rotation": 1,
+              "offset": [
+                -1,
+                7,
+                0
+              ]
+            }
+          ],
+          "blocked": false
+        },
+        {
+          "name": "Other",
+          "count": 75305,
+          "parts": [
+            {
+              "file": "corridor/straight_3",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "file": "hallway/straight",
+              "rotation": 1,
+              "offset": [
+                -1,
+                7,
+                0
+              ]
+            }
+          ],
+          "blocked": false
+        },
+        {
+          "name": "Nothing",
+          "count": 23634,
+          "parts": [
+            {
+              "file": "corridor/straight_3",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "blocked": true
+        }
+      ]
+    },
+    "upper": {
+      "doorY": 15,
+      "firstDenominator": 171835,
+      "denominator": 171445,
+      "stats": [
+        {
+          "name": "Chamber",
+          "count": 98269
+        },
+        {
+          "name": "Chest",
+          "count": 23168
+        },
+        {
+          "name": "Cache",
+          "count": 1021
+        },
+        {
+          "name": "Encounter",
+          "count": 2897
+        }
+      ],
+      "chambers": [
+        {
+          "name": "Overhang",
+          "id": "chamber_1",
+          "count": 316
+        },
+        {
+          "name": "Snoverhang",
+          "id": "chamber_2",
+          "count": 290
+        },
+        {
+          "name": "Pedestal",
+          "id": "pedestal",
+          "count": 8639
+        },
+        {
+          "name": "Infestation",
+          "id": "chamber_4",
+          "count": 15364
+        },
+        {
+          "name": "Eruption",
+          "id": "eruption",
+          "count": 10102
+        },
+        {
+          "name": "Assembly",
+          "id": "assembly",
+          "count": 9449
+        },
+        {
+          "name": "Hotel",
+          "id": "chamber_8",
+          "count": 44035
+        },
+        {
+          "name": "Maze",
+          "id": "slanted",
+          "count": 10074
+        }
+      ],
+      "variants": [
+        {
+          "name": "Spiral staircase",
+          "count": 145374,
+          "parts": [
+            {
+              "file": "corridor/straight_4",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            },
+            {
+              "file": "hallway/upper_hallway_connector",
+              "rotation": 0,
+              "offset": [
+                -11,
+                12,
+                0
+              ]
+            }
+          ],
+          "blocked": false
+        },
+        {
+          "name": "Nothing",
+          "count": 26461,
+          "parts": [
+            {
+              "file": "corridor/straight_4",
+              "rotation": 0,
+              "offset": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "blocked": true
+        }
+      ]
+    }
+  }
+}
