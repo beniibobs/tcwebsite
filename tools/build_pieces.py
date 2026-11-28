@@ -38,6 +38,12 @@ def place(path,r=0,offset=(0,0,0)):
   if r%2 and prop.get('axis') in ('x','z'):prop['axis']='z' if prop['axis']=='x' else 'x'
   if name=='air':blocks.pop(p,None)
   else:blocks[p]=(name,tuple(sorted(prop.items())))
+ # A bare tripwire final state at (6,0,1) has no direction until a neighbour update.
+ # Resolve the preview run along X, preserving the detached lane's original attached state.
+ if path=='corridor/addon/arrow_dispenser':
+  def at(q):return tuple(a+b for a,b in zip(rot(q,r),offset))
+  wire=blocks[at((4,0,1))]
+  for q in [(5,0,1),(6,0,1)]:blocks[at(q)]=wire
  return d
 @functools.lru_cache(None)
 def model(path):

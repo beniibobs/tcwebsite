@@ -7,7 +7,7 @@ const image=s=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);
 const base='assets/data/pieces/',tag=$('piece-template-tag'),floorControls=$('piece-floor-controls');
 const manifestPromise=fetch(base+'manifest.json?v=11').then(r=>{if(!r.ok)throw Error('Piece manifest unavailable');return r.json()});
 const libraries=new Map(),views=new Map();let current=null,revision=0,view=null,R=null;
-const json=async path=>{const r=await fetch(base+path+'?v=3');if(!r.ok)throw Error('Model data unavailable: '+path);return r.json()};
+const json=async path=>{const r=await fetch(base+path+'?v=4');if(!r.ok)throw Error('Model data unavailable: '+path);return r.json()};
 const loadImage=url=>new Promise((ok,bad)=>{const im=new Image();im.onload=()=>ok(im);im.onerror=()=>bad(Error('Texture atlas unavailable'));im.src=url});
 async function packedAtlas(d){
  const p=await json(d.atlasPackedFile),[source,delta]=await Promise.all([loadImage(base+p.source+'?v=2'),unzip(p.delta)]);
