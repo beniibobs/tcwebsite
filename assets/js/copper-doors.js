@@ -8,7 +8,7 @@ const note=dialog.querySelector('.door-stat-note'),column=dialog.querySelector('
 function openDetails(height,data,button,kind){
  trigger=button;const chamber=kind==='Chamber',total=data.stats.find(r=>r.name===kind).count;
  title.textContent='Chance per '+cap(height)+' Door '+kind;
- column.textContent=kind;chanceColumn.textContent=chamber?'Chance of type':'Share of placements';
+ column.textContent=kind;chanceColumn.textContent=chamber?'Chance of type':'Chance / share';
  if(chamber){
   const denominator=data.chambers.reduce((sum,c)=>sum+c.count,0);
   tbody.innerHTML=data.chambers.map(c=>'<tr><th scope="row">'+c.name+'</th><td class="num">'+prob(pct(c.count,denominator))+'</td></tr>').join('');

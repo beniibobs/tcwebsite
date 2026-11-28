@@ -1,0 +1,8 @@
+/* Probability-bearing variant tabs. Colour and length represent the probability; the border indicates selection. */
+button.probability-tab{position:relative;overflow:hidden;padding-bottom:15px!important;background:var(--panel2)!important;color:var(--muted)!important;border-color:var(--line)!important}
+button.probability-tab[aria-selected=true],button.probability-tab[aria-pressed=true]{background:var(--tealsoft)!important;color:var(--ink)!important;border-color:var(--teal)!important}
+button.probability-tab strong{color:var(--ink)!important}
+button.probability-tab::before,button.probability-tab::after{content:"";position:absolute;bottom:0;left:0;height:4px;pointer-events:none}
+button.probability-tab::before{width:100%;background:#35363b}
+button.probability-tab::after{width:var(--tab-prob-width);background:var(--tab-prob-color)}
+button.probability-tab:focus-visible{outline:2px solid var(--copper);outline-offset:2px}
