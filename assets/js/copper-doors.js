@@ -12,11 +12,11 @@ function openDetails(height,data,button,kind){
  if(chamber){
   const denominator=data.chambers.reduce((sum,c)=>sum+c.count,0);
   tbody.innerHTML=data.chambers.map(c=>'<tr><th scope="row">'+c.name+'</th><td class="num">'+prob(pct(c.count,denominator))+'</td></tr>').join('');
-  note.textContent='Given that a chamber is reached through this door.';
+  note.hidden=false;note.textContent='Given that a chamber is reached through this door.';
  }else{
   const e=window.AtlasEncounterStats;
   tbody.innerHTML='<tr class="door-encounter-total"><th scope="row">Any encounter per '+height+' door</th><td class="num">'+prob(pct(total,data.denominator))+'</td></tr><tr class="door-encounter-reference"><th colspan="2" scope="colgroup">All Trial Chambers — encounter type reference</th></tr>'+e.types.map(c=>'<tr><th scope="row">'+c.name+'</th><td class="num">'+prob(pct(c.count,e.total))+'</td></tr>').join('');
-  note.textContent='The study records the total encounter chance for this door height, but not encounter types by height. The type percentages are shares of all encounter placements across the whole study, not door-specific probabilities.';
+  note.textContent='';note.hidden=true;
  }
  document.documentElement.classList.add('resource-compare-open');dialog.showModal();close.focus();
 }
