@@ -22,7 +22,7 @@ function openDetails(height,data,button,kind){
 }
 close.onclick=()=>dialog.close();dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()});dialog.addEventListener('close',()=>{document.documentElement.classList.remove('resource-compare-open');trigger?.focus({preventScroll:true});trigger=null});
 try{
- const response=await fetch('assets/data/copper-doors.json?v=1');if(!response.ok)throw Error('Door data unavailable');const data=await response.json();
+ const response=await fetch('assets/data/copper-doors.json?v=2');if(!response.ok)throw Error('Door data unavailable');const data=await response.json();
  for(const [height,d] of Object.entries(data.heights)){
   const section=document.querySelector('[data-door-height="'+height+'"]'),root=section.querySelector('.door-viewer'),tabs=section.querySelector('.door-tabs'),stats=section.querySelector('tbody'),viewer=window.PieceViewerFactory(root);let selected=-1;
   for(const row of d.stats){const tr=document.createElement('tr'),label=document.createElement('td'),p=document.createElement('td');if(row.name==='Chamber'||row.name==='Encounter'){const b=document.createElement('button');b.type='button';b.className='resource-compare-trigger';b.textContent=row.name;b.setAttribute('aria-haspopup','dialog');b.onclick=()=>openDetails(height,d,b,row.name);label.append(b)}else label.textContent=row.name;p.className='num';p.innerHTML=prob(pct(row.count,d.denominator));tr.append(label,p);stats.append(tr)}
